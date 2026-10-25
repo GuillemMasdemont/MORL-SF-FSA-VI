@@ -1,0 +1,1 @@
+query 1 |CCS| 0 steps 6,253,800 to-converge 5,450,800 {'full learns': 3, 'true gap <= cert tol': 0, 'fallbacks': 1, 'false fallbacks': 0}

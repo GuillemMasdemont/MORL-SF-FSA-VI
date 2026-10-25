@@ -1,0 +1,21 @@
+{"time":"2026-07-31T11:44:59.534999+02:00","level":"INFO","msg":"wandb-core"}
+{"time":"2026-07-31T11:44:59.535294+02:00","level":"INFO","msg":"stream: starting","core version":"0.28.1"}
+{"time":"2026-07-31T11:44:59.550677+02:00","level":"ERROR","msg":"monitor: failed to initialize xpu resource: monitor: could not start wandb-xpu binary: fork/exec /opt/anaconda3/envs/okb/lib/python3.10/site-packages/wandb/bin/wandb-xpu: bad CPU type in executable"}
+{"time":"2026-07-31T11:44:59.551119+02:00","level":"INFO","msg":"stream: created new stream","id":"kvtghqpw"}
+{"time":"2026-07-31T11:44:59.551178+02:00","level":"INFO","msg":"handler: started"}
+{"time":"2026-07-31T11:44:59.551985+02:00","level":"INFO","msg":"stream: started"}
+{"time":"2026-07-31T11:44:59.552026+02:00","level":"INFO","msg":"sender: started"}
+{"time":"2026-07-31T11:44:59.552112+02:00","level":"INFO","msg":"writer: started","stream_id":"kvtghqpw"}
+{"time":"2026-07-31T11:44:59.871561+02:00","level":"ERROR","msg":"api: HTTP error","status":401,"method":"POST","url":"https://api.wandb.ai/graphql"}
+{"time":"2026-07-31T11:44:59.87163+02:00","level":"ERROR","msg":"featurechecker: failed to load features, all will be disabled","error":"returned error 401: {\"data\":null}"}
+{"time":"2026-07-31T11:44:59.871668+02:00","level":"WARN","msg":"runupserter: server does not expand metric globs but the x_server_side_expand_glob_metrics setting is set; ignoring"}
+{"time":"2026-07-31T11:45:00.093411+02:00","level":"ERROR","msg":"api: HTTP error","status":401,"method":"POST","url":"https://api.wandb.ai/graphql"}
+{"time":"2026-07-31T11:45:00.093492+02:00","level":"ERROR","msg":"runupserter: failed to init run","error":"returned error 401: {\"data\":null}"}
+{"time":"2026-07-31T11:45:00.107638+02:00","level":"ERROR","msg":"sender: uploadConfigFile: runhandle: run not yet initialized"}
+{"time":"2026-07-31T11:45:00.107943+02:00","level":"ERROR","msg":"runfiles: runhandle: run not yet initialized"}
+{"time":"2026-07-31T11:45:00.108109+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-07-31T11:45:00.108144+02:00","level":"INFO","msg":"stream: finishing up"}
+{"time":"2026-07-31T11:45:00.108164+02:00","level":"INFO","msg":"handler: closed"}
+{"time":"2026-07-31T11:45:00.108239+02:00","level":"INFO","msg":"sender: closed"}
+{"time":"2026-07-31T11:45:00.108254+02:00","level":"INFO","msg":"stream: all finished"}
+{"time":"2026-07-31T11:45:00.129597+02:00","level":"ERROR","msg":"stream: runURL: runhandle: run not yet initialized"}

@@ -1,0 +1,26 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+  q   25 gap 4.43e-01 lib 25 learned 11 sweeps 12951 {'free': 0, 'gpi': 1, 'meta': 13, 'learn': 11, 'fail': 0}
+  q   50 gap 8.48e-02 lib 50 learned 14 sweeps 16912 {'free': 0, 'gpi': 7, 'meta': 29, 'learn': 14, 'fail': 0}
+  q   75 gap 5.12e-02 lib 73 learned 16 sweeps 21243 {'free': 2, 'gpi': 9, 'meta': 48, 'learn': 16, 'fail': 0}
+  q  100 gap 2.81e-02 lib 96 learned 18 sweeps 25388 {'free': 4, 'gpi': 14, 'meta': 64, 'learn': 18, 'fail': 0}
+  q  125 gap 1.79e-02 lib 121 learned 18 sweeps 28788 {'free': 4, 'gpi': 24, 'meta': 79, 'learn': 18, 'fail': 0}
+  q  150 gap 1.35e-02 lib 145 learned 21 sweeps 32280 {'free': 5, 'gpi': 33, 'meta': 91, 'learn': 21, 'fail': 0}
+  q  175 gap 1.01e-02 lib 170 learned 21 sweeps 35177 {'free': 5, 'gpi': 43, 'meta': 106, 'learn': 21, 'fail': 0}
+  q  200 gap 7.07e-03 lib 195 learned 21 sweeps 38740 {'free': 5, 'gpi': 56, 'meta': 118, 'learn': 21, 'fail': 0}
+  q  225 gap 5.59e-03 lib 220 learned 21 sweeps 42254 {'free': 5, 'gpi': 67, 'meta': 132, 'learn': 21, 'fail': 0}
+  q  250 gap 4.80e-03 lib 245 learned 21 sweeps 45482 {'free': 5, 'gpi': 78, 'meta': 146, 'learn': 21, 'fail': 0}
+  q  275 gap 4.39e-03 lib 270 learned 22 sweeps 48858 {'free': 5, 'gpi': 88, 'meta': 160, 'learn': 22, 'fail': 0}
+  q  300 gap 3.93e-03 lib 295 learned 24 sweeps 52341 {'free': 5, 'gpi': 99, 'meta': 172, 'learn': 24, 'fail': 0}
+  q  325 gap 3.48e-03 lib 320 learned 24 sweeps 55437 {'free': 5, 'gpi': 114, 'meta': 182, 'learn': 24, 'fail': 0}
+  q  350 gap 3.28e-03 lib 339 learned 24 sweeps 57719 {'free': 11, 'gpi': 123, 'meta': 192, 'learn': 24, 'fail': 0}
+  q  375 gap 3.04e-03 lib 363 learned 24 sweeps 60972 {'free': 12, 'gpi': 132, 'meta': 207, 'learn': 24, 'fail': 0}
+  q  400 gap 2.88e-03 lib 387 learned 26 sweeps 64190 {'free': 13, 'gpi': 147, 'meta': 214, 'learn': 26, 'fail': 0}
+  q  425 gap 2.76e-03 lib 412 learned 26 sweeps 66939 {'free': 13, 'gpi': 163, 'meta': 223, 'learn': 26, 'fail': 0}
+  q  450 gap 2.60e-03 lib 437 learned 26 sweeps 69626 {'free': 13, 'gpi': 178, 'meta': 233, 'learn': 26, 'fail': 0}
+  q  475 gap 2.45e-03 lib 461 learned 26 sweeps 71946 {'free': 14, 'gpi': 198, 'meta': 237, 'learn': 26, 'fail': 0}
+  q  500 gap 2.35e-03 lib 486 learned 26 sweeps 74838 {'free': 14, 'gpi': 212, 'meta': 248, 'learn': 26, 'fail': 0}
+  q  525 gap 2.19e-03 lib 511 learned 26 sweeps 77777 {'free': 14, 'gpi': 224, 'meta': 261, 'learn': 26, 'fail': 0}
+  q  550 gap 2.14e-03 lib 536 learned 26 sweeps 80784 {'free': 14, 'gpi': 238, 'meta': 272, 'learn': 26, 'fail': 0}
+  q  575 gap 2.05e-03 lib 561 learned 27 sweeps 83863 {'free': 14, 'gpi': 249, 'meta': 285, 'learn': 27, 'fail': 0}

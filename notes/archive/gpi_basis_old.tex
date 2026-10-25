@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.3cm]{geometry}
+
+\newcommand{\vphi}{\bm{\phi}}
+\newcommand{\vpsi}{\bm{\psi}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\title{Certifying GPI over a policy basis\\[2pt]\large working notes}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\noindent\textbf{Goal.} Given a pool of policies, compute a number $c$ with finitely many operations such that GPI
+over the pool loses at most $c$ at every weight of a segment of weight space. Then use $c$ to decide where to add
+policies and when to stop. All quantities below are exact (known model).
+
+\section{Notation}
+
+\paragraph{MDP.}
+\begin{itemize}
+\item $\cS$, $\cA$: finite state and action sets; $d$: number of features.
+\item $P(s'\mid s,a)\ge0$ with $\sum_{s'}P(s'\mid s,a)\le1$; the missing mass is the probability that the episode ends.
+\item $\vphi(s,a)\in\R^d$: expected immediate feature vector of $(s,a)$ (including terminal transitions).
+\item $\gamma\in(0,1)$: discount.
+\item $\Delta=\{\w\in\R^d_{\ge0}:\sum_{i=1}^d w_i=1\}$: weights; scalar reward $r_\w(s,a)=\vphi(s,a)^\top\w$.
+\item $\Pi_{\det}$: the (finite) set of deterministic policies $\pi:\cS\to\cA$;
+$P_\pi(s,s')=P(s'\mid s,\pi(s))$; $\Phi_\pi\in\R^{|\cS|\times d}$ with rows $\vphi(s,\pi(s))^\top$.
+\end{itemize}
+
+\paragraph{Successor features and values.} For $\pi\in\Pi_{\det}$, $s\in\cS$, $a\in\cA$, $\w\in\Delta$:
+\begin{align}
+\Psi^\pi&=(I-\gamma P_\pi)^{-1}\Phi_\pi\in\R^{|\cS|\times d},\qquad \vpsi^\pi(s):=\text{row $s$ of }\Psi^\pi,\label{eq:sf}\\
+\vpsi^\pi(s,a)&=\vphi(s,a)+\gamma\textstyle\sum_{s'}P(s'\mid s,a)\,\vpsi^\pi(s')
+\quad\text{(take $a$ once, then follow $\pi$)},\qquad \vpsi^\pi(s,\pi(s))=\vpsi^\pi(s),\label{eq:sfa}\\
+Q^\pi_\w(s,a)&=\vpsi^\pi(s,a)^\top\w,\qquad V^\pi_\w(s)=\vpsi^\pi(s)^\top\w,\qquad
+V^*_\w(s)=\max_{\pi\in\Pi_{\det}}V^\pi_\w(s).\label{eq:values}
+\end{align}
+$\pi^*_\w\in\Pi_{\det}$ denotes a policy with $V^{\pi^*_\w}_\w=V^*_\w$ at every state.
+
+\paragraph{Pool and GPI.}
+\begin{itemize}
+\item $\Pi=(\pi_1,\dots,\pi_k)$: the pool; $\vpsi_j:=\vpsi^{\pi_j}$.
+\item GPI estimate: $\hat Q_\w(s,a)=\max_{j=1,\dots,k}\vpsi_j(s,a)^\top\w$.
+\item GPI policy (actions numbered $0,\dots,|\cA|-1$, tie tolerance $\tau_{\rm tie}=10^{-12}$):
+$\pi^G_\w(s)=\min\{a:\hat Q_\w(s,a)\ge\max_{a'}\hat Q_\w(s,a')-\tau_{\rm tie}\}$.
+\item $\cR\subseteq\cS$: relevant states (the start state and the exits; SF-FSA-VI reads values only there).
+\item GPI loss: $\ell(\w,r)=V^*_\w(r)-V^{\pi^G_\w}_\w(r)\ge0$, for $r\in\cR$.
+\end{itemize}
+
+\paragraph{Segment.} Endpoints $\w^0,\w^1\in\Delta$; $\w(x)=x\,\w^1+(1-x)\,\w^0$, $x\in[0,1]$.
+
+\paragraph{Target.} A computable $c$ with $\ell(\w(x),r)\le c$ for all $x\in[0,1]$ and $r\in\cR$.
+
+\section{Two upper bounds for a fixed policy}
+
+Fix $\pi\in\Pi_{\det}$ and $\w\in\Delta$.
+
+\begin{definition}[Bellman gap]
+$g^\pi_\w(s)=\max_{a\in\cA}Q^\pi_\w(s,a)-V^\pi_\w(s)=\max_a\vpsi^\pi(s,a)^\top\w-\vpsi^\pi(s)^\top\w\ \ge0$
+(nonnegative because $a=\pi(s)$ is in the max).
+\end{definition}
+
+\begin{definition}[Reachable layers]
+For $r\in\cS$: $\cL_0(r)=\{r\}$,\quad $\cL_{t+1}(r)=\{s':\exists\,s\in\cL_t(r),\,a\in\cA,\ P(s'\mid s,a)>0\}$.
+$\cL_t(r)$ contains every state that any policy can occupy at time $t$ when starting at $r$.
+\end{definition}
+
+\begin{lemma}[Performance difference]\label{lem:pd}
+Let $\pi^*=\pi^*_\w$ and $A(s)=Q^\pi_\w(s,\pi^*(s))-V^\pi_\w(s)$. Then
+$V^*_\w-V^\pi_\w=\sum_{t\ge0}\gamma^tP_{\pi^*}^tA$.
+\end{lemma}
+\begin{proof}
+$V^*_\w-V^\pi_\w=r_{\pi^*}+\gamma P_{\pi^*}V^*_\w-V^\pi_\w=A+\gamma P_{\pi^*}(V^*_\w-V^\pi_\w)$, with
+$r_{\pi^*}(s)=r_\w(s,\pi^*(s))$; iterate.
+\end{proof}
+
+\begin{proposition}[Bound 1: reachability-discounted gap]\label{prop:reach}
+For every $r\in\cS$,
+\[
+V^*_\w(r)-V^\pi_\w(r)\ \le\ B^\pi_\w(r):=\sum_{t\ge0}\gamma^t\max_{s\in\cL_t(r)}g^\pi_\w(s)\qquad(\max\emptyset:=0).
+\]
+Let $t_0=\min\{t:\cL_{t+1}(r)=\cL_t(r)\}$. Then $\cL_t(r)=\cL_{t_0}(r)$ for all $t\ge t_0$ and
+\[
+B^\pi_\w(r)=\sum_{t<t_0}\gamma^t\max_{s\in\cL_t(r)}g^\pi_\w(s)+\frac{\gamma^{t_0}}{1-\gamma}\max_{s\in\cL_{t_0}(r)}g^\pi_\w(s).
+\]
+\end{proposition}
+\begin{proof}
+$A(s)\le g^\pi_\w(s)$. Row $r$ of $P_{\pi^*}^t$ is nonnegative, sums to at most 1 and is supported on
+$\cL_t(r)$, so $(P_{\pi^*}^tA)(r)\le\max_{s\in\cL_t(r)}g^\pi_\w(s)$; apply Lemma~\ref{lem:pd}. $\cL_{t+1}$ is a
+function of $\cL_t$, so once two consecutive layers coincide all later ones do.
+\end{proof}
+
+\noindent In particular, $g^\pi_\w(s)=0$ for all $s\in\bigcup_t\cL_t(r)$ implies $V^\pi_\w(r)=V^*_\w(r)$.
+
+\begin{definition}[Known points]
+$0=x^{(1)}<\dots<x^{(n)}=1$ are weights at which $v^{(i)}(r):=V^*_{\w(x^{(i)})}(r)$ is known exactly
+(every queried weight: a full solve, or a metapolicy with zero gap, Section~\ref{sec:alg}).
+\end{definition}
+
+\begin{proposition}[Bound 2: chord]\label{prop:chord}
+For $x\in[x^{(i)},x^{(i+1)}]$ let $\lambda=\frac{x-x^{(i)}}{x^{(i+1)}-x^{(i)}}$ and
+$U(x,r)=(1-\lambda)\,v^{(i)}(r)+\lambda\,v^{(i+1)}(r)$. Then $V^*_{\w(x)}(r)\le U(x,r)$, so
+\[
+V^*_{\w(x)}(r)-V^\pi_{\w(x)}(r)\ \le\ C^\pi(x,r):=U(x,r)-V^\pi_{\w(x)}(r).
+\]
+\end{proposition}
+\begin{proof}
+By \eqref{eq:values}, $x\mapsto V^*_{\w(x)}(r)=\max_{\pi'}\vpsi^{\pi'}(r)^\top\w(x)$ is a maximum of affine
+functions, hence convex, hence below each chord.
+\end{proof}
+
+\begin{lemma}[Convexity]\label{lem:convex}
+For fixed $\pi$ and $r$: $x\mapsto B^\pi_{\w(x)}(r)$ and $x\mapsto C^\pi(x,r)$ are convex on $[0,1]$.
+\end{lemma}
+\begin{proof}
+$x\mapsto\max_a\vpsi^\pi(s,a)^\top\w(x)$ is a maximum of affine functions (convex) and
+$x\mapsto\vpsi^\pi(s)^\top\w(x)$ is affine, so $g^\pi_{\w(x)}(s)$ is convex. A maximum of convex functions and a
+nonnegative combination of convex functions are convex; the closed form of Proposition~\ref{prop:reach} is a finite
+sum. $U(\cdot,r)$ is piecewise affine with nondecreasing slopes (chord slopes of a convex function), hence convex;
+$V^\pi_{\w(x)}(r)$ is affine.
+\end{proof}
+
+\section{GPI cells}
+
+For a pool policy $j$, state $s$ and action $a$, $\vpsi_j(s,a)^\top\w(x)=\alpha_{jsa}+\beta_{jsa}\,x$ with
+$\alpha_{jsa}=\vpsi_j(s,a)^\top\w^0$ and $\beta_{jsa}=\vpsi_j(s,a)^\top(\w^1-\w^0)$. Hence
+$\hat Q_{\w(x)}(s,a)=\max_j(\alpha_{jsa}+\beta_{jsa}x)$: for each $s$, the $k|\cA|$ lines $\{(\alpha_{jsa},\beta_{jsa})\}_{j,a}$
+labelled by $a$ have an upper envelope whose label changes at finitely many points $X_s\subset(0,1)$.
+
+\begin{lemma}[GPI cells]\label{lem:cells}
+Let $\{x_1<\dots<x_{m-1}\}=\bigcup_{s\in\cS}X_s$, $x_0=0$, $x_m=1$. On each interval $(x_{i-1},x_i)$ the label of the top line of every
+envelope is constant, so $\pi^G_{\w(x)}=:\pi_{(i)}$ is one fixed policy (exact arithmetic; numerical ties: item 2
+of Section~\ref{sec:code}). By continuity $\pi_{(i)}$ is also greedy with respect to $\hat Q$ at $x_{i-1}$ and $x_i$; at a
+breakpoint we take $\pi^G:=\pi_{(i)}$.
+\end{lemma}
+
+\section{The certificate}
+
+\begin{theorem}[Vertex certificate]\label{thm:cert}
+Let $[x_{i-1},x_i]$ be a cell with policy $\pi_{(i)}$, let $x_{i-1}=y_0<y_1<\dots<y_K=x_i$ be any partition and
+$r\in\cR$. For every $x\in[y_{q-1},y_q]$,
+\[
+\ell(\w(x),r)\ \le\ c_{iq}(r):=\min\Big\{\max\big(B^{\pi_{(i)}}_{\w(y_{q-1})}(r),\,B^{\pi_{(i)}}_{\w(y_q)}(r)\big),\
+\max\big(C^{\pi_{(i)}}(y_{q-1},r),\,C^{\pi_{(i)}}(y_q,r)\big)\Big\}.
+\]
+Hence, with
+\[
+c:=\max_{i=1,\dots,m}\ \max_{q=1,\dots,K_i}\ \max_{r\in\cR}\ c_{iq}(r),
+\qquad\text{we have}\qquad \ell(\w(x),r)\le c\quad\forall\,x\in[0,1],\ r\in\cR.
+\]
+\end{theorem}
+\begin{proof}
+On the cell, $\ell(\w(x),r)=V^*_{\w(x)}(r)-V^{\pi_{(i)}}_{\w(x)}(r)$ (Lemma~\ref{lem:cells}), which is at most
+$B^{\pi_{(i)}}_{\w(x)}(r)$ and at most $C^{\pi_{(i)}}(x,r)$ (Propositions~\ref{prop:reach},~\ref{prop:chord}). Both
+are convex in $x$ (Lemma~\ref{lem:convex}), and a convex function on an interval is at most the maximum of its
+two endpoint values.
+\end{proof}
+
+\noindent Implementation: $K_i=1$; if the resulting $\max_r c_{i1}(r)>\epsilon$, the cell is re-checked with
+$K_i=32$ equal pieces. Cost per cell: one policy evaluation ($\Psi^{\pi_{(i)}}$) and the gaps at $K_i+1$ points.
+
+\section{Algorithms}\label{sec:alg}
+
+\paragraph{Metapolicy.} $\mathcal B\subseteq\Pi$: policies obtained by a full solve. Restricted action sets
+$B(s)=\{\pi(s):\pi\in\mathcal B\}$. At weight $\w$, the metapolicy $\pi^M_\w$ is the result of policy iteration
+over $\{\pi\in\Pi_{\det}:\pi(s)\in B(s)\ \forall s\}$. It is accepted if $\max_{s\in\cS}g^{\pi^M_\w}_\w(s)\le\tau_M$,
+$\tau_M=10^{-9}$ (then $V^*_\w-V^{\pi^M_\w}_\w\le\tau_M/(1-\gamma)$ by Proposition~\ref{prop:reach}).
+
+\paragraph{Certify-or-Grow at $\w$.} If $\pi^M_\w$ is accepted, add it to $\Pi$; otherwise compute $\pi^*_\w$ by
+policy iteration over $\Pi_{\det}$ and add it to $\Pi$ and $\mathcal B$. Either way, record $V^*_\w(\cR)$ as a known
+point.
+
+\begin{algorithm}[H]
+\caption{GPI-targeted Certify-or-Grow on a segment}
+\begin{algorithmic}[1]
+\Require segment $(\w^0,\w^1)$, tolerance $\epsilon$
+\State $\Pi\gets(\pi^*_{\w^1},\pi^*_{\w^0})$, $\mathcal B\gets\Pi$, known points $x\in\{0,1\}$
+\Loop
+  \State cells $(x_{i-1},x_i,\pi_{(i)})_{i=1}^m$ (Lemma~\ref{lem:cells}); certificate $c$ (Theorem~\ref{thm:cert})
+  \If{$c\le\epsilon$} \Return $\Pi$ \EndIf
+  \State $p(y):=\max_{r\in\cR}\min\{B^{\pi_{(i)}}_{\w(y)}(r),C^{\pi_{(i)}}(y,r)\}$ at every evaluated point $y$ (max over cells $i\ni y$)
+  \State $y^\star\gets\argmax\{p(y):y \text{ evaluated, not a known point}\}$
+  \State Certify-or-Grow at $\w(y^\star)$
+\EndLoop
+\end{algorithmic}
+\end{algorithm}
+
+\begin{proposition}\label{prop:new}
+If $p(y^\star)>0$, the policy added at $\w(y^\star)$ is not already in $\Pi$. Hence Algorithm~1 makes finitely many
+queries with $p(y^\star)>0$.
+\end{proposition}
+\begin{proof}
+If some $\pi_j$ were optimal at $\w=\w(y^\star)$, then $\hat Q_\w\ge Q^{\pi_j}_\w=Q^*_\w$ and, since every
+$\vpsi_{j'}(s,a)^\top\w=Q^{\pi_{j'}}_\w(s,a)\le Q^*_\w(s,a)$, $\hat Q_\w=Q^*_\w$. A policy greedy with respect to
+$Q^*_\w$ is optimal, so $\pi_{(i)}$ (greedy at $y^\star$ by Lemma~\ref{lem:cells}) has $g\equiv0$, i.e.
+$B\equiv0$ and $p(y^\star)=0$. $\Pi_{\det}$ is finite.
+\end{proof}
+
+\paragraph{Per-task (demand-driven) version.} Automaton states $U$ (acyclic), terminal state $u_\top$, accepted
+symbols $\Sigma(u)$, transition $\delta(u,\sigma)\in U\cup\{u_\top\}$. Exits $e\in E\subseteq\cS$, each with a
+symbol $\sigma(e)$ and its own feature coordinate $i(e)$ ($d=|E|$). In reverse topological order of $U$:
+\[
+w_{i(e)}(u)=\begin{cases}
+1 & \sigma(e)\in\Sigma(u),\ \delta(u,\sigma(e))=u_\top,\\
+V^{\pi^G_{\w(v)}}_{\w(v)}(e) & \sigma(e)\in\Sigma(u),\ \delta(u,\sigma(e))=v\in U,\\
+0 & \sigma(e)\notin\Sigma(u).
+\end{cases}
+\]
+Replacing $V^{\pi^G_{\w(v)}}$ by $V^*_{\w(v)}$ defines the optimal weights $\w^*(u)$ of SF-FSA-VI.
+
+\begin{algorithm}[H]
+\caption{Certified SF-FSA-VI ($\Pi$, $\mathcal B$ shared across tasks)}
+\begin{algorithmic}[1]
+\Loop
+  \State compute $\w(u)$ for all $u\in U$ (formula above)
+  \State $U_{\rm bad}\gets\{u:\max_{s\in\cS}g^{\pi^G_{\w(u)}}_{\w(u)}(s)>\tau_M\}$
+  \If{$U_{\rm bad}=\emptyset$} \Return policies $\pi^G_{\w(u)}$, $u\in U$ \EndIf
+  \State Certify-or-Grow at $\w(u)$ for every $u\in U_{\rm bad}$
+\EndLoop
+\end{algorithmic}
+\end{algorithm}
+
+\begin{proposition}\label{prop:task}
+If Algorithm~2 returns with all gaps equal to $0$, then $\w(u)=\w^*(u)$ and $\pi^G_{\w(u)}$ is optimal for
+$\w^*(u)$, for every $u\in U$. Every round that does not return adds at least one policy not in $\Pi$, so the
+algorithm terminates.
+\end{proposition}
+\begin{proof}
+Induction in reverse topological order. If all successors of $u$ are $u_\top$, $\w(u)=\w^*(u)\in\{0,1\}^d$.
+Otherwise assume $\w(v)=\w^*(v)$ for every successor $v$; zero gap means $\pi^G_{\w(v)}$ is optimal for $\w(v)$,
+so $V^{\pi^G_{\w(v)}}_{\w(v)}(e)=V^*_{\w^*(v)}(e)$ and $\w(u)=\w^*(u)$. Termination: a failing $u$ has no
+optimal policy for $\w(u)$ in $\Pi$ (proof of Proposition~\ref{prop:new}), so Certify-or-Grow adds a new one.
+\end{proof}
+
+\section{Correspondence with the code (\texttt{SFOLS/gpi\_basis/})}\label{sec:code}
+
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+Symbol & Code \\
+\midrule
+$P,\ \vphi,\ \gamma,\ \cR$ & \texttt{core.TabularMOMDP}: \texttt{P}, \texttt{PHI}, \texttt{gamma}, \texttt{relevant} \\
+$\vpsi^\pi(s)$ \eqref{eq:sf}, $\vpsi^\pi(s,a)$ \eqref{eq:sfa} & \texttt{TabularMOMDP.sf}, \texttt{.sf\_q}; stored in \texttt{PolicyRecord.psi\_s}, \texttt{.psi\_sa} \\
+$g^\pi_\w$ & \texttt{PolicyRecord.gap(w)}; inside \texttt{segment.certify}: \texttt{G} \\
+$\cL_t(r)$, $t_0$, $B^\pi_\w(r)$ & \texttt{TabularMOMDP.layer\_masks}, \texttt{.reach\_bound} \\
+$\hat Q_\w$, $\pi^G_\w$, $\tau_{\rm tie}$ & \texttt{Pool.qhat}, \texttt{Pool.actions}, \texttt{core.tol\_argmax} \\
+$\w(x)$, $\w^1$, $\w^0$ & \texttt{segment.Segment(a, b).w(x)} with \texttt{a} $=\w^1$, \texttt{b} $=\w^0$, \texttt{d} $=\w^1-\w^0$ \\
+$\alpha_{jsa}$, $\beta_{jsa}$, $X_s$ & \texttt{segment.gpi\_breakpoints} (\texttt{I}, \texttt{M}), \texttt{envelope\_label\_breaks} \\
+cells $(x_{i-1},x_i,\pi_{(i)})$ & \texttt{segment.gpi\_cells} \\
+$x^{(i)}$, $v^{(i)}$, $U$ & \texttt{Growth.known\_x}, \texttt{.known\_V}; \texttt{np.interp} in \texttt{certify} \\
+Theorem~\ref{thm:cert}, $c$, $K_i$ & \texttt{segment.certify} (\texttt{cert}, \texttt{refine=32}) \\
+$p(y)$ & \texttt{certify(...)["vertices"]} \\
+metapolicy, $\tau_M$ & \texttt{TabularMOMDP.meta}, \texttt{algos1d.META\_TOL} \\
+Certify-or-Grow & \texttt{algos1d.Growth.grow(x, "cog")} \\
+Algorithm 1 & \texttt{algos1d.run\_targeted} \\
+$\w(u)$, Algorithm 2 & \texttt{fsa.plan}, \texttt{fsa\_certified.solve\_task\_certified} \\
+exact $\sup_x\ell$ (audit) & \texttt{audit\_double\_slit.Exact.sup\_loss} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Numerical points to check in the code.}
+\begin{enumerate}
+\item Known values from metapolicies satisfy $V^*-v^{(i)}\le B^{\pi^M}\le\tau_M/(1-\gamma)$ rather than $=0$; the
+chord bound is valid up to this amount ($10^{-8}$ for $\gamma=0.9$).
+\item \texttt{gpi\_cells} recomputes $\pi^G$ at $x_{i-1}+\delta$, the midpoint and $x_i-\delta$
+($\delta=10^{-7}(x_i-x_{i-1})$) and splits the interval if they differ (at most 25 times).
+\item At a breakpoint the code's tie rule may pick a policy other than $\pi_{(i)}$ (a finite set of weights).
+\item \texttt{layer\_masks} stops at $T=\lceil\log10^{-12}/\log\gamma\rceil$ steps; if no $t_0\le T$ exists, the tail uses all
+states reached within $T$ steps. In all our domains $t_0$ exists (double slit 28, slippery Office $\le24$,
+windy $\le27$).
+\end{enumerate}
+
+\section{Double slit, exact audit}
+
+Wind $\pm3$, $\gamma=0.9$, $\cR=\{\text{start}\}$, $V^*_\w(\text{start})\in[0.077,0.123]$. Entries: the pool
+size from which $\sup_{x}\ell(\w(x),\text{start})$ stays below the tolerance (``true''; computed exactly at cell
+endpoints with $V^*$ from the exact CCS), or at which a method stops.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+tolerance & SFOLS stops & SFOLS order & SFOLS order & Alg.~1 & Alg.~1 & oracle order \\
+ & (own rule) & (true) & (Thm.~\ref{thm:cert}) & (true) & ($c\le$ tol) & (true) \\
+\midrule
+$10^{-3}$ & 9 & 3 & 8 & 4 & 7 & 4 \\
+$10^{-4}$ & 30 & 7 & 21 & 7 & 21 & 6 \\
+$10^{-5}$ & 72 & 16 & 70 & 21 & 57 & 13 \\
+$10^{-6}$ & 203 & 44 & 165 & 79 & 109 & 33 \\
+exact ($10^{-10}$) & 546 & 300 & $\ge300$ & 137 & 145 & 111 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Exact CCS: 274 policies. Alg.~1 with $\epsilon=10^{-10}$: 145 policies, 12 full solves, measured
+$\sup_x\ell=4\cdot10^{-14}$. Backward elimination from that basis (or from the oracle's 111) leaves 90
+policies with $\sup_x\ell\le10^{-10}$. Oracle order: add $\pi^*$ at $\argmax_x\ell(\w(x),\text{start})$ (requires $V^*$).
+
+\begin{thebibliography}{9}
+\bibitem{kuric} D.~Kuric, G.~Infante, V.~G\'omez, A.~Jonsson, H.~van~Hoof. Planning with a learned policy
+basis to optimally solve complex tasks. ICAPS 2024.
+\bibitem{alegre22} L.~N.~Alegre, A.~Bazzan, B.~C.~da~Silva. Optimistic linear support and successor features
+as a basis for optimal policy transfer. ICML 2022.
+\bibitem{barreto17} A.~Barreto et al. Successor features for transfer in reinforcement learning. NeurIPS 2017.
+\end{thebibliography}
+\end{document}

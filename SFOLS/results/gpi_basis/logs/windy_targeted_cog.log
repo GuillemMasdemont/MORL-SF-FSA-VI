@@ -1,0 +1,2 @@
+targeted_cog: {'queries': 124, 'full': 16, 'meta_ok': 108, 'meta_fail': 14, 'sweeps_full': 75, 'sweeps_meta': 224} pool 124 in 944s
+targeted_cog: done, final max loss 2.22e-16

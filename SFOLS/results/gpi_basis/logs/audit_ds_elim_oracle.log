@@ -1,0 +1,12 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+  elim oracle 1e-10: tried 1, kept 111 (41s)
+  elim oracle 1e-10: tried 21, kept 107 (932s)
+  elim oracle 1e-10: tried 41, kept 104 (1852s)
+  elim oracle 1e-10: tried 61, kept 102 (2357s)
+  elim oracle 1e-10: tried 81, kept 99 (2500s)
+  elim oracle 1e-10: tried 101, kept 93 (2554s)
+backward elimination from oracle, sup loss <= 1e-10: 90 of 111 policies

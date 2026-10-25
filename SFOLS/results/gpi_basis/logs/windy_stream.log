@@ -1,0 +1,63 @@
+/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/SFOLS/gpi_basis/run_windy.py:44: RuntimeWarning: invalid value encountered in scalar divide
+  f"(rel {(opt[i] - corners[i]) / opt[i]:.1%}); grows {st['grows']} (full {rows[-1]['new_full']}, "
+task  0 {'u0': {'B': 'u1'}, 'u1': {'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 6
+task  1 {'u0': {'B': 'u1'}, 'u1': {'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 6
+task  2 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'C': 'T', 'F': 'T'}, 'u2': {'F': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 6
+task  3 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'F': 'T', 'C': 'T'}, 'u2': {'F': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 1 (full 1, meta 0), pool 7
+task  4 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T', 'F': 'T'}, 'u2': {'C': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 7
+task  5 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'D': 'T', 'F': 'T'}, 'u2': {'C': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 3.0e-03 (rel 1.2%); grows 1 (full 1, meta 0), pool 8
+task  6 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'E': 'T', 'D': 'T'}, 'u2': {'C': 'T'}}: regret certified 0.0e+00, corners 1.2e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task  7 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'C': 'T'}, 'u2': {'C': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task  8 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T', 'C': 'T'}, 'u2': {'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task  9 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'F': 'T', 'E': 'T'}, 'u2': {'D': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 10 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T', 'E': 'T'}, 'u2': {'C': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 11 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'D': 'T'}, 'u2': {'D': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 12 {'u0': {'A': 'u1'}, 'u1': {'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 13 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'E': 'T'}, 'u2': {'E': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 14 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'C': 'T', 'E': 'T'}, 'u2': {'D': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 15 {'u0': {'A': 'u1'}, 'u1': {'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 8
+task 16 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'F': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 17 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'F': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 18 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'F': 'T', 'C': 'T'}, 'u2': {'F': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 19 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T'}, 'u2': {'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 20 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'D': 'T', 'E': 'T'}, 'u2': {'C': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 21 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T', 'C': 'T'}, 'u2': {'F': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 3.0e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 22 {'u0': {'B': 'u1'}, 'u1': {'C': 'T', 'F': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 23 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T'}, 'u2': {'E': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 24 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'C': 'T'}, 'u2': {'C': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 1.2e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 25 {'u0': {'A': 'u1'}, 'u1': {'D': 'T', 'F': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 8
+task 26 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'D': 'T'}, 'u2': {'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 8
+task 27 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'F': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 28 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 8
+task 29 {'u0': {'B': 'u1'}, 'u1': {'F': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 30 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'D': 'T'}, 'u2': {'D': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 31 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'C': 'T'}, 'u2': {'C': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 1.2e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 32 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'E': 'T'}, 'u2': {'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 33 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'C': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 34 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'D': 'T', 'F': 'T'}, 'u2': {'D': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 3.0e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 35 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'C': 'T', 'F': 'T'}, 'u2': {'C': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 36 {'u0': {'B': 'u1'}, 'u1': {'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 8
+task 37 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T'}, 'u2': {'E': 'T', 'F': 'T'}}: regret certified 0.0e+00, corners 3.0e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 38 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'D': 'T', 'F': 'T'}, 'u2': {'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 39 {'u0': {'B': 'u1'}, 'u1': {'C': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 8
+task 40 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'C': 'T', 'D': 'T'}, 'u2': {'F': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 1.2e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 41 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T', 'D': 'T'}, 'u2': {'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 42 {'u0': {'B': 'u1'}, 'u1': {'F': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 43 {'u0': {'B': 'u1'}, 'u1': {'D': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 44 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'D': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 45 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'F': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 46 {'u0': {'A': 'u1'}, 'u1': {'F': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 47 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'E': 'T', 'C': 'T'}, 'u2': {'F': 'T', 'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 48 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'C': 'T', 'D': 'T'}, 'u2': {'D': 'T'}}: regret certified 0.0e+00, corners 1.2e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 49 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T', 'D': 'T'}, 'u2': {'E': 'T', 'D': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 50 {'u0': {'B': 'u1'}, 'u1': {'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel nan%); grows 0 (full 0, meta 0), pool 8
+task 51 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T'}, 'u2': {'C': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 52 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'E': 'T', 'F': 'T'}, 'u2': {'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 53 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'F': 'T', 'C': 'T'}, 'u2': {'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 54 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'F': 'T'}, 'u2': {'D': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 3.0e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+task 55 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'C': 'T'}, 'u2': {'C': 'T', 'F': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 56 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'C': 'T'}, 'u2': {'C': 'T', 'F': 'T'}}: regret certified 0.0e+00, corners 6.7e-06 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 57 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'D': 'T', 'C': 'T'}, 'u2': {'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 58 {'u0': {'B': 'u1', 'A': 'u2'}, 'u1': {'D': 'T'}, 'u2': {'F': 'T', 'E': 'T'}}: regret certified 0.0e+00, corners 0.0e+00 (rel 0.0%); grows 0 (full 0, meta 0), pool 8
+task 59 {'u0': {'A': 'u1', 'B': 'u2'}, 'u1': {'C': 'T'}, 'u2': {'D': 'T'}}: regret certified 0.0e+00, corners 1.2e-03 (rel 1.2%); grows 0 (full 0, meta 0), pool 8
+final {'queries': 8, 'full': 8, 'meta_ok': 0, 'meta_fail': 2, 'sweeps_full': 153, 'sweeps_meta': 3}

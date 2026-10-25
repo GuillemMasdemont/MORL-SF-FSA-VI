@@ -1,0 +1,13 @@
+ds: 201 held-out weights, base = first k policies of SFOLS (OLS order); % of weights where the policy is optimal at every relevant state
+  k=  2: optimal GPI  40.8%  meta  43.8%  hyb  81.1% | worst relative loss GPI 2.5e-02 meta 2.1e-02 hyb 1.9e-04 | PI steps from hyb to optimal: mean 0.28 max 1
+  k=  3: optimal GPI  47.3%  meta  63.2%  hyb  84.1% | worst relative loss GPI 1.1e-02 meta 1.5e-03 hyb 5.3e-05 | PI steps from hyb to optimal: mean 0.24 max 2
+  k=  4: optimal GPI  51.7%  meta  63.7%  hyb  87.6% | worst relative loss GPI 9.0e-03 meta 1.5e-03 hyb 5.3e-05 | PI steps from hyb to optimal: mean 0.17 max 2
+  k=  5: optimal GPI  55.7%  meta  69.7%  hyb  93.0% | worst relative loss GPI 2.1e-03 meta 1.0e-03 hyb 3.5e-05 | PI steps from hyb to optimal: mean 0.09 max 2
+  k=  6: optimal GPI  59.2%  meta  75.1%  hyb  95.0% | worst relative loss GPI 1.5e-03 meta 1.0e-03 hyb 3.5e-05 | PI steps from hyb to optimal: mean 0.07 max 2
+  k=  7: optimal GPI  61.2%  meta  75.1%  hyb  95.0% | worst relative loss GPI 7.0e-04 meta 1.0e-03 hyb 3.5e-05 | PI steps from hyb to optimal: mean 0.07 max 2
+  k=  8: optimal GPI  65.2%  meta  84.6%  hyb  97.5% | worst relative loss GPI 7.0e-04 meta 1.0e-03 hyb 3.5e-05 | PI steps from hyb to optimal: mean 0.03 max 2
+  k=  9: optimal GPI  69.7%  meta  89.1%  hyb 100.0% | worst relative loss GPI 3.6e-04 meta 1.2e-04 hyb 1.2e-11 | PI steps from hyb to optimal: mean 0.00 max 0
+  k= 10: optimal GPI  73.1%  meta  89.1%  hyb 100.0% | worst relative loss GPI 2.7e-04 meta 1.2e-04 hyb 1.2e-11 | PI steps from hyb to optimal: mean 0.00 max 0
+  k= 12: optimal GPI  76.6%  meta  91.5%  hyb 100.0% | worst relative loss GPI 1.1e-04 meta 1.2e-04 hyb 1.2e-11 | PI steps from hyb to optimal: mean 0.00 max 0
+  k= 15: optimal GPI  81.1%  meta  96.5%  hyb 100.0% | worst relative loss GPI 1.1e-04 meta 1.1e-04 hyb 1.2e-11 | PI steps from hyb to optimal: mean 0.00 max 0
+  k= 20: optimal GPI  84.1%  meta  96.5%  hyb 100.0% | worst relative loss GPI 3.7e-05 meta 1.1e-04 hyb 1.2e-11 | PI steps from hyb to optimal: mean 0.00 max 0

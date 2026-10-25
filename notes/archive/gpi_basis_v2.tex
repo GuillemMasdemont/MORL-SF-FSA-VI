@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[hmargin=2cm,vmargin=1.8cm]{geometry}
+\setlength{\tabcolsep}{4.5pt}
+\renewcommand{\topfraction}{0.95}\renewcommand{\bottomfraction}{0.9}\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.9}\setcounter{topnumber}{3}\setcounter{totalnumber}{4}
+
+\newcommand{\vphi}{\bm{\phi}}
+\newcommand{\vpsi}{\bm{\psi}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+\begin{document}
+\begin{center}
+{\Large A small SF basis for SF-FSA-VI in deterministic and stochastic domains}\\[2pt]
+{\small \today}
+\end{center}
+
+\section{Setting}
+Finite $S$, $A$, transitions $P(s'\mid s,a)$, $\gamma\in(0,1)$. There are $d$ \emph{exits}; entering exit $i$ emits the
+feature $\e_i$ and ends the episode, and no other feature is emitted. For $\w\in\R^d_{\ge0}$ the reward is
+$r_\w=\vphi\cdot\w$, and a policy's action SFs $\vpsi^\pi(s,a)\in[0,1]^d$ (with $\sum_i\psi^\pi_i\le1$) give
+$Q^\pi_\w=\vpsi^\pi\cdot\w$. SF-FSA-VI \cite{kuric} plans an acyclic automaton in reverse topological order: state $u$
+gets $w_i(u)=1$ if exit $i$'s symbol ends the task, $w_i(u)=V_{\w(v)}(i)$ (the value from exit $i$ in the next state $v$)
+if it leads to $v$, and $0$ otherwise; the agent executes a policy for $\w(u)$ in $u$.
+
+A \emph{base} is a set $L=\{\pi_1,\dots,\pi_k\}$ with known SFs; $B(s)=\{\pi_j(s)\}_j$ are its actions at $s$. At a
+weight $\w$:
+\begin{itemize}\setlength\itemsep{1pt}
+\item GPI: $\pi^G(s)=\argmax_{a}\max_j Q^{\pi_j}_\w(s,a)$; Kuric et al.\ pass the estimate $\max_{j,a}Q^{\pi_j}_\w(i,a)$ upstream.
+\item metapolicy $\pi_{\mathrm{meta}}$: the optimal policy of the MDP restricted to the actions $B(s)$ \cite{cog};
+$Q_{\mathrm{meta}}(s,a)=r_\w(s,a)+\gamma\,\mathbb E_{s'}V_{\mathrm{meta}}(s')$ for every $a\in A$.
+\item hybrid policy $\pi^{\mathrm{hyb}}(s)=\argmax_{a\in A}Q_{\mathrm{meta}}(s,a)$ \cite{cog}: one improvement step, over all
+actions, on top of the metapolicy.
+\end{itemize}
+
+\section{Deterministic domains: the $d$ extreme policies suffice}
+\begin{theorem}\label{thm:det}
+Let $P$ be deterministic and $\pi_i$ an optimal policy for $\e_i$, $i=1,\dots,d$. For every $\w\ge0$ and every $(s,a)$,
+\[\max_i\ \vpsi^{\pi_i}(s,a)\cdot\w\;=\;Q^*_\w(s,a).\]
+Hence GPI over $\{\pi_1,\dots,\pi_d\}$ is optimal for every weight, its estimate is exact, the metapolicy and
+$\pi^{\mathrm{hyb}}$ are optimal too, and zero-shot SF-FSA-VI over the $d$ extremes is optimal for every FSA.
+\end{theorem}
+\begin{proof}
+Let $D_i(s,a)=Q^*_{\e_i}(s,a)=\psi^{\pi_i}_i(s,a)$. From $(s,a)$ any policy generates one trajectory, which enters at
+most one exit, say $i$ after $t$ further steps, so $Q^\pi_\w(s,a)=w_i\gamma^t\le w_iD_i(s,a)$. Hence
+$Q^*_\w\le\max_iw_iD_i$. Conversely $\vpsi^{\pi_i}\cdot\w\ge w_i\psi^{\pi_i}_i=w_iD_i$ (nonnegative features and
+weights), while $\vpsi^{\pi_i}\cdot\w=Q^{\pi_i}_\w\le Q^*_\w$. So all three are equal, GPI is greedy for $Q^*_\w$, and
+the exit values passed upstream are $V^*_\w$; induction over the automaton gives the FSA statement. By Proposition~\ref{prop:hyb}(i), $\max_jQ^{\pi_j}_\w\le
+Q_{\mathrm{meta}}\le Q^*_\w$, so $Q_{\mathrm{meta}}=Q^*_\w$ and $\pi^{\mathrm{hyb}}$ is optimal; and $B(s)$ contains an
+optimal action, $\pi_{i^*}(s)$ with $i^*=\argmax_iw_iD_i(s,\pi_i(s))$, so the metapolicy is optimal too.
+\end{proof}
+\noindent The only step that fails with stochastic $P$ is $Q^\pi_\w\le\max_iw_iD_i$: a policy can split its
+probability between exits (keep both open), and then $Q^*_\w>\max_iw_iD_i$. Numerically, the certificate of
+\cite{note} confirms the theorem on deterministic Office: every weight of the 6-exit simplex, $\Gamma=5.7\cdot10^{-8}$,
+with the 6 extremes.
+
+\section{Stochastic domains: hybrid policy and per-task certificate}
+\begin{proposition}\label{prop:hyb}
+For any base and $\w$: (i) $\max_jQ^{\pi_j}_\w\le Q_{\mathrm{meta}}\le Q^{\pi^{\mathrm{hyb}}}_\w$ and
+$V^{\pi^{\mathrm{hyb}}}_\w\ge V_{\mathrm{meta}}\ge\max_jV^{\pi_j}_\w$: the hybrid's guaranteed value dominates GPI's.
+(ii) Let $\Delta(s)$ be the gap between $V^*_\w(s)$ and the best strictly suboptimal action value at $s$. If
+$\gamma\|V^*_\w-V_{\mathrm{meta}}\|_\infty<\min_s\Delta(s)$, then $\pi^{\mathrm{hyb}}$ is optimal; the same argument for
+GPI needs $\gamma\min_j\|V^*_\w-V^{\pi_j}_\w\|_\infty<\min_s\Delta(s)$, which is stronger by (i). (iii) If some optimal
+policy for $\w$ takes only actions in $B(s)$, then $\pi_{\mathrm{meta}}$ and $\pi^{\mathrm{hyb}}$ are optimal.
+\end{proposition}
+\begin{proof}
+(i) Each $\pi_j$ is feasible in the restricted MDP, so $V_{\mathrm{meta}}\ge V^{\pi_j}$ and
+$Q_{\mathrm{meta}}=r+\gamma PV_{\mathrm{meta}}\ge r+\gamma PV^{\pi_j}=Q^{\pi_j}$. $\pi^{\mathrm{hyb}}$ is greedy for
+$Q_{\mathrm{meta}}$, so $T^{\pi^{\mathrm{hyb}}}V_{\mathrm{meta}}\ge V_{\mathrm{meta}}$ and, by monotonicity,
+$V^{\pi^{\mathrm{hyb}}}\ge V_{\mathrm{meta}}$. (ii) $0\le Q^*-Q_{\mathrm{meta}}=\gamma P(V^*-V_{\mathrm{meta}})\le
+\gamma\|V^*-V_{\mathrm{meta}}\|_\infty$, so an optimal action scores above every action that is suboptimal by $\Delta$;
+for GPI, $Q^*(s,a)-\max_jQ^{\pi_j}(s,a)\le\gamma\min_j\|V^*-V^{\pi_j}\|_\infty$. (iii) The restricted MDP then contains
+an optimal policy, so $V_{\mathrm{meta}}=V^*_\w$.
+\end{proof}
+\noindent (i) bounds what $\pi^{\mathrm{hyb}}$ guarantees; GPI's executed value can occasionally be higher
+\cite{cog}. Neither (ii) nor (iii) gives a number of base policies in terms of $d$: if the optimal behaviour needs two
+or more consecutive actions that no base policy takes, one improvement step is not enough.
+Optimality is therefore \emph{certified per task}: a policy is optimal for $\w$ iff its Bellman gap
+$\max_a[r_\w+\gamma PV^\pi](s,a)-V^\pi(s)$ is zero at every state, which policy iteration detects when it stops.
+
+\begin{algorithm}[h]
+\caption{Certified zero-shot planning of a new FSA task over a base $L$}\label{alg:task}
+\begin{algorithmic}[1]
+\For{$u$ in reverse topological order}
+  \State $\w(u)\gets$ exit weights: $1$, $V_v(i)$ (exact values of the policy executed in $v$) or $0$
+  \State $\pi\gets\pi^{\mathrm{hyb}}$ at $\w(u)$ (metapolicy by restricted policy iteration, then one greedy step over $A$)
+  \State $V\gets$ evaluate $\pi$ (iterative, warm-started at $V_{\mathrm{meta}}$, a sub-solution)
+  \While{Bellman gap of $(\pi,V)$ is nonzero} \Comment{rarely more than one step}
+    \State $\pi\gets$ greedy for $r_\w+\gamma PV$;\ \ $V\gets$ evaluate $\pi$
+  \EndWhile
+  \State execute $\pi$ in $u$; $V_u\gets V$ \Comment{optionally add $\pi$ to $L$}
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+\noindent By induction over the automaton, the executed policy is optimal for SF-FSA-VI and the planned value is
+exact. The base itself is built once with Certify-or-Grow \cite{cog}: OLS over the corner weights, where each
+corner is first answered by the metapolicy over the current base and certified by its Bellman gap, and only a failed
+certificate trains a new base policy (warm-started, through the hybrid step). No linear system is solved anywhere:
+every evaluation is iterative.
+
+\section{Results}
+With the model: double slit (wind $\pm3$, $\gamma=0.9$), Office with slip $p$ (the chosen action is replaced by
+one of the other three w.p.\ $p$, $\gamma=0.99$) and windy two-stage ($\gamma=0.95$) \cite{note}; held-out weights on
+the faces the tasks use; the 3 tasks of \cite{kuric} plus 100 random ones (Office), 60 two-stage tasks (windy).
+
+\begin{figure}[!t]\centering
+\includegraphics[width=\linewidth]{figures/hyb_optimal.pdf}
+\caption{Share of held-out weights where each policy is optimal at the start and every exit, with the first $k$
+policies found by OLS as base (the first $d$ are the extremes). Policy iteration from $\pi^{\mathrm{hyb}}$ reaches the
+optimum in at most 3 steps (mean $\le0.3$) in every case.}\label{fig:opt}
+\end{figure}
+
+\begin{table}[!t]\centering\small
+\caption{New FSA tasks, base = the $d=6$ extreme policies (103 Office tasks, 60 windy tasks). Top: max regret of
+uncertified policies ($\pi^{\mathrm{hyb}}$ costs 35 / 82 / 12 sweeps per task). Bottom: average cost per task of the
+certified optimum (zero Bellman gap at every automaton state), in full sweeps ($|S||A|$ one-step backups; an
+evaluation sweep counts $1/|A|$) and, in brackets, improvement steps over all actions (for $\pi^{\mathrm{hyb}}$,
+those after the hybrid step; the metapolicy's restricted steps are in the sweeps).}\label{tab:task}
+\begin{tabular}{lccc}
+\toprule
+& Office, $p=0.1$ & Office, $p=0.3$ & Windy\\
+\midrule
+zero-shot GPI \cite{kuric} & $1.6\cdot10^{-5}$ & $8.3\cdot10^{-4}$ & $3.0\cdot10^{-3}$\\
+$\pi^{\mathrm{hyb}}$, no policy iteration & $1.5\cdot10^{-5}$ & $1.0\cdot10^{-6}$ & $0$\\
+\midrule
+policy iteration from scratch & 773 (11.2) & 672 (10.4) & 166 (63.1)\\
+GPI, then policy iteration & 33 (2.3) & 68 (1.8) & 11 (0.45)\\
+$\pi^{\mathrm{hyb}}$, then policy iteration (Alg.~\ref{alg:task}) & 40 (0.37) & 85 (0.10) & 16 (0.20)\\
+speed-up of Alg.~\ref{alg:task} over policy iteration from scratch & $19\times$ & $8\times$ & $11\times$\\
+\bottomrule
+\end{tabular}
+\vspace{6pt}
+
+\caption{Building the $\epsilon$-CCS from the base (the $d$ extremes): average cost per CCS policy beyond the base
+in SF sweeps ($|S||A|$ backups of $d$-dimensional SFs) and, in brackets, the policies trained beyond the base.}\label{tab:ccs}
+\begin{tabular}{lcccc}
+\toprule
+& Double slit, exact & Windy, $10^{-5}$ & Office 0.1, $2\cdot10^{-3}$ & Office 0.3, $5\cdot10^{-3}$\\
+\midrule
+CCS policies beyond the base & 308 & 111 & 256 & 232\\
+SFOLS, learned from scratch & 889 (308) & 471 (111) & -- & --\\
+SFOLS, GPI warm start & 20.7 (307) & 47.4 (111) & 57.2 (256) & 143.6 (232)\\
+Certify-or-Grow & 21.3 (11) & 51.0 (15) & 60.0 (18) & 150.6 (16)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{itemize}\setlength\itemsep{2pt}
+\item \textbf{New tasks (Table~\ref{tab:task}, Figure~\ref{fig:opt}).} With the 6 extremes, GPI is optimal at 86\%,
+69\% and 93\% of the weights and $\pi^{\mathrm{hyb}}$ at 97\%, 93\% and 96\%; in double slit 9 policies make
+$\pi^{\mathrm{hyb}}$ optimal everywhere (SFOLS stores 310). Algorithm~\ref{alg:task} reaches the certified optimum of
+every task $8$--$19\times$ faster than policy iteration from scratch. With the model, GPI followed by policy iteration is
+slightly cheaper in sweeps; $\pi^{\mathrm{hyb}}$ needs $2$--$18\times$ fewer improvement steps over all actions (the
+expensive unit when steps are learned) and is near-optimal even without them.
+\item \textbf{The CCS from the base (Table~\ref{tab:ccs}).} With the model, Certify-or-Grow composes almost every
+CCS policy from the base: it trains 11--18 policies instead of 111--308, at about the cost of warm-started SFOLS
+($+3$--$8\%$ sweeps) and $9$--$42\times$ less than SFOLS learning every policy from scratch. Without the model (SF
+Q-learning as in Figure~1 of \cite{cog}, Office with slip $0.05$, $\epsilon=0.05$, 3 seeds) it still trains only
+10--15 of about 100 policies and reaches the same CCS quality (worst $\epsilon$-gap $0.006$ for every method), but
+the sample advantage almost vanishes: $1.00$--$1.17\times$ fewer steps to converge and $1.08$--$1.11\times$ fewer
+environment steps than warm-started SFOLS ($2.1\times$ in deterministic Office), about 1.7--2.0M steps to converge per
+CCS policy for every method. Under noise every learn has to average samples until its greedy policy settles, warm start or not.
+\item \textbf{Limits.} The per-task step needs the model, or many samples: sampled TD refinement added more noise
+than it removed, and the model-free certificate (100 samples per pair, tolerance $0.01$) wrongly certified
+15--22\% of the metapolicies. In Office the curves of Figure~\ref{fig:opt} saturate below $100\%$
+with 40 policies; policy iteration supplies the missing behaviour per task.
+\end{itemize}
+
+{\small
+\begin{thebibliography}{9}\setlength\itemsep{0pt}
+\bibitem{kuric} D.~Kuric, G.~Infante, V.~G\'omez, A.~Jonsson, H.~van~Hoof. Planning with a learned policy basis to
+optimally solve complex tasks. ICAPS 2024.
+\bibitem{cog} Certify-or-Grow, \texttt{paper/article.tex}.
+\bibitem{note} Certified SF libraries, \texttt{notes/certified\_library.tex}.
+\end{thebibliography}}
+\end{document}

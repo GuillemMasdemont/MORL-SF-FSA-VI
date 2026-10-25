@@ -1,0 +1,1 @@
+query 1 |CCS| 0 steps 6,214,000 to-converge 5,411,000 {'full learns': 3, 'fallbacks': 1}

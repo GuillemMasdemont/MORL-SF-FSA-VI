@@ -1,0 +1,18 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+  CoG + warm start, model-free   seed 0: queries 101, CCS 65, steps to converge 122,020,900, all steps 175,742,900, 5622s, {'full learns': 10, 'true gap <= cert tol': 79, 'certified': 97, 'false certificates': 22, 'learns that hit the step cap': 5, 'fallbacks': 4, 'false fallbacks': 4}
+  CoG + warm start, model-free   seed 2: queries 99, CCS 66, steps to converge 129,945,500, all steps 176,005,500, 5646s, {'full learns': 12, 'true gap <= cert tol': 76, 'certified': 93, 'false certificates': 21, 'fallbacks': 6, 'false fallbacks': 4, 'learns that hit the step cap': 4}
+  standard SFOLS                 seed 0: queries 99, CCS 62, steps to converge 134,858,000, all steps 183,650,000, 5847s, {'full learns': 99, 'learns that hit the step cap': 5}
+  CoG + warm start, model-free   seed 1: queries 103, CCS 68, steps to converge 132,643,300, all steps 189,019,300, 5952s, {'full learns': 14, 'true gap <= cert tol': 80, 'fallbacks': 8, 'false fallbacks': 4, 'certified': 95, 'false certificates': 19, 'learns that hit the step cap': 7}
+  standard + GPI warm start      seed 2: queries 98, CCS 71, steps to converge 129,483,000, all steps 189,741,000, 6036s, {'full learns': 98, 'learns that hit the step cap': 11}
+  standard SFOLS                 seed 1: queries 97, CCS 68, steps to converge 132,053,000, all steps 190,852,000, 6081s, {'full learns': 97, 'learns that hit the step cap': 10}
+  standard + GPI warm start      seed 0: queries 95, CCS 73, steps to converge 126,953,000, all steps 179,208,000, 6089s, {'full learns': 95, 'learns that hit the step cap': 11, 'exact cdd fallbacks': 5}
+  standard SFOLS                 seed 2: queries 99, CCS 69, steps to converge 137,449,000, all steps 196,113,000, 6159s, {'full learns': 99, 'learns that hit the step cap': 11}
+  standard + GPI warm start      seed 1: queries 103, CCS 70, steps to converge 135,438,000, all steps 206,115,000, 6336s, {'full learns': 103, 'learns that hit the step cap': 15}
+9 runs in 6336s -> /Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/SFOLS/results/office_q_runs_slip0.05.pkl
+standard SFOLS                 median steps to converge 134,858,000, all steps 190,852,000, CCS size 68, worst eps-gap of the learned CCS 0.0061
+standard + GPI warm start      median steps to converge 129,483,000, all steps 189,741,000, CCS size 71, worst eps-gap of the learned CCS 0.0060
+CoG + warm start, model-free   median steps to converge 129,945,500, all steps 176,005,500, CCS size 66, worst eps-gap of the learned CCS 0.0062

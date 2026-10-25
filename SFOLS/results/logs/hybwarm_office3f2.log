@@ -1,0 +1,11 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+office3f2: 103 tasks, base = first 6 SFOLS policies; all rows end at zero Bellman gap
+  scratch  max regret 0.0e+00 | sweeps/task  671.7 = full lookaheads  12.1 + restricted   0.0 + eval  659.6 | PI steps after start 10.39
+  vi1e-4   max regret 0.0e+00 | sweeps/task  124.4 = full lookaheads  90.0 + restricted   0.0 + eval   34.4 | PI steps after start 0.09
+  vi1e-6   max regret 0.0e+00 | sweeps/task  145.9 = full lookaheads 120.3 + restricted   0.0 + eval   25.6 | PI steps after start 0.00
+  vi1e-8   max regret 0.0e+00 | sweeps/task  168.1 = full lookaheads 149.9 + restricted   0.0 + eval   18.2 | PI steps after start 0.00
+  gpi      max regret 0.0e+00 | sweeps/task   67.9 = full lookaheads   3.5 + restricted   0.0 + eval   64.4 | PI steps after start 1.76
+  elect    max regret 0.0e+00 | sweeps/task   72.7 = full lookaheads   3.8 + restricted   0.0 + eval   69.0 | PI steps after start 2.01
+  hyb      max regret 0.0e+00 | sweeps/task   84.8 = full lookaheads   1.9 + restricted   3.7 + eval   79.2 | PI steps after start 0.10

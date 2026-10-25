@@ -1,0 +1,4 @@
+query 1 |CCS| 0 steps 1,742,000 to-converge 1,742,000 {'full learns': 1}
+query 2 |CCS| 1 steps 3,562,000 to-converge 3,562,000 {'full learns': 2}
+query 3 |CCS| 2 steps 4,795,000 to-converge 4,795,000 {'full learns': 3}
+query 4 |CCS| 3 steps 6,101,000 to-converge 6,101,000 {'full learns': 4}

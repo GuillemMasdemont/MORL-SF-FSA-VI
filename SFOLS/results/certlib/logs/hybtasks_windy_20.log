@@ -1,0 +1,7 @@
+windy: 60 tasks, base = first 20 SFOLS policies
+  zero-shot GPI (estimate planner)   max regret 0.0e+00 mean 0.0e+00 | sweeps/task mean    0.0 | improvement steps/task mean 0.00
+  GPI, evaluated (no PI)             max regret 0.0e+00 mean 0.0e+00 | sweeps/task mean    0.7 | improvement steps/task mean 0.00
+  hybrid, evaluated (no PI)          max regret 0.0e+00 mean 0.0e+00 | sweeps/task mean    4.3 | improvement steps/task mean 0.00
+  PI from scratch                    max regret 0.0e+00 mean 0.0e+00 | sweeps/task mean  166.0 | improvement steps/task mean 63.10
+  GPI + PI to zero gap               max regret 0.0e+00 mean 0.0e+00 | sweeps/task mean    3.6 | improvement steps/task mean 0.00
+  hybrid + PI to zero gap            max regret 0.0e+00 mean 0.0e+00 | sweeps/task mean    7.2 | improvement steps/task mean 0.00

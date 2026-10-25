@@ -1,0 +1,8 @@
+windy: 60 tasks, base = first 6 SFOLS policies; all rows end at zero Bellman gap
+  scratch  max regret 0.0e+00 | sweeps/task  166.0 = full lookaheads  66.0 + restricted   0.0 + eval  100.0 | PI steps after start 63.10
+  vi1e-4   max regret 0.0e+00 | sweeps/task  101.6 = full lookaheads  82.7 + restricted   0.0 + eval   18.8 | PI steps after start 0.42
+  vi1e-6   max regret 0.0e+00 | sweeps/task  111.8 = full lookaheads  98.6 + restricted   0.0 + eval   13.2 | PI steps after start 0.00
+  vi1e-8   max regret 0.0e+00 | sweeps/task  123.9 = full lookaheads 114.8 + restricted   0.0 + eval    9.2 | PI steps after start 0.00
+  gpi      max regret 0.0e+00 | sweeps/task   11.0 = full lookaheads   3.3 + restricted   0.0 + eval    7.7 | PI steps after start 0.45
+  elect    max regret 0.0e+00 | sweeps/task   11.7 = full lookaheads   3.5 + restricted   0.0 + eval    8.2 | PI steps after start 0.63
+  hyb      max regret 0.0e+00 | sweeps/task   15.6 = full lookaheads   3.1 + restricted   3.1 + eval    9.4 | PI steps after start 0.20

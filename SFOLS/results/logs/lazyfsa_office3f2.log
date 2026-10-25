@@ -1,0 +1,19 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+office3f2: 33 tasks (Kuric semantics: self-loops on exits without an edge), base = 6 extremes, full eps-CCS from SFOLS = 572 policies
+  5/33 tasks (38s); stream base: CoG 18, PI 18 policies
+  10/33 tasks (73s); stream base: CoG 21, PI 21 policies
+  15/33 tasks (114s); stream base: CoG 22, PI 22 policies
+  20/33 tasks (152s); stream base: CoG 25, PI 25 policies
+  25/33 tasks (187s); stream base: CoG 26, PI 26 policies
+  30/33 tasks (225s); stream base: CoG 28, PI 28 policies
+  33/33 tasks (245s); stream base: CoG 30, PI 30 policies
+
+office3f2: 33 tasks. Max relative regret: Kuric + 6 extremes 3.2e-03, Kuric + eps-CCS (572 policies) 2.5e-04
+  product VI from scratch (no SFs): 130 sweeps per task
+  OLS-order CCS prefix that makes Kuric exact: median inf, max inf, never within the eps-CCS on 33 of 33 tasks
+  cog_fresh   max rel regret 0.0e+00, W error 4e-14, all certified True | per task: rounds 2.61, policies added 2.42, cost 558 sweeps (solves 158 + SF tables 386 + checks 14) | added policies by kind {'metapolicy': 31, 'hybrid': 14, 'gpi': 0, 'policy iteration': 35}; states changed vs nearest stored policy: median 45; final base 9
+  pi_fresh    max rel regret 0.0e+00, W error 4e-14, all certified True | per task: rounds 2.61, policies added 2.42, cost 497 sweeps (solves 97 + SF tables 386 + checks 14) | added policies by kind {'metapolicy': 0, 'hybrid': 0, 'gpi': 26, 'policy iteration': 54}; states changed vs nearest stored policy: median 45; final base 9
+  cog_stream  max rel regret 0.0e+00, W error 4e-14, all certified True | per task: rounds 1.52, policies added 0.73, cost 160 sweeps (solves 30 + SF tables 111 + checks 19) | added policies by kind {'metapolicy': 19, 'hybrid': 4, 'gpi': 0, 'policy iteration': 1}; states changed vs nearest stored policy: median 17; final base 30
+  pi_stream   max rel regret 0.0e+00, W error 4e-14, all certified True | per task: rounds 1.52, policies added 0.73, cost 155 sweeps (solves 25 + SF tables 111 + checks 19) | added policies by kind {'metapolicy': 0, 'hybrid': 0, 'gpi': 10, 'policy iteration': 14}; states changed vs nearest stored policy: median 17; final base 30

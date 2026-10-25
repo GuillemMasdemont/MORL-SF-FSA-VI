@@ -1,0 +1,23 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+{'method': 'SFOLS', 'eps': 0.001, 'library': 9, 'learned': 9, 'sweeps': 1250, 'queries': 7, 'gap': 0.0009590333905772769, 'true_max': 3.840640043785426e-05, 'true_mean': 1.5718630282515606e-06}
+{'method': 'SFOLS', 'eps': 0.0001, 'library': 30, 'learned': 30, 'sweeps': 2185, 'queries': 28, 'gap': 9.521692897093703e-05, 'true_max': 3.754621856366658e-06, 'true_mean': 5.483047939137336e-08}
+{'method': 'SFOLS', 'eps': 1e-05, 'library': 72, 'learned': 72, 'sweeps': 3365, 'queries': 70, 'gap': 9.839494459429332e-06, 'true_max': 4.843094136702808e-07, 'true_mean': 9.631992257550853e-10}
+{'method': 'SFOLS', 'eps': 1e-06, 'library': 192, 'learned': 192, 'sweeps': 5269, 'queries': 201, 'gap': 9.75173820014219e-07, 'true_max': 1.1887642814567556e-09, 'true_mean': 1.1867693442994253e-12}
+{'method': 'SFOLS', 'eps': 1e-08, 'library': 307, 'learned': 307, 'sweeps': 6772, 'queries': 510, 'gap': 9.615549564911952e-09, 'true_max': 2.0694557179012918e-13, 'true_mean': 4.670385351154589e-15}
+{'method': 'SFOLS', 'eps': 1e-10, 'library': 309, 'learned': 309, 'sweeps': 6788, 'queries': 560, 'gap': 2.6213892168058806e-12, 'true_max': 2.0694557179012918e-13, 'true_mean': 4.670385351154589e-15}
+{'method': 'Certify-or-Grow', 'eps': 0.001, 'library': 9, 'learned': 8, 'sweeps': 1408, 'queries': 7, 'gap': 0.0009590333905772908, 'true_max': 3.840640043785426e-05, 'true_mean': 1.5718630282515606e-06}
+{'method': 'Certify-or-Grow', 'eps': 0.0001, 'library': 30, 'learned': 11, 'sweeps': 2396, 'queries': 28, 'gap': 9.521692897093703e-05, 'true_max': 3.754621856366658e-06, 'true_mean': 5.483047939137336e-08}
+{'method': 'Certify-or-Grow', 'eps': 1e-05, 'library': 72, 'learned': 11, 'sweeps': 3576, 'queries': 70, 'gap': 9.839494459429332e-06, 'true_max': 4.843094136702808e-07, 'true_mean': 9.631992257550853e-10}
+{'method': 'Certify-or-Grow', 'eps': 1e-06, 'library': 192, 'learned': 11, 'sweeps': 5480, 'queries': 201, 'gap': 9.75173820014219e-07, 'true_max': 1.1887642814567556e-09, 'true_mean': 1.1867693442994253e-12}
+{'method': 'Certify-or-Grow', 'eps': 1e-08, 'library': 308, 'learned': 13, 'sweeps': 6995, 'queries': 510, 'gap': 9.615549564911952e-09, 'true_max': 2.0694557179012918e-13, 'true_mean': 4.670385351154589e-15}
+{'method': 'Certify-or-Grow', 'eps': 1e-10, 'library': 310, 'learned': 13, 'sweeps': 7011, 'queries': 560, 'gap': 2.6213892168058806e-12, 'true_max': 2.0694557179012918e-13, 'true_mean': 4.670385351154589e-15}
+{'method': 'Certified library', 'eps': 0.001, 'library': 9, 'learned': 8, 'sweeps': 1496, 'queries': 7, 'gap': 0.0009590333905772908, 'true_max': 3.840640043785426e-05, 'true_mean': 1.5718630282515606e-06}
+{'method': 'Certified library', 'eps': 0.0001, 'library': 30, 'learned': 10, 'sweeps': 2535, 'queries': 28, 'gap': 9.521692897093703e-05, 'true_max': 3.754621856366658e-06, 'true_mean': 5.483047939137336e-08}
+{'method': 'Certified library', 'eps': 1e-05, 'library': 72, 'learned': 10, 'sweeps': 3769, 'queries': 70, 'gap': 9.839494459498721e-06, 'true_max': 4.843094136702808e-07, 'true_mean': 9.631992257550853e-10}
+{'method': 'Certified library', 'eps': 1e-06, 'library': 186, 'learned': 11, 'sweeps': 5781, 'queries': 201, 'gap': 9.751738200280968e-07, 'true_max': 1.1887642814567556e-09, 'true_mean': 1.1867693442994253e-12}
+{'method': 'Certified library', 'eps': 1e-08, 'library': 287, 'learned': 11, 'sweeps': 7362, 'queries': 510, 'gap': 9.615549551034164e-09, 'true_max': 2.0694557179012918e-13, 'true_mean': 4.670385351154589e-15}
+{'method': 'Certified library', 'eps': 1e-10, 'library': 287, 'learned': 11, 'sweeps': 7412, 'queries': 560, 'gap': 1.1393941345971825e-12, 'true_max': 2.0694557179012918e-13, 'true_mean': 4.670385351154589e-15}

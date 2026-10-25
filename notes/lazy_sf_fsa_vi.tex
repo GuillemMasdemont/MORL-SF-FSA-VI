@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[hmargin=2cm,vmargin=1.8cm]{geometry}
+\setlength{\tabcolsep}{4pt}
+
+\newcommand{\vpsi}{\bm{\psi}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\R}{\mathbb R}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\begin{center}
+{\Large Lazy SF-FSA-VI: exact planning over a small, task-driven base}\\[2pt]
+{\small \today}
+\end{center}
+
+\paragraph{Problem.} SF-FSA-VI \cite{kuric} plans a task automaton over a set of base policies with known SFs. Entering
+exit $j$ in automaton state $u$ moves to $\tau(u,j)$: the accepting state $T$, another state $v$, or $u$ itself when the
+exit's symbol has no edge from $u$. Exit weights solve
+\[
+w_j(u)=\begin{cases}1 & \tau(u,j)=T\\ \gamma\,V_{\w(\tau(u,j))}(\varepsilon_j) & \text{otherwise,}\end{cases}
+\]
+which Kuric et al.\ iterate with $V_\w(\varepsilon_j)=\max_{a,\pi}\vpsi^\pi(\varepsilon_j,a)\cdot\w$ (GPI estimates at
+the exits). \emph{Assumption:} the jump into the next automaton state is discounted by $\gamma$ (entering an exit takes a
+step), so the iteration is a $\gamma$-contraction even when an exit can be re-entered at once. The iteration is optimal
+if the base is a CCS. In stochastic domains the CCS is large (117--572 policies for $\epsilon$-CCSs below) and an
+$\epsilon$-CCS is not exact.
+
+\paragraph{Idea.} The planner only ever reads values at the weights $\w(u)$ it visits, and these converge. So instead of a
+CCS, start from the $d$ extremes and add a policy only at a visited weight where the base is provably not exact.
+\emph{Certificate:} the GPI estimate $\hat Q_\w=\max_j Q^{\pi_j}_\w$ is a lower bound with $T\hat Q_\w\ge\hat Q_\w$, so
+$T\hat Q_\w=\hat Q_\w$ (one lookahead) implies $\hat Q_\w=Q^*_\w$. \emph{Growth:} the metapolicy over the base first
+(composition), then $\pi^{\mathrm{hyb}}$, then improvement \cite{cog}.
+
+\begin{algorithm}[h]
+\caption{Lazy SF-FSA-VI}\label{alg:lazy}
+\begin{algorithmic}[1]
+\Require base $L$ (the $d$ extremes, or the base left by earlier tasks), task automaton
+\Repeat
+  \State $W\gets$ fixed point of Kuric's iteration over $L$ (warm-started) \Comment{zero-shot; no low-level solve}
+  \For{every automaton state $u$}
+    \If{$T\hat Q_{\w(u)}=\hat Q_{\w(u)}$} \textbf{continue} \Comment{certified: GPI over $L$ is exact at $\w(u)$}
+    \EndIf
+    \State $\pi\gets$ metapolicy over $L$ at $\w(u)$ \Comment{composition of stored policies, actions $B(s)$}
+    \If{the Bellman gap of $\pi$ is not zero} $\pi\gets\pi^{\mathrm{hyb}}$, then improve until the gap is zero
+    \EndIf
+    \State $L\gets L\cup\{\pi\}$ (its SFs) \Comment{one small refinement}
+  \EndFor
+\Until{no automaton state needed a new policy}
+\State execute GPI over $L$ at $\w(u)$ in every $u$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{theorem}
+(i) Every $W$ computed is a lower bound on the optimal weights $W^*$. (ii) Algorithm~\ref{alg:lazy} terminates. (iii)
+At termination $W=W^*$ and the executed policy is optimal in the product MDP. (iv) In deterministic domains it adds
+nothing.
+\end{theorem}
+\begin{proof}
+(i) GPI estimates are lower bounds and the iteration is monotone. (ii) An uncertified $\w(u)$ has no optimal policy in
+$L$ (it would make $\hat Q_{\w(u)}=Q^*_{\w(u)}$), so each added policy is new; there are finitely many deterministic
+policies. (iii) At the stop every $\w(u)$ is certified, so the GPI estimates at the exits are $V^*_{\w(u)}$: $W=T_LW=T^*W$,
+whose unique fixed point is $W^*$; GPI is greedy for $Q^*_{\w(u)}$ in every $u$. (iv) The $d$ extremes give
+$\hat Q_\w=Q^*_\w$ for every $\w$ \cite{note}.
+\end{proof}
+
+\noindent\emph{Without the model}, every added policy is learned by SF Q-learning at $\w(u)$, started at the GPI table
+with the visit counts of the entries it copies (inherited counts): first on $B(s)$ (the metapolicy), then on all actions
+if it is not certified. The certificate itself needs the model or a simulator; below it is an oracle check that GPI is
+within $\delta=10^{-3}$ of optimal at the start and the exits (\emph{assumption}).
+
+\paragraph{Where the metapolicy and \cite{mabc} come in.} The metapolicy is the composition step: it decides only where
+stored policies disagree and keeps their common actions (``split the differences, pool the rest'' \cite{mabc}).
+$\pi^{\mathrm{hyb}}$ adds the one action outside $B(s)$ that hedging needs \cite{note}. The Pareto-path theorem of
+\cite{mabc} says that neighbouring CCS policies differ by single-state flips, all optimal at their corner weight; the
+lazy algorithm never visits those corners, only the weights the task needs.
+
+\begin{table}[t]\centering\small
+\caption{With the model. Kuric et al.'s plan over the 6 extremes and over the full $\epsilon$-CCS of SFOLS (Office:
+$\epsilon=2\cdot10^{-3}$, windy: $10^{-5}$), and the shortest OLS-order prefix of that CCS that makes it optimal
+(executed relative regret $\le10^{-9}$); Algorithm~\ref{alg:lazy} from the 6 extremes on every task (fresh) or with the
+base carried over the task sequence (stream). Kinds: policies certified as the metapolicy / $\pi^{\mathrm{hyb}}$ /
+after policy iteration. Cost in full sweeps per task (SF tables of added policies included); the baseline solves the
+product MDP by value iteration from scratch, without SFs. 33 Office tasks (the 3 of \cite{kuric} and 30 random), 60
+windy tasks.}\label{tab:mb}
+\begin{tabular}{lccc}
+\toprule
+& Office, slip $0.1$ & Office, slip $0.3$ & Windy two-stage\\
+\midrule
+Kuric, 6 extremes: max relative regret & $1.1\cdot10^{-3}$ & $3.2\cdot10^{-3}$ & $1.4\cdot10^{-2}$\\
+Kuric, full $\epsilon$-CCS: max relative regret (size) & $3.1\cdot10^{-6}$ (262) & $2.5\cdot10^{-4}$ (572) & 0 (117)\\
+CCS prefix that is optimal: median (never optimal) & -- (17 of 33) & 100 (5 of 33) & 11--15 (0)\\
+\midrule
+Lazy, regret & 0 & 0 & 0\\
+fresh: rounds / policies added per task & 2.15 / 1.79 & 2.61 / 2.42 & 2.00 / 2.20\\
+stream: policies added per task / final base & 0.67 / 28 & 0.73 / 30 & 0.12 / 13\\
+kinds, fresh: metapolicy / $\pi^{\mathrm{hyb}}$ / PI & 10 / 22 / 27 & 31 / 14 / 35 & 24 / 81 / 27\\
+kinds, stream: metapolicy / $\pi^{\mathrm{hyb}}$ / PI & 18 / 2 / 2 & 19 / 4 / 1 & 3 / 4 / 0\\
+\midrule
+cost per task: lazy fresh / lazy stream & 200 / 72 & 558 / 160 & 229 / 24\\
+cost per task: product MDP from scratch & 67 & 130 & 282\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Results (Table~\ref{tab:mb}).}
+\begin{itemize}\setlength\itemsep{2pt}
+\item \textbf{Exact with a handful of policies.} Algorithm~\ref{alg:lazy} is optimal on every task in 2--2.6 rounds,
+adding about 2 policies per task. With the base carried over, it adds 0.12--0.73 per task and ends with 13--30 policies,
+where Kuric's plan needs 11--15 CCS policies per windy task, a median of 100 at slip $0.3$, and is never optimal on half
+of the slip-$0.1$ tasks even with all 262. In deterministic Office it adds nothing (Theorem, (iv)).
+\item \textbf{Refinements are compositions.} With a growing base, 91--100\% of the added policies are the metapolicy
+or $\pi^{\mathrm{hyb}}$ over stored policies, with no improvement step over all actions (54--80\% from the extremes; in
+windy mostly $\pi^{\mathrm{hyb}}$, the hedging step). Growing by GPI and policy iteration instead adds the same number of
+policies, but only 8--71\% are the GPI policy itself.
+\item \textbf{Compute.} With the model the lazy plan costs about as much as solving the product MDP in Office (the
+metapolicy does not save sweeps over policy iteration), and $12\times$ less in windy once the base has grown. The gain
+that matters is the number of low-level policies, each of which is a learning run without the model.
+\item \textbf{Without the model} (Office, slip $0.05$, 13 tasks, extremes learned with 2.5M steps each): GPI over the
+learned extremes is already within $\delta$ on every task (max relative regret $4.2\cdot10^{-4}$), so nothing is
+learned beyond the 15M steps of the base, against about 130M steps for SFOLS's $\epsilon$-CCS in the same domain.
+WINDY_MF
+\end{itemize}
+
+\paragraph{Limits.} The certificate needs the model or a simulator; with learned SFs it holds only up to their noise
+(about $10^{-3}$ here). Termination is guaranteed but the number of rounds is not bounded in terms of $d$.
+
+{\small
+\begin{thebibliography}{9}\setlength\itemsep{0pt}
+\bibitem{kuric} D.~Kuric, G.~Infante, V.~G\'omez, A.~Jonsson, H.~van~Hoof. Planning with a learned policy basis to
+optimally solve complex tasks. ICAPS 2024.
+\bibitem{cog} Certify-or-Grow, \texttt{paper/article.tex}.
+\bibitem{note} A small SF basis for SF-FSA-VI, \texttt{notes/gpi\_basis.tex}.
+\bibitem{mabc} Z.~Sheebaelhamd, L.~Viano, V.~Cevher, C.~Vernade. Split the differences, pool the rest: provably
+efficient multi-objective imitation. NeurIPS 2026.
+\end{thebibliography}}
+\end{document}

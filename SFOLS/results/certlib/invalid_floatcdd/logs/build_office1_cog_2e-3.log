@@ -1,0 +1,4 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+office1 cog eps 2e-3 eta 0.0: queries 18 library 24 learned 10 {'free': 0, 'gpi': 0, 'meta': 14, 'learn': 10, 'fail': 0} sweeps 14965 cert 0.00e+00 time 3s

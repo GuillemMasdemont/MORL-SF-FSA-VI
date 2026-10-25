@@ -1,0 +1,7 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+  standard + GPI warm start      seed 1: queries 4, CCS 3, steps to converge 3,088,000, all steps 4,793,000, 113s, {'full learns': 4}
+  standard + GPI warm start      seed 0: queries 4, CCS 4, steps to converge 2,992,000, all steps 4,807,000, 114s, {'full learns': 4}

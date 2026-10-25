@@ -1,0 +1,5 @@
+office1f2: 103 tasks, base = 6 extremes. Regret (mean / max) and sweeps per task
+  sequential               n=  1 | zero-shot 4.4e-09/4.4e-09 GPI 4.4e-09/4.4e-09 meta 0.0e+00/0.0e+00 hyb 0.0e+00/0.0e+00 | sweeps VI  109.0 GPI+PI   62.2 ladder   84.0 | rungs GPI/hyb/PI 0.33/0.67/0.00 | max cert regret 0e+00
+  disjunction              n=  1 | zero-shot 7.1e-06/7.1e-06 GPI 7.5e-08/7.5e-08 meta 9.6e-08/9.6e-08 hyb 5.3e-10/5.3e-10 | sweeps VI   66.5 GPI+PI   49.5 ladder   77.2 | rungs GPI/hyb/PI 0.00/0.50/0.50 | max cert regret 0e+00
+  composite                n=  1 | zero-shot 1.3e-05/1.3e-05 GPI 1.3e-05/1.3e-05 meta 6.3e-06/6.3e-06 hyb 1.7e-06/1.7e-06 | sweeps VI  147.2 GPI+PI   93.5 ladder  154.0 | rungs GPI/hyb/PI 0.25/0.50/0.25 | max cert regret 0e+00
+  random                   n=100 | zero-shot 1.9e-06/1.6e-05 GPI 1.6e-06/1.6e-05 meta 1.3e-06/1.8e-05 hyb 1.1e-06/1.5e-05 | sweeps VI   57.9 GPI+PI   32.1 ladder   52.4 | rungs GPI/hyb/PI 0.07/0.85/0.08 | max cert regret 0e+00

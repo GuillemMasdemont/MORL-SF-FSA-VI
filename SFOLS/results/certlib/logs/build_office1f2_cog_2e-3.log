@@ -1,0 +1,14 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+  q   25 gap 4.64e-01 lib 25 learned 11 sweeps 14822 {'free': 0, 'gpi': 0, 'meta': 14, 'learn': 11, 'fail': 0}
+  q   50 gap 7.42e-02 lib 50 learned 17 sweeps 16481 {'free': 0, 'gpi': 0, 'meta': 33, 'learn': 17, 'fail': 0}
+  q   75 gap 4.92e-02 lib 73 learned 20 sweeps 18409 {'free': 0, 'gpi': 0, 'meta': 55, 'learn': 20, 'fail': 0}
+  q  100 gap 2.43e-02 lib 98 learned 21 sweeps 20142 {'free': 0, 'gpi': 0, 'meta': 79, 'learn': 21, 'fail': 0}
+  q  125 gap 1.64e-02 lib 122 learned 22 sweeps 21387 {'free': 0, 'gpi': 0, 'meta': 103, 'learn': 22, 'fail': 0}
+  q  150 gap 1.18e-02 lib 146 learned 22 sweeps 22531 {'free': 0, 'gpi': 0, 'meta': 128, 'learn': 22, 'fail': 0}
+  q  175 gap 8.16e-03 lib 171 learned 23 sweeps 23908 {'free': 0, 'gpi': 0, 'meta': 152, 'learn': 23, 'fail': 0}
+  q  200 gap 5.07e-03 lib 195 learned 24 sweeps 25144 {'free': 0, 'gpi': 0, 'meta': 176, 'learn': 24, 'fail': 0}
+  q  225 gap 3.13e-03 lib 220 learned 24 sweeps 26595 {'free': 0, 'gpi': 0, 'meta': 201, 'learn': 24, 'fail': 0}
+  q  250 gap 2.45e-03 lib 244 learned 24 sweeps 27726 {'free': 0, 'gpi': 0, 'meta': 226, 'learn': 24, 'fail': 0}
+office1f2 cog eps 2e-3 eta 0.0: queries 264 library 262 learned 24 {'free': 0, 'gpi': 0, 'meta': 246, 'learn': 24, 'fail': 0} sweeps 28554 cert 1.98e-03 time 498s

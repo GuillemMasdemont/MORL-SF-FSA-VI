@@ -1,0 +1,7 @@
+office1f2: 103 tasks, base = first 20 SFOLS policies
+  zero-shot GPI (estimate planner)   max regret 1.3e-05 mean 1.2e-06 | sweeps/task mean    0.0 | improvement steps/task mean 0.00
+  GPI, evaluated (no PI)             max regret 1.3e-05 mean 8.3e-07 | sweeps/task mean   13.4 | improvement steps/task mean 0.00
+  hybrid, evaluated (no PI)          max regret 1.7e-06 mean 1.7e-08 | sweeps/task mean   34.6 | improvement steps/task mean 0.00
+  PI from scratch                    max regret 0.0e+00 mean 0.0e+00 | sweeps/task mean  772.7 | improvement steps/task mean 11.16
+  GPI + PI to zero gap               max regret 0.0e+00 mean -2.2e-18 | sweeps/task mean   31.6 | improvement steps/task mean 2.15
+  hybrid + PI to zero gap            max regret 0.0e+00 mean -2.2e-18 | sweeps/task mean   37.4 | improvement steps/task mean 0.14

@@ -1,0 +1,251 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+
+\newcommand{\vphi}{\bm{\phi}}
+\newcommand{\vpsi}{\bm{\psi}}
+\newcommand{\w}{\mathbf{w}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{GPI-targeted basis construction for stochastic domains\\[2pt]
+\large working notes}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+SF-FSA-VI \cite{kuric} plans over exit states with GPI over a policy basis and is globally optimal when the
+basis is a convex coverage set (CCS). In deterministic domains with terminal exits the $d$ extrema policies
+already make GPI optimal; in stochastic domains the CCS explodes (181 policies on the strong-wind double
+slit, more than a thousand on a slippery Office at $\epsilon=10^{-3}$), yet GPI over a much smaller basis is
+already (near-)optimal. The mismatch is that SFOLS \cite{alegre22} and GPI-LS \cite{alegre23} choose
+queries and stop according to the \emph{best single policy}, while SF-FSA-VI uses \emph{GPI}. These notes
+(i) characterise when GPI is optimal without a CCS, (ii) show that GPI's loss over a whole region of
+weights can be certified by checking finitely many weights, and (iii) give an algorithm that queries where
+GPI is worst, answers queries with metapolicies (Certify-or-Grow) whenever possible, and stops when GPI is
+certified $\epsilon$-optimal.
+\end{abstract}
+
+\section{Setting}
+Tabular MDP with vector features $\vphi(s,a,s')\in\mathbb R^d$, weights $\w$ in the simplex, discount
+$\gamma$; terminal transitions remove probability mass, so $V^\pi_\w=(I-\gamma P_\pi)^{-1}r_\pi$.
+A pool $\Pi=\{\pi_1,\dots,\pi_k\}$ with action successor features $\vpsi_j(s,a)$ defines the GPI estimate
+$\hat Q_\w(s,a)=\max_j \vpsi_j(s,a)\cdot\w$ and the GPI policy $\pi^{G}_\w(s)\in\argmax_a \hat Q_\w(s,a)$.
+GPI guarantees $Q^{\pi^G_\w}_\w\ge \hat Q_\w$ \cite{barreto17}. The \emph{relevant states} $\mathcal R$ are
+where SF-FSA-VI reads values: the start state and the exits.
+The quantity we want small is the \emph{GPI loss} $L(\w)=\max_{r\in\mathcal R}\,[V^*_\w(r)-V^{\pi^G_\w}_\w(r)]$.
+
+\section{When is GPI optimal without a CCS?}
+
+\begin{proposition}[Action-gap condition]\label{prop:gap}
+Fix $\w$ and a state $s$ with optimal action $a^*$ and action gap
+$\Delta(s)=Q^*(s,a^*)-\max_{b\notin\argmax Q^*(s,\cdot)}Q^*(s,b)$. If the GPI estimate of the optimal
+action is accurate within the action gap, $c(s):=Q^*(s,a^*)-\hat Q(s,a^*)<\Delta(s)$, then GPI picks an
+optimal action at $s$.
+\end{proposition}
+\begin{proof}
+For any non-optimal $b$: $\hat Q(s,b)\le Q^*(s,b)\le Q^*(s,a^*)-\Delta(s)<Q^*(s,a^*)-c(s)=\hat Q(s,a^*)$.
+\end{proof}
+
+\begin{proposition}[Regret controlled by coverage at the optimal action]\label{prop:cov}
+For every start state $s_0$,
+\[ V^*(s_0)-V^{\pi^G}(s_0)\;\le\;\frac{1}{1-\gamma}\,\mathbb E_{s\sim d^{\pi^G}_{s_0}}\big[c(s)\big],
+\qquad c(s)=Q^*(s,\pi^*(s))-\max_j\vpsi_j(s,\pi^*(s))\cdot\w .\]
+\end{proposition}
+\begin{proof}
+Performance difference: $V^*(s_0)-V^{\pi^G}(s_0)=\frac{1}{1-\gamma}\mathbb E_{d^{\pi^G}}[V^*(s)-Q^*(s,\pi^G(s))]$,
+and $Q^*(s,\pi^G(s))\ge\hat Q(s,\pi^G(s))\ge \hat Q(s,a^*)=Q^*(s,a^*)-c(s)$.
+\end{proof}
+
+\noindent
+Only the optimal action matters, each state may be covered by a \emph{different} base policy (the max over
+$j$), and errors only matter up to the action gap. The CCS asks for one policy whose value is exact at every
+weight -- sufficient but far from necessary. Exactness is expensive precisely at near-indifference states
+(tiny $\Delta$), where a wrong choice costs at most $c(s)$: $\epsilon$-optimality is cheap. Base policies
+need not be optimal for any weight.
+
+\section{Certifying GPI over a whole region of weights}
+
+\begin{lemma}[GPI cells]
+The weight simplex is a finite union of convex polyhedra (cells) on each of which $\pi^G_\w$ is one fixed
+policy.
+\end{lemma}
+\begin{proof}
+At state $s$, the region where the line $\vpsi_j(s,a)\cdot\w$ is (one of) the maximum among all $k|A|$
+lines is a polyhedron; intersecting one such region per state gives finitely many polyhedra on which the
+GPI action at every state is fixed.
+\end{proof}
+
+\begin{proposition}[Two convex loss bounds]\label{prop:bounds}
+Let $\pi$ be a fixed policy and $g_\w(s)=\max_a\vpsi^\pi(s,a)\cdot\w-\vpsi^\pi(s,\pi(s))\cdot\w\ge0$ its
+Bellman gap. Let $\mathcal L_t(r)$ be the states reachable from $r$ in exactly $t$ steps under some policy.
+\begin{enumerate}
+\item (reachability-discounted certificate) $V^*_\w(r)-V^\pi_\w(r)\le
+B^{\mathrm{reach}}_\w(r):=\sum_{t\ge0}\gamma^t\max_{s\in\mathcal L_t(r)}g_\w(s)$;
+\item (OLS / chord bound) if $V^*_{\w_i}(r)$ is known exactly at weights $\w_i$, then
+$V^*_\w(r)\le U_\w(r):=\min\{\sum_i\lambda_iV^*_{\w_i}(r):\sum_i\lambda_i\w_i=\w,\lambda\ge0\}$.
+\end{enumerate}
+Both $B^{\mathrm{reach}}_\w(r)$ and $U_\w(r)-V^\pi_\w(r)$ are convex in $\w$.
+\end{proposition}
+\begin{proof}
+(1) $V^*-V^\pi=\sum_t\gamma^tP_{\pi^*}^tA$ with $A(s)=Q^\pi(s,\pi^*(s))-V^\pi(s)\le g(s)$; row $r$ of
+$P_{\pi^*}^t$ is a sub-probability supported on $\mathcal L_t(r)$. (2) $V^*_\w(r)=\max_\pi\vpsi^\pi(r)\cdot\w$
+is convex in $\w$. Convexity: $g_\w(s)$ is a max of linear functions minus a linear function; maxima and
+nonnegative sums preserve convexity; $U$ is the value of a parametric LP in its right-hand side (convex) and
+$V^\pi_\w$ is linear.
+\end{proof}
+
+\begin{theorem}[Vertex certification]\label{thm:vertex}
+On a GPI cell $C$ with policy $\pi_C$, for every $\w\in C$ and $r\in\mathcal R$,
+\[ V^*_\w(r)-V^{\pi^G_\w}_\w(r)\;\le\;\min\Big(\max_{v\in\mathrm{vert}(C)}B^{\mathrm{reach}}_v(r),\;
+\max_{v\in\mathrm{vert}(C)}\big[U_v(r)-V^{\pi_C}_v(r)\big]\Big). \]
+Hence, if this is $\le\epsilon$ for every cell, GPI is $\epsilon$-optimal at the relevant states for
+\emph{every} weight. Splitting a cell into sub-polytopes and applying the bound to each piece is also valid
+and only tighter.
+\end{theorem}
+\begin{proof}
+A convex function on a polytope attains its maximum at a vertex; apply Proposition~\ref{prop:bounds} with
+$\pi=\pi_C$, which is the GPI policy on all of $C$.
+\end{proof}
+
+\begin{remark}
+Along a segment of weights (always the case for $d=2$, and for every edge of the simplex) the cells are
+intervals whose endpoints are breakpoints of upper envelopes of lines, so certification is exact and cheap.
+In higher dimensions cells can be built lazily: a region where, at every state, one (policy, action) pair
+dominates all pairs with other actions at all vertices has a fixed GPI policy (each comparison is linear).
+On a cell boundary GPI's tie-breaking may mix neighbouring cells' actions; we define GPI there by a
+neighbouring cell's policy, which is certified on the closed cell.
+\end{remark}
+
+\section{Algorithm}
+\begin{algorithm}[H]
+\caption{GPI-targeted Certify-or-Grow}
+\begin{algorithmic}[1]
+\State $\Pi\gets\{\pi^*_{\mathbf e_1},\dots,\pi^*_{\mathbf e_d}\}$, base $\mathcal B\gets\Pi$, known values at the extrema
+\Loop
+  \State compute GPI cells of $\Pi$ (exact on segments; candidate weights in higher $d$)
+  \State bound every cell with Theorem~\ref{thm:vertex}; \textbf{if} all $\le\epsilon$ \textbf{then return} $\Pi$
+  \State $\w\gets$ the evaluated point with the largest pointwise bound
+  \State $(\pi_{\mathrm{meta}},\mathrm{gap})\gets$ metapolicy over $\mathcal B$ at $\w$ (restricted PI, warm-started at GPI)
+  \If{$\mathrm{gap}=0$} $\Pi\gets\Pi\cup\{\pi_{\mathrm{meta}}\}$ \Comment{optimal at $\w$, no new policy learned}
+  \Else\ solve $\w$ (warm-started), add the policy to $\Pi$ and $\mathcal B$
+  \EndIf
+\EndLoop
+\end{algorithmic}
+\end{algorithm}
+
+\noindent Differences with SFOLS/GPI-LS: (where) queries are the worst points of \emph{GPI's} loss, located at
+GPI cell vertices, not corners of the single-policy envelope; (when) it stops when GPI is certified, not
+when the CCS is complete; (how) queries are answered by metapolicies whenever certified, so most pool
+members are never learned from scratch.
+
+\subsection*{Demand-driven certified SF-FSA-VI}
+For one given task, only the weights the planner actually produces matter.
+
+\begin{algorithm}[H]
+\caption{Certified SF-FSA-VI (pool $\Pi$ and base $\mathcal B$ shared across tasks)}
+\begin{algorithmic}[1]
+\Loop
+  \State plan: $w_j(u)\gets 1$ if $\varepsilon_j$ ends the task, $V^{\pi^G_{w(v)}}_{w(v)}(\varepsilon_j)$ if it leads to $v$, else 0
+  \Comment{exit values = \emph{evaluated} GPI values}
+  \State $\mathcal U\gets\{u:\ \text{Bellman gap of }\pi^G_{w(u)}\text{ at }w(u)>0\}$
+  \If{$\mathcal U=\emptyset$} \Return the GPI policies $\pi^G_{w(u)}$ \EndIf
+  \For{$u\in\mathcal U$} Certify-or-Grow at $w(u)$ (metapolicy over $\mathcal B$; full solve only if its certificate fails) \EndFor
+\EndLoop
+\end{algorithmic}
+\end{algorithm}
+
+\begin{proposition}
+When Algorithm~2 returns, the planned weights equal the optimal ones and the composed policy is optimal for
+the task (under the same convention and contraction assumption as SF-FSA-VI \cite{kuric}).
+\end{proposition}
+\begin{proof}
+A zero Bellman gap means $\pi^G_{w(v)}$ is optimal for $w(v)$, so every planned entry is
+$w_j(u)=V^*_{w(v)}(\varepsilon_j)$: the weights satisfy the optimality equations of SF-FSA-VI, whose operator is a
+contraction with a unique fixed point $W^*$. Termination: GPI over a pool that contains a policy optimal for
+$w$ is itself optimal for $w$ (it dominates every pool policy), hence has zero Bellman gap; so a weight is
+uncertified only if no pool policy is optimal for it, and Certify-or-Grow then adds a \emph{new} policy. The
+pool therefore grows in every round that does not return, and there are finitely many deterministic policies.
+\end{proof}
+
+\noindent In a model-free implementation the evaluated GPI values and the GPI check are replaced by the
+metapolicy's learned SFs and its sample-based certificate (Certify-or-Grow at every planned weight).
+
+\section{Experiments (exact, model-based)}
+All numbers are exact: transition models are known, policies are solved by policy iteration, ``full
+solves'' count policies learned from scratch and ``metapolicies'' count queries answered by a certified
+metapolicy. Losses are measured exactly on fine weight grids or held-out weights; the code is in
+\texttt{SFOLS/gpi\_basis/} and the tables in \texttt{SFOLS/18\_gpi\_targeted\_basis.ipynb}.
+
+\paragraph{Double slit (wind $\pm3$, $\gamma=0.9$, CCS of 181 policies).}
+SFOLS completes the CCS after 203 queries (all full solves). Our certificate, evaluated along each method's
+pool, proves that GPI's loss at the start is below $10^{-4}$ ($\approx0.1\%$) for every weight after 21 queries
+for both SFOLS' and our ordering, and below $10^{-6}$ after 109 queries for ours vs.\ 165 along SFOLS' pool.
+With Certify-or-Grow every variant learns only 11--13 policies from scratch. In this 1-D problem SFOLS'
+corners lower GPI's \emph{true} loss as fast as GPI-targeted queries; the gain is in knowing when to stop.
+
+\paragraph{Slippery Office, symbol edges (out-degree-1 tasks).}
+$p=0.1$: SFOLS needs 199 queries (199 full solves) for the CCS of the three edges; GPI over its pool is certified
+$\le10^{-4}$ only after 105 queries and never $\le10^{-6}$. Targeted + Certify-or-Grow certifies $10^{-4}$ after 65
+queries and $10^{-6}$ after 113, with 16 full solves, and reaches true loss $\le10^{-6}$ after 65 queries (SFOLS:
+155). $p=0.3$: SFOLS' CCS has 346 policies; targeted + CoG certifies $10^{-6}$ after 158 queries (14 full solves).
+
+\paragraph{Slippery Office, full simplex (held-out weights, no certificate).}
+SFOLS' corners do not reduce GPI's worst-case loss for 30--40 queries ($p=0.1$: $3.2\cdot10^{-3}$ from 6 to 30
+queries, $5.6\cdot10^{-4}$ after 150). Ranking candidates by the loss bound (targeted + CoG) gives $1.1\cdot10^{-3}$
+after 10 queries and $1.0\cdot10^{-4}$ after 150 (24 full solves); querying the weight where GPI is truly worst
+among random candidates (``GPI-greedy'', which plans at the candidates and is therefore model-based) gives
+$4.2\cdot10^{-4}$ after 15 queries and $3.0\cdot10^{-6}$ after 150 (19 full solves). At $p=0.3$ the worst case decays
+slowly for all methods (after 150 queries: SFOLS $1.4\cdot10^{-3}$, targeted $1.2\cdot10^{-3}$, GPI-greedy
+$4.3\cdot10^{-4}$), while the mean loss is $4.8\cdot10^{-5}$, $1.5\cdot10^{-5}$ and $2.2\cdot10^{-6}$. A metapolicy
+\emph{probe} rule (largest guaranteed loss $V_{\mathrm{meta}}-V^{\pi^G}$) fails on the worst case: it keeps
+polishing small improvements where the base can be recombined and never visits weights where it lacks actions.
+
+\paragraph{Windy two-stage domain.} Stage 1 is a double slit to exit A or B; calm corridors lead from A/B to
+further exits. The paper's planning over the 6 corner policies loses up to 1.2\% on 11 of 60 two-stage tasks;
+on the hedging edge $\{A,B\}$ SFOLS' CCS has 132 policies, while targeted + CoG certifies $10^{-4}$ after 29 queries
+(16 full solves in total).
+
+\paragraph{Demand-driven certified SF-FSA-VI.}
+On a stream of 103 FSA tasks (out-degree 1 to 3) the certified planner is exactly optimal on every task and
+ends with a pool of 24 policies ($p=0.1$; 13 learned from scratch) or 31 ($p=0.3$; 15 from scratch), while the
+$\epsilon=10^{-3}$ CCS of the full simplex has more than a thousand policies. On double slit, a stream of 300
+random weights is answered exactly with 48 policies (13 from scratch); after the first 100 weights GPI over
+the pool is already certified optimal at more than 90\% of new weights. On the windy domain, the 60 two-stage tasks
+are solved exactly with a pool of 8 policies (the 6 corners plus 2).
+
+\paragraph{Query rules on segments.} Selecting by the certified bound proves $\epsilon$-optimality fastest
+(double slit: $10^{-6}$ after 109 queries); selecting by the chord bound alone lowers the true loss fastest
+(33 queries to $10^{-6}$) but certifies later (141); alternating between them gives neither.
+
+\section{Limitations}
+Everything is model-based: the certificates evaluate GPI policies with the model, and GPI-greedy plans at
+candidate weights. Certificates are conservative (about $20\times$ on double slit; up to $1/(1-\gamma)$ when
+$\gamma\to1$, because a policy that never terminates can accumulate gap). Certifying every weight needs GPI's
+cells, which is cheap along segments and impractical on the full 6-D simplex. GPI's executed value is not
+monotone in the pool (observed: a face loss rose from $4\cdot10^{-4}$ to $1.6\cdot10^{-3}$ after one addition).
+
+
+\begin{thebibliography}{9}
+\bibitem{kuric} D.~Kuric, G.~Infante, V.~G\'omez, A.~Jonsson, H.~van~Hoof. Planning with a learned policy
+basis to optimally solve complex tasks. ICAPS 2024.
+\bibitem{alegre22} L.~N.~Alegre, A.~Bazzan, B.~C.~da~Silva. Optimistic linear support and successor features
+as a basis for optimal policy transfer. ICML 2022.
+\bibitem{alegre23} L.~N.~Alegre, A.~Bazzan, D.~M.~Roijers, A.~Now\'e, B.~C.~da~Silva. Sample-efficient
+multi-objective learning via generalized policy improvement prioritization. AAMAS 2023.
+\bibitem{barreto17} A.~Barreto et al. Successor features for transfer in reinforcement learning. NeurIPS 2017.
+\bibitem{nemecek} M.~Nemecek, R.~Parr. Policy caches with successor features. ICML 2021.
+\end{thebibliography}
+\end{document}

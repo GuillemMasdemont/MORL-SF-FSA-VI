@@ -1,0 +1,14 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+  elim targeted_exact 1e-10: tried 1, kept 144 (77s)
+  elim targeted_exact 1e-10: tried 21, kept 133 (1601s)
+  elim targeted_exact 1e-10: tried 41, kept 127 (2466s)
+  elim targeted_exact 1e-10: tried 61, kept 122 (2569s)
+  elim targeted_exact 1e-10: tried 81, kept 111 (2633s)
+  elim targeted_exact 1e-10: tried 101, kept 106 (2692s)
+  elim targeted_exact 1e-10: tried 121, kept 98 (2747s)
+  elim targeted_exact 1e-10: tried 141, kept 91 (2806s)
+backward elimination from targeted_exact, sup loss <= 1e-10: 90 of 145 policies

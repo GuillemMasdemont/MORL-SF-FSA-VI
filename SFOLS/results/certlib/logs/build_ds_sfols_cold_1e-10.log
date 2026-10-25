@@ -1,0 +1,28 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+  q   25 gap 1.19e-04 lib 25 learned 25 sweeps 12096 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 25, 'fail': 0}
+  q   50 gap 3.06e-05 lib 50 learned 50 sweeps 24271 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 50, 'fail': 0}
+  q   75 gap 9.35e-06 lib 75 learned 75 sweeps 36557 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 75, 'fail': 0}
+  q  100 gap 5.46e-06 lib 100 learned 100 sweeps 48751 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 100, 'fail': 0}
+  q  125 gap 3.29e-06 lib 124 learned 124 sweeps 60537 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 125, 'fail': 0}
+  q  150 gap 1.88e-06 lib 148 learned 148 sweeps 72983 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 150, 'fail': 0}
+  q  175 gap 1.36e-06 lib 169 learned 169 sweeps 85423 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 175, 'fail': 0}
+  q  200 gap 1.03e-06 lib 190 learned 190 sweeps 97280 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 200, 'fail': 0}
+  q  225 gap 7.32e-07 lib 208 learned 208 sweeps 109789 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 225, 'fail': 0}
+  q  250 gap 4.90e-07 lib 225 learned 225 sweeps 121820 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 250, 'fail': 0}
+  q  275 gap 3.85e-07 lib 239 learned 239 sweeps 133601 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 275, 'fail': 0}
+  q  300 gap 2.89e-07 lib 250 learned 250 sweeps 146051 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 300, 'fail': 0}
+  q  325 gap 2.21e-07 lib 262 learned 262 sweeps 157753 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 325, 'fail': 0}
+  q  350 gap 1.49e-07 lib 274 learned 274 sweeps 170386 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 350, 'fail': 0}
+  q  375 gap 1.09e-07 lib 285 learned 285 sweeps 183112 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 375, 'fail': 0}
+  q  400 gap 8.52e-08 lib 290 learned 290 sweeps 195174 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 400, 'fail': 0}
+  q  425 gap 6.35e-08 lib 297 learned 297 sweeps 206546 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 425, 'fail': 0}
+  q  450 gap 3.83e-08 lib 303 learned 303 sweeps 218815 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 450, 'fail': 0}
+  q  475 gap 2.32e-08 lib 306 learned 306 sweeps 230957 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 475, 'fail': 0}
+  q  500 gap 1.31e-08 lib 308 learned 308 sweeps 242467 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 500, 'fail': 0}
+  q  525 gap 5.18e-09 lib 310 learned 310 sweeps 255608 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 525, 'fail': 0}
+  q  550 gap 5.69e-10 lib 310 learned 310 sweeps 268254 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 550, 'fail': 0}
+ds sfols_cold eps 1e-10 eta 0.0: queries 560 library 310 learned 310 {'free': 0, 'gpi': 0, 'meta': 0, 'learn': 562, 'fail': 0} sweeps 274282 cert 2.27e-11 time 469s

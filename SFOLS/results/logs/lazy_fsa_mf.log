@@ -1,0 +1,8 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+slip 0.05: base of 6 extremes learned model-free (6 x 2,500,000 steps, 38s); 13 tasks
+
+Kuric + 6 learned extremes (zero-shot): max relative regret 4.2e-04, mean 7.6e-05
+  lazy-cog (base carried over the 13 tasks): max relative regret 4.2e-04, mean 7.6e-05; certified 13/13; per task: rounds 1.00, learned policies 0.00, env steps 0.00M (to converge 0.00M); learned in total 0 (0 as metapolicies); final base 6
+  lazy-pi  (base carried over the 13 tasks): max relative regret 4.2e-04, mean 7.6e-05; certified 13/13; per task: rounds 1.00, learned policies 0.00, env steps 0.00M (to converge 0.00M); learned in total 0 (0 as metapolicies); final base 6

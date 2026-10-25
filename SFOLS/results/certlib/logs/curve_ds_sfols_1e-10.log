@@ -1,0 +1,38 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+  ds sfols library    1 learned   1 true max 4.56e-02
+  ds sfols library    2 learned   2 true max 2.03e-03
+  ds sfols library    3 learned   3 true max 9.34e-04
+  ds sfols library    4 learned   4 true max 7.67e-04
+  ds sfols library    5 learned   5 true max 1.98e-04
+  ds sfols library    6 learned   6 true max 1.27e-04
+  ds sfols library    7 learned   7 true max 5.43e-05
+  ds sfols library    8 learned   8 true max 5.43e-05
+  ds sfols library    9 learned   9 true max 3.84e-05
+  ds sfols library   11 learned  11 true max 1.26e-05
+  ds sfols library   12 learned  12 true max 1.26e-05
+  ds sfols library   14 learned  14 true max 1.26e-05
+  ds sfols library   16 learned  16 true max 6.71e-06
+  ds sfols library   19 learned  19 true max 3.75e-06
+  ds sfols library   22 learned  22 true max 3.75e-06
+  ds sfols library   25 learned  25 true max 3.75e-06
+  ds sfols library   29 learned  29 true max 3.75e-06
+  ds sfols library   34 learned  34 true max 2.17e-06
+  ds sfols library   39 learned  39 true max 9.57e-07
+  ds sfols library   46 learned  46 true max 5.56e-07
+  ds sfols library   53 learned  53 true max 4.84e-07
+  ds sfols library   61 learned  61 true max 4.84e-07
+  ds sfols library   71 learned  71 true max 4.84e-07
+  ds sfols library   82 learned  82 true max 2.84e-08
+  ds sfols library   95 learned  95 true max 2.84e-08
+  ds sfols library  110 learned 110 true max 2.84e-08
+  ds sfols library  128 learned 128 true max 1.68e-08
+  ds sfols library  148 learned 148 true max 1.19e-09
+  ds sfols library  172 learned 172 true max 1.19e-09
+  ds sfols library  199 learned 199 true max 1.19e-09
+  ds sfols library  230 learned 230 true max 2.07e-13
+  ds sfols library  267 learned 267 true max 2.07e-13
+  ds sfols library  309 learned 309 true max 2.07e-13

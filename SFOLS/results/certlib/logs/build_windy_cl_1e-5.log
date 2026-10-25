@@ -1,0 +1,5 @@
+  q   25 gap 7.96e-04 lib 17 learned 14 sweeps 3028 {'free': 8, 'gpi': 1, 'meta': 2, 'learn': 14, 'fail': 0}
+  q   50 gap 7.54e-05 lib 42 learned 17 sweeps 4307 {'free': 8, 'gpi': 14, 'meta': 11, 'learn': 17, 'fail': 0}
+  q   75 gap 3.14e-05 lib 67 learned 18 sweeps 4882 {'free': 8, 'gpi': 32, 'meta': 17, 'learn': 18, 'fail': 0}
+  q  100 gap 1.30e-05 lib 92 learned 19 sweeps 5477 {'free': 8, 'gpi': 51, 'meta': 22, 'learn': 19, 'fail': 0}
+windy cl eps 1e-5 eta 0.0: queries 107 library 105 learned 20 {'free': 8, 'gpi': 63, 'meta': 22, 'learn': 20, 'fail': 0} sweeps 5869 cert 1.00e-05 time 47s

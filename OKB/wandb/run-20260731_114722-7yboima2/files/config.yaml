@@ -1,0 +1,126 @@
+_wandb:
+    value:
+        cli_version: 0.28.1
+        code_path: code/experiments/okb_item_collector.py
+        e:
+            chn0srl5ejasdydwd4asbsk1d31sylr5:
+                args:
+                    - --use_ok=True
+                    - --weight_selection=okb
+                    - --run_name=OKB
+                codePath: experiments/okb_item_collector.py
+                codePathLocal: experiments/okb_item_collector.py
+                cpu_count: 8
+                cpu_count_logical: 16
+                disk:
+                    /:
+                        total: "1000240963584"
+                        used: "608600121344"
+                email: guillem.masdemont@autonoma.cat
+                executable: /opt/anaconda3/envs/okb/bin/python
+                host: MacBook-Pro-de-Guillem.local
+                memory:
+                    total: "34359738368"
+                os: macOS-26.5.2-x86_64-i386-64bit
+                program: /Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB/experiments/okb_item_collector.py
+                python: CPython 3.10.18
+                root: /Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB
+                startedAt: "2026-07-31T09:47:22.269160Z"
+                writerId: chn0srl5ejasdydwd4asbsk1d31sylr5
+        m:
+            - "2": '*'
+              "5": 2
+              "6":
+                - 1
+              "7": []
+            - "1": global_step
+              "6": []
+              "7": []
+        python_version: 3.10.18
+        t:
+            "1":
+                - 1
+                - 12
+                - 45
+            "2":
+                - 1
+                - 12
+                - 45
+            "3":
+                - 7
+                - 13
+                - 16
+                - 35
+            "4": 3.10.18
+            "5": 0.28.1
+            "12": 0.28.1
+            "13": darwin-x86_64
+alpha_per:
+    value: 0.6
+batch_size:
+    value: 128
+buffer_size:
+    value: 1000000
+drop_rate:
+    value: 0.01
+env_id:
+    value: item-collector-v0
+'epsilon_decay_steps:':
+    value: 50000
+gamma:
+    value: 0.95
+gradient_updates:
+    value: 10
+initial_epsilon:
+    value: 1
+initial_ok_task:
+    value: one-hot
+layer_norm:
+    value: true
+learning_rate:
+    value: 0.0003
+learning_starts:
+    value: 1000
+max_grad_norm:
+    value: 1
+min_priority:
+    value: 0.1
+net_arch:
+    value:
+        - 256
+        - 256
+        - 256
+        - 256
+num_nets:
+    value: 10
+num_ok_iterations:
+    value: 5
+ok_gradient_updates:
+    value: 10
+ok_learning_rate:
+    value: 0.001
+ok_net_arch:
+    value:
+        - 256
+        - 256
+        - 256
+ok_policy_noise:
+    value: 0.2
+per:
+    value: true
+reset_ok_nets:
+    value: false
+seed:
+    value: 59130
+target_net_update_freq:
+    value: 200
+tau:
+    value: 1
+top_k_base:
+    value: 1
+top_k_ok:
+    value: 8
+use_ok:
+    value: true
+weight_selection:
+    value: okb

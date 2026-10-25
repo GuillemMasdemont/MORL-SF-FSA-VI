@@ -1,0 +1,113 @@
+\begin{table}[h]\centering\small
+\caption{Double slit (Kuric et al., wind $\pm3$, $\gamma=0.9$), weights on the whole simplex (the segment), relevant state = start. Each row is the state of one anytime run when $\Gamma\le\epsilon$ is first certified; true loss on 2001 weights.}\label{tab:ds}
+\begin{tabular}{llrrrrr}
+\toprule
+$\epsilon$ & method & trained & library & sweeps & certified $\Gamma$ & true max loss\\
+\midrule
+$10^{-3}$ & SFOLS & 9 & 9 & 3933 & $9.6\cdot10^{-4}$ & $3.8\cdot10^{-5}$\\
+$10^{-3}$ & SFOLS, warm start & 9 & 9 & 1250 & $9.6\cdot10^{-4}$ & $3.8\cdot10^{-5}$\\
+$10^{-3}$ & Certify-or-Grow & 8 & 9 & 1408 & $9.6\cdot10^{-4}$ & $3.8\cdot10^{-5}$\\
+$10^{-3}$ & Certified library & 8 & 9 & 1496 & $9.6\cdot10^{-4}$ & $3.8\cdot10^{-5}$\\
+\midrule
+$10^{-4}$ & SFOLS & 30 & 30 & 14134 & $9.5\cdot10^{-5}$ & $3.8\cdot10^{-6}$\\
+$10^{-4}$ & SFOLS, warm start & 30 & 30 & 2185 & $9.5\cdot10^{-5}$ & $3.8\cdot10^{-6}$\\
+$10^{-4}$ & Certify-or-Grow & 11 & 30 & 2396 & $9.5\cdot10^{-5}$ & $3.8\cdot10^{-6}$\\
+$10^{-4}$ & Certified library & 10 & 30 & 2535 & $9.5\cdot10^{-5}$ & $3.8\cdot10^{-6}$\\
+\midrule
+$10^{-6}$ & SFOLS & 191 & 191 & 98762 & $9.8\cdot10^{-7}$ & $1.2\cdot10^{-9}$\\
+$10^{-6}$ & SFOLS, warm start & 192 & 192 & 5269 & $9.8\cdot10^{-7}$ & $1.2\cdot10^{-9}$\\
+$10^{-6}$ & Certify-or-Grow & 11 & 192 & 5480 & $9.8\cdot10^{-7}$ & $1.2\cdot10^{-9}$\\
+$10^{-6}$ & Certified library & 11 & 186 & 5781 & $9.8\cdot10^{-7}$ & $1.2\cdot10^{-9}$\\
+\midrule
+exact & SFOLS & 310 & 310 & 274282 & $2.3\cdot10^{-11}$ & $2.1\cdot10^{-13}$\\
+exact & SFOLS, warm start & 309 & 309 & 6788 & $2.6\cdot10^{-12}$ & $2.1\cdot10^{-13}$\\
+exact & Certify-or-Grow & 13 & 310 & 7011 & $2.6\cdot10^{-12}$ & $2.1\cdot10^{-13}$\\
+exact & Certified library & 11 & 287 & 7412 & $1.1\cdot10^{-12}$ & $2.1\cdot10^{-13}$\\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]\centering\small
+\caption{Sufficiency test on double slit: the base is the first $k$ trained policies of the certified-library run; afterwards only compositions (\textsc{free}, \textsc{compose}, \textsc{meta}), no training.}\label{tab:suff}
+\begin{tabular}{rrrrrr}
+\toprule
+trained base & open corners & library & sweeps & certified $\Gamma$ & true max loss\\
+\midrule
+2 & 42 & 309 & 7784 & $2.0\cdot10^{-12}$ & $2.1\cdot10^{-13}$\\
+4 & 27 & 299 & 7587 & $8.5\cdot10^{-11}$ & $2.1\cdot10^{-13}$\\
+6 & 16 & 294 & 7161 & $2.0\cdot10^{-12}$ & $2.1\cdot10^{-13}$\\
+8 & 5 & 290 & 6958 & $2.0\cdot10^{-12}$ & $2.1\cdot10^{-13}$\\
+11 & 0 & 287 & 7051 & $2.0\cdot10^{-12}$ & $2.1\cdot10^{-13}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]\centering\small
+\caption{Sample-based construction on double slit ($\epsilon=10^{-4}$): $n$ sampled outcomes per $(s,a)$ define $\hat P$; the library is certified on $\hat P$ and deployed on the true $P$.}\label{tab:sampled}
+\begin{tabular}{rrrrr}
+\toprule
+$n$ & trained & library & $\Gamma$ on $\hat P$ & true max loss on $P$\\
+\midrule
+10 & 15 & 28 & $9.9\cdot10^{-5}$ & $1.3\cdot10^{-2}$\\
+100 & 14 & 31 & $9.7\cdot10^{-5}$ & $1.6\cdot10^{-3}$\\
+1000 & 11 & 29 & $9.9\cdot10^{-5}$ & $3.7\cdot10^{-4}$\\
+10000 & 11 & 31 & $10^{-4}$ & $4.5\cdot10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]\centering\small
+\caption{Windy two-stage ($\gamma=0.95$): the faces of every two-stage task ($\{A,B\}$ and every pair of corridor exits); relevant = start and exits; regret over 60 tasks.}\label{tab:windy}
+\begin{tabular}{llrrrrrr}
+\toprule
+$\epsilon$ & method & trained & library & sweeps & certified $\Gamma$ & true max loss & max task regret\\
+\midrule
+$10^{-3}$ & SFOLS & 23 & 23 & 7744 & $8.5\cdot10^{-4}$ & $1.2\cdot10^{-5}$ & 0 (0.00\%)\\
+$10^{-3}$ & SFOLS, warm start & 23 & 23 & 4032 & $8.5\cdot10^{-4}$ & $1.2\cdot10^{-5}$ & 0 (0.00\%)\\
+$10^{-3}$ & Certify-or-Grow & 13 & 23 & 4188 & $8.5\cdot10^{-4}$ & $1.2\cdot10^{-5}$ & 0 (0.00\%)\\
+$10^{-3}$ & Certified library & 13 & 15 & 2865 & $8.8\cdot10^{-4}$ & $1.3\cdot10^{-5}$ & $6.7\cdot10^{-6}$ (0.00\%)\\
+\midrule
+$10^{-4}$ & SFOLS & 46 & 46 & 18808 & $8.8\cdot10^{-5}$ & $1.5\cdot10^{-7}$ & 0 (0.00\%)\\
+$10^{-4}$ & SFOLS, warm start & 46 & 46 & 5007 & $8.8\cdot10^{-5}$ & $1.5\cdot10^{-7}$ & 0 (0.00\%)\\
+$10^{-4}$ & Certify-or-Grow & 20 & 47 & 5442 & $8.8\cdot10^{-5}$ & $1.5\cdot10^{-7}$ & 0 (0.00\%)\\
+$10^{-4}$ & Certified library & 17 & 40 & 4214 & $9.3\cdot10^{-5}$ & $8.4\cdot10^{-6}$ & $6.7\cdot10^{-6}$ (0.00\%)\\
+\midrule
+$10^{-5}$ & SFOLS & 117 & 117 & 53719 & $9.8\cdot10^{-6}$ & $1.1\cdot10^{-13}$ & 0 (0.00\%)\\
+$10^{-5}$ & SFOLS, warm start & 117 & 117 & 6692 & $9.8\cdot10^{-6}$ & $1.1\cdot10^{-13}$ & 0 (0.00\%)\\
+$10^{-5}$ & Certify-or-Grow & 21 & 118 & 7143 & $9.8\cdot10^{-6}$ & $1.1\cdot10^{-13}$ & 0 (0.00\%)\\
+$10^{-5}$ & Certified library & 20 & 105 & 5869 & $10^{-5}$ & $1.1\cdot10^{-13}$ & 0 (0.00\%)\\
+\midrule
+-- & corners only & 6 & 6 & -- & -- & $3.4\cdot10^{-3}$ & $3.0\cdot10^{-3}$ (1.19\%)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]\centering\small
+\caption{Office with slip $p=0.1$ ($\gamma=0.99$): FSAs whose states branch on $\le2$ symbols (three 4-exit faces); relevant = start and exits; regret over 103 tasks.}\label{tab:office1}
+\begin{tabular}{llrrrrrr}
+\toprule
+$\epsilon$ & method & trained & library & sweeps & certified $\Gamma$ & true max loss & max task regret\\
+\midrule
+$2.0\cdot10^{-2}$ & SFOLS, warm start & 108 & 108 & 19980 & $2.0\cdot10^{-2}$ & $3.5\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$2.0\cdot10^{-2}$ & Certify-or-Grow & 21 & 108 & 20618 & $2.0\cdot10^{-2}$ & $3.5\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$2.0\cdot10^{-2}$ & Certified library & 20 & 103 & 21016 & $2.0\cdot10^{-2}$ & $3.5\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+\midrule
+$10^{-2}$ & SFOLS, warm start & 161 & 161 & 22746 & $9.8\cdot10^{-3}$ & $1.8\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$10^{-2}$ & Certify-or-Grow & 23 & 161 & 23421 & $9.8\cdot10^{-3}$ & $1.8\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$10^{-2}$ & Certified library & 22 & 155 & 23910 & $9.8\cdot10^{-3}$ & $1.8\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+\midrule
+$5.0\cdot10^{-3}$ & SFOLS, warm start & 195 & 195 & 24438 & $4.8\cdot10^{-3}$ & $1.8\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$5.0\cdot10^{-3}$ & Certify-or-Grow & 24 & 195 & 25144 & $4.8\cdot10^{-3}$ & $1.8\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$5.0\cdot10^{-3}$ & Certified library & 24 & 188 & 25769 & $4.8\cdot10^{-3}$ & $1.8\cdot10^{-4}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+\midrule
+$2.0\cdot10^{-3}$ & SFOLS, warm start & 262 & 262 & 27848 & $2.0\cdot10^{-3}$ & $9.9\cdot10^{-5}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$2.0\cdot10^{-3}$ & Certify-or-Grow & 24 & 262 & 28554 & $2.0\cdot10^{-3}$ & $9.9\cdot10^{-5}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+$2.0\cdot10^{-3}$ & Certified library & 24 & 255 & 29258 & $2.0\cdot10^{-3}$ & $9.9\cdot10^{-5}$ & $2.7\cdot10^{-6}$ (0.00\%)\\
+\midrule
+-- & corners only & 6 & 6 & -- & -- & $6.6\cdot10^{-4}$ & $1.6\cdot10^{-5}$ (0.00\%)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% no stops for office3f2

@@ -1,0 +1,2 @@
+sfols_full: {'queries': 132, 'full': 132, 'meta_ok': 0, 'meta_fail': 0, 'sweeps_full': 227, 'sweeps_meta': 0} pool 132 in 55s
+sfols_full: done, final max loss 2.22e-16

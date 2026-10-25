@@ -1,0 +1,5 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+p=0.3 gpiols_cog: {'queries': 334, 'full': 13, 'meta_ok': 321, 'meta_fail': 12, 'sweeps_full': 31, 'sweeps_meta': 393} pool 334 in 348s
+p=0.3 gpiols_cog: done; final max loss 8.88e-16, total 814s

@@ -1,0 +1,8 @@
+office3f2: 400 held-out weights, base = first k policies of SFOLS (OLS order); % of weights where the policy is optimal at every relevant state
+  k=  6: optimal GPI  68.5%  meta  64.2%  hyb  93.2% | worst relative loss GPI 9.1e-03 meta 7.1e-03 hyb 4.0e-03 | PI steps from hyb to optimal: mean 0.07 max 2
+  k=  8: optimal GPI  68.8%  meta  66.0%  hyb  94.0% | worst relative loss GPI 9.1e-03 meta 7.1e-03 hyb 4.0e-03 | PI steps from hyb to optimal: mean 0.06 max 1
+  k= 10: optimal GPI  68.8%  meta  71.5%  hyb  94.8% | worst relative loss GPI 9.1e-03 meta 7.1e-03 hyb 4.0e-03 | PI steps from hyb to optimal: mean 0.05 max 1
+  k= 15: optimal GPI  68.8%  meta  71.5%  hyb  94.8% | worst relative loss GPI 9.1e-03 meta 7.1e-03 hyb 4.0e-03 | PI steps from hyb to optimal: mean 0.05 max 1
+  k= 20: optimal GPI  68.8%  meta  71.5%  hyb  94.8% | worst relative loss GPI 9.1e-03 meta 7.1e-03 hyb 4.0e-03 | PI steps from hyb to optimal: mean 0.05 max 1
+  k= 30: optimal GPI  69.5%  meta  71.5%  hyb  94.8% | worst relative loss GPI 9.1e-03 meta 7.1e-03 hyb 4.0e-03 | PI steps from hyb to optimal: mean 0.05 max 1
+  k= 40: optimal GPI  69.5%  meta  71.5%  hyb  94.8% | worst relative loss GPI 9.1e-03 meta 7.1e-03 hyb 4.0e-03 | PI steps from hyb to optimal: mean 0.05 max 1

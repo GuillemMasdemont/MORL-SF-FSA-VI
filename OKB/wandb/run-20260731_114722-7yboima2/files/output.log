@@ -1,0 +1,22 @@
+[34m[1mwandb[0m: [33mWARNING[0m Found log directory outside of given root_logdir, dropping given root_logdir for event file in /tmp/OKB
+Next w base policies: [1. 0.]
+Episode: 100 Step: 5000, Ep. Total Reward: [ 4. -2.]
+Traceback (most recent call last):
+  File "/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB/experiments/okb_item_collector.py", line 143, in <module>
+    fire.Fire(main)
+  File "/opt/anaconda3/envs/okb/lib/python3.10/site-packages/fire/core.py", line 135, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/opt/anaconda3/envs/okb/lib/python3.10/site-packages/fire/core.py", line 468, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/opt/anaconda3/envs/okb/lib/python3.10/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB/experiments/okb_item_collector.py", line 130, in main
+    agent.learn(
+  File "/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB/rl/successor_features/okb.py", line 1899, in learn
+    self.learn_iteration(
+  File "/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB/rl/successor_features/okb.py", line 1706, in learn_iteration
+    self.train(w)
+  File "/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB/rl/successor_features/okb.py", line 1333, in train
+    self.psi_state, loss, td_error, self.key = OKB.update(self.psi, self.psi_state, w, s_obs2, s_actions2, s_rewards2, s_next_obs2, s_dones2, self.gamma, self.min_priority, self.key)
+  File "<string>", line 1, in <lambda>
+KeyboardInterrupt

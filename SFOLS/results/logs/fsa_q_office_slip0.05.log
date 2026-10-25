@@ -1,0 +1,41 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+slip 0.05: 24 automaton-state problems from 20 tasks; base weights 20 (6 extremes + 14 OLS); learning the base model-free, 2,500,000 steps each
+  warning: base policy 5 is 0.016 below optimal at a relevant state
+  warning: base policy 17 is 0.019 below optimal at a relevant state
+  warning: base policy 18 is 0.018 below optimal at a relevant state
+  warning: base policy 19 is 0.018 below optimal at a relevant state
+  base 6: |B(s)| mean 2.92 of 4; median inherited count 1166
+  base 20: |B(s)| mean 3.11 of 4; median inherited count 1155
+  25/432 learners done (126s)
+  50/432 learners done (156s)
+  75/432 learners done (179s)
+  100/432 learners done (197s)
+  125/432 learners done (212s)
+  150/432 learners done (238s)
+  175/432 learners done (260s)
+  200/432 learners done (281s)
+  225/432 learners done (300s)
+  250/432 learners done (320s)
+  275/432 learners done (347s)
+  300/432 learners done (366s)
+  325/432 learners done (389s)
+  350/432 learners done (412s)
+  375/432 learners done (441s)
+  400/432 learners done (459s)
+  425/432 learners done (481s)
+
+steps until the greedy policy is within 0.001 of the optimum at every entry state (budget 2,000,000; 'not reached' counts as the budget)
+ base learner     reached optimal at start  never off    median      mean per task (mean)
+    - scratch     41/48            0/48        0/48     100,000   627,146       1,083,950
+   20 gpi         43/48           44/48       15/48      40,500   575,333         995,325
+   20 gpi-inh     44/48           44/48       33/48           0   327,312         655,475
+   20 meta        44/48           44/48       18/48      14,000   494,688         889,525
+   20 meta-inh    45/48           44/48       36/48           0   303,250         581,250
+      restricted optimum within 0.001 of the full optimum: 23/24 problems
+    6 gpi         44/48           44/48       15/48      38,500   512,229         893,750
+    6 gpi-inh     47/48           44/48       33/48           0   277,958         583,375
+    6 meta        41/48           44/48       17/48      25,000   565,646         987,750
+    6 meta-inh    45/48           44/48       34/48           0   257,812         509,100
+      restricted optimum within 0.001 of the full optimum: 23/24 problems

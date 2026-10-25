@@ -1,0 +1,38 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+  ds cl library    1 learned   1 true max 4.56e-02
+  ds cl library    2 learned   2 true max 2.03e-03
+  ds cl library    3 learned   3 true max 9.34e-04
+  ds cl library    4 learned   4 true max 7.67e-04
+  ds cl library    5 learned   5 true max 1.98e-04
+  ds cl library    6 learned   6 true max 1.27e-04
+  ds cl library    7 learned   6 true max 5.43e-05
+  ds cl library    8 learned   7 true max 5.43e-05
+  ds cl library    9 learned   8 true max 3.84e-05
+  ds cl library   10 learned   8 true max 2.69e-05
+  ds cl library   12 learned   9 true max 1.26e-05
+  ds cl library   14 learned  10 true max 1.26e-05
+  ds cl library   16 learned  10 true max 6.71e-06
+  ds cl library   18 learned  10 true max 6.71e-06
+  ds cl library   21 learned  10 true max 3.75e-06
+  ds cl library   24 learned  10 true max 3.75e-06
+  ds cl library   28 learned  10 true max 3.75e-06
+  ds cl library   33 learned  10 true max 2.17e-06
+  ds cl library   38 learned  10 true max 9.57e-07
+  ds cl library   44 learned  10 true max 5.56e-07
+  ds cl library   50 learned  10 true max 4.84e-07
+  ds cl library   58 learned  10 true max 4.84e-07
+  ds cl library   67 learned  10 true max 4.84e-07
+  ds cl library   78 learned  10 true max 4.86e-08
+  ds cl library   90 learned  11 true max 2.84e-08
+  ds cl library  104 learned  11 true max 2.84e-08
+  ds cl library  120 learned  11 true max 1.68e-08
+  ds cl library  139 learned  11 true max 1.19e-09
+  ds cl library  161 learned  11 true max 1.19e-09
+  ds cl library  186 learned  11 true max 1.19e-09
+  ds cl library  215 learned  11 true max 1.19e-09
+  ds cl library  248 learned  11 true max 2.07e-13
+  ds cl library  287 learned  11 true max 2.07e-13

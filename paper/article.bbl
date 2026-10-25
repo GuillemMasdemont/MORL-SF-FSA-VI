@@ -1,0 +1,1778 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{roijers_survey_2013}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=7fc2778c3e030bc23b1ceba2107277b4}{%
+           family={Roijers},
+           familyi={R\bibinitperiod},
+           given={D.\bibnamedelimi M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=b4ed44a85b3fd74a5d86cf2ceddf0ca3}{%
+           family={Vamplew},
+           familyi={V\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=783112ad06aafcaa8f432807c4101f1a}{%
+           family={Whiteson},
+           familyi={W\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d9674f6fff3277714522d24a1da3c738}{%
+           family={Dazeley},
+           familyi={D\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{a19912ecb7dbb0b35dfad7bd8bcc335a}
+      \strng{fullhash}{fe9229403103ec03b62a24fd98b62c8b}
+      \strng{fullhashraw}{fe9229403103ec03b62a24fd98b62c8b}
+      \strng{bibnamehash}{a19912ecb7dbb0b35dfad7bd8bcc335a}
+      \strng{authorbibnamehash}{a19912ecb7dbb0b35dfad7bd8bcc335a}
+      \strng{authornamehash}{a19912ecb7dbb0b35dfad7bd8bcc335a}
+      \strng{authorfullhash}{fe9229403103ec03b62a24fd98b62c8b}
+      \strng{authorfullhashraw}{fe9229403103ec03b62a24fd98b62c8b}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Sequential decision-making problems with multiple objectives arise naturally in practice and pose unique challenges for research in decision-theoretic planning and learning, which has largely focused on single-objective settings. This article surveys algorithms designed for sequential decision-making problems with multiple objectives. Though there is a growing body of literature on this subject, little of it makes explicit under what circumstances special methods are needed to solve multi-objective problems. Therefore, we identify three distinct scenarios in which converting such a problem to a single-objective one is impossible, infeasible, or undesirable. Furthermore, we propose a taxonomy that classifies multi-objective methods according to the applicable scenario, the nature of the scalarization function (which projects multi-objective values to scalar ones), and the type of policies considered. We show how these factors determine the nature of an optimal solution, which can be a single policy, a convex hull, or a Pareto front. Using this taxonomy, we survey the literature on multi-objective methods for planning and learning. Finally, we discuss key applications of such methods and outline opportunities for future work.}
+      \field{day}{18}
+      \field{issn}{1076-9757}
+      \field{journaltitle}{Journal of Artificial Intelligence Research}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{title}{A Survey of Multi-Objective Sequential Decision-Making}
+      \field{urlday}{30}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{volume}{48}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{67\bibrangedash 113}
+      \range{pages}{47}
+      \verb{doi}
+      \verb 10.1613/jair.3987
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/NJSJX3HM/Roijers et al. - 2013 - A Survey of Multi-Objective Sequential Decision-Making.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jair.org/index.php/jair/article/view/10836
+      \endverb
+      \verb{url}
+      \verb https://www.jair.org/index.php/jair/article/view/10836
+      \endverb
+    \endentry
+    \entry{hayes_practical_2022}{article}{}{}
+      \name{author}{18}{}{%
+        {{hash=a6869a1b30991fc18b9f0f20f5b11521}{%
+           family={Hayes},
+           familyi={H\bibinitperiod},
+           given={Conor\bibnamedelima F.},
+           giveni={C\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=f612ec054965a251981479311675db3e}{%
+           family={Rădulescu},
+           familyi={R\bibinitperiod},
+           given={Roxana},
+           giveni={R\bibinitperiod}}}%
+        {{hash=0c98ec6f05031600065264fd2da0a7f1}{%
+           family={Bargiacchi},
+           familyi={B\bibinitperiod},
+           given={Eugenio},
+           giveni={E\bibinitperiod}}}%
+        {{hash=9ee684530f3f20b66b4d030cfd1076e3}{%
+           family={Källström},
+           familyi={K\bibinitperiod},
+           given={Johan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0102efdb51eab3838a334facd6cae122}{%
+           family={Macfarlane},
+           familyi={M\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=90ea4f54eb605825271f94c21f61c24d}{%
+           family={Reymond},
+           familyi={R\bibinitperiod},
+           given={Mathieu},
+           giveni={M\bibinitperiod}}}%
+        {{hash=aef5c7c1cf6111a5451c2c684cf43f2f}{%
+           family={Verstraeten},
+           familyi={V\bibinitperiod},
+           given={Timothy},
+           giveni={T\bibinitperiod}}}%
+        {{hash=d43752fb8b9aa19c749fa1995b167ce7}{%
+           family={Zintgraf},
+           familyi={Z\bibinitperiod},
+           given={Luisa\bibnamedelima M.},
+           giveni={L\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=ad43b8622a5ea214d2f8e564677618a5}{%
+           family={Dazeley},
+           familyi={D\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=41484d65cc9786bdedacba4067b1549d}{%
+           family={Heintz},
+           familyi={H\bibinitperiod},
+           given={Fredrik},
+           giveni={F\bibinitperiod}}}%
+        {{hash=0db451b2e30abc91161f29963403506b}{%
+           family={Howley},
+           familyi={H\bibinitperiod},
+           given={Enda},
+           giveni={E\bibinitperiod}}}%
+        {{hash=2debf315d040cfa703976d930e2c811a}{%
+           family={Irissappane},
+           familyi={I\bibinitperiod},
+           given={Athirai\bibnamedelima A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=32f5737156616c1152099afb2ba3f105}{%
+           family={Mannion},
+           familyi={M\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+        {{hash=d102dc894eecfc3c92e136b9c56d3e6a}{%
+           family={Nowé},
+           familyi={N\bibinitperiod},
+           given={Ann},
+           giveni={A\bibinitperiod}}}%
+        {{hash=dd2ebc148ef012d9561a7b5980208942}{%
+           family={Ramos},
+           familyi={R\bibinitperiod},
+           given={Gabriel},
+           giveni={G\bibinitperiod}}}%
+        {{hash=af292b1dcd0b0c3efd61b01492fb5c74}{%
+           family={Restelli},
+           familyi={R\bibinitperiod},
+           given={Marcello},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cfe292959018600afae3f889c34a5f10}{%
+           family={Vamplew},
+           familyi={V\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=09bc0f41d7dee4c9159d99584282aed9}{%
+           family={Roijers},
+           familyi={R\bibinitperiod},
+           given={Diederik\bibnamedelima M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{e67931c4606ee55c0a78c84d3b55eeb7}
+      \strng{fullhash}{cb46f46cba198eca63f35ded3640c9c8}
+      \strng{fullhashraw}{cb46f46cba198eca63f35ded3640c9c8}
+      \strng{bibnamehash}{e67931c4606ee55c0a78c84d3b55eeb7}
+      \strng{authorbibnamehash}{e67931c4606ee55c0a78c84d3b55eeb7}
+      \strng{authornamehash}{e67931c4606ee55c0a78c84d3b55eeb7}
+      \strng{authorfullhash}{cb46f46cba198eca63f35ded3640c9c8}
+      \strng{authorfullhashraw}{cb46f46cba198eca63f35ded3640c9c8}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Real-world decision-making tasks are generally complex, requiring trade-offs between multiple, often conflicting, objectives. Despite this, the majority of research in reinforcement learning and decision-theoretic planning either assumes only a single objective, or that multiple objectives can be adequately handled via a simple linear combination. Such approaches may oversimplify the underlying problem and hence produce suboptimal results. This paper serves as a guide to the application of multi-objective methods to difficult problems, and is aimed at researchers who are already familiar with single-objective reinforcement learning and planning methods who wish to adopt a multi-objective perspective on their research, as well as practitioners who encounter multi-objective decision problems in practice. It identifies the factors that may influence the nature of the desired solution, and illustrates by example how these influence the design of multi-objective decision-making systems for complex problems.}
+      \field{eprinttype}{arxiv}
+      \field{issn}{1387-2532, 1573-7454}
+      \field{journaltitle}{Autonomous Agents and Multi-Agent Systems}
+      \field{month}{4}
+      \field{shortjournal}{Auton Agent Multi-Agent Syst}
+      \field{title}{A Practical Guide to Multi-Objective Reinforcement Learning and Planning}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{volume}{36}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{26}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1007/s10458-022-09552-y
+      \endverb
+      \verb{eprint}
+      \verb 2103.09568
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/HWJ782AL/Hayes et al. - 2022 - A Practical Guide to Multi-Objective Reinforcement Learning and Planning.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/Z5LG96W8/2103.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2103.09568
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2103.09568
+      \endverb
+      \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence}
+    \endentry
+    \entry{alegre_optimistic_2022}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=a591489385951235bf74ba4e9557142b}{%
+           family={Alegre},
+           familyi={A\bibinitperiod},
+           given={Lucas\bibnamedelima N.},
+           giveni={L\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=7382af2d71f19a0578881114050235f1}{%
+           family={Bazzan},
+           familyi={B\bibinitperiod},
+           given={Ana\bibnamedelimb L.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=28ff63e2286ca501dd8df14fff6912f4}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Bruno\bibnamedelimb C.\bibnamedelimi da},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \strng{namehash}{18b93cd2dc6e302b19329546c9e59aa1}
+      \strng{fullhash}{18b93cd2dc6e302b19329546c9e59aa1}
+      \strng{fullhashraw}{18b93cd2dc6e302b19329546c9e59aa1}
+      \strng{bibnamehash}{18b93cd2dc6e302b19329546c9e59aa1}
+      \strng{authorbibnamehash}{18b93cd2dc6e302b19329546c9e59aa1}
+      \strng{authornamehash}{18b93cd2dc6e302b19329546c9e59aa1}
+      \strng{authorfullhash}{18b93cd2dc6e302b19329546c9e59aa1}
+      \strng{authorfullhashraw}{18b93cd2dc6e302b19329546c9e59aa1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In many real-world applications, reinforcement learning ({RL}) agents might have to solve multiple tasks, each one typically modeled via a reward function. If reward functions are expressed linearly, and the agent has previously learned a set of policies for different tasks, successor features ({SFs}) can be exploited to combine such policies and identify reasonable solutions for new problems. However, the identified solutions are not guaranteed to be optimal. We introduce a novel algorithm that addresses this limitation. It allows {RL} agents to combine existing policies and directly identify optimal policies for arbitrary new problems, without requiring any further interactions with the environment. We first show (under mild assumptions) that the transfer learning problem tackled by {SFs} is equivalent to the problem of learning to optimize multiple objectives in {RL}. We then introduce an {SF}-based extension of the Optimistic Linear Support algorithm to learn a set of policies whose {SFs} form a convex coverage set. We prove that policies in this set can be combined via generalized policy improvement to construct optimal behaviors for any new linearly-expressible tasks, without requiring any additional training samples. We empirically show that our method outperforms state-of-the-art competing algorithms both in discrete and continuous domains under value function approximation.}
+      \field{day}{22}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{title}{Optimistic Linear Support and Successor Features as a Basis for Optimal Policy Transfer}
+      \field{urlday}{2}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2206.11326
+      \endverb
+      \verb{eprint}
+      \verb 2206.11326
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/TKV5NGS9/Alegre et al. - 2022 - Optimistic Linear Support and Successor Features as a Basis for Optimal Policy Transfer.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/4H7Z9AL5/2206.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2206.11326
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2206.11326
+      \endverb
+      \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence}
+    \endentry
+    \entry{roijers_multi-objective_2016}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=7fc2778c3e030bc23b1ceba2107277b4}{%
+           family={Roijers},
+           familyi={R\bibinitperiod},
+           given={D.\bibnamedelimi M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{7fc2778c3e030bc23b1ceba2107277b4}
+      \strng{fullhash}{7fc2778c3e030bc23b1ceba2107277b4}
+      \strng{fullhashraw}{7fc2778c3e030bc23b1ceba2107277b4}
+      \strng{bibnamehash}{7fc2778c3e030bc23b1ceba2107277b4}
+      \strng{authorbibnamehash}{7fc2778c3e030bc23b1ceba2107277b4}
+      \strng{authornamehash}{7fc2778c3e030bc23b1ceba2107277b4}
+      \strng{authorfullhash}{7fc2778c3e030bc23b1ceba2107277b4}
+      \strng{authorfullhashraw}{7fc2778c3e030bc23b1ceba2107277b4}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{dutch}
+      \field{title}{Multi-objective decision-theoretic planning}
+      \field{urlday}{30}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/UCGKDHF3/Roijers - 2016 - Multi-objective decision-theoretic planning.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://dare.uva.nl/id/796d8935-5077-4b60-8042-c959514d4283
+      \endverb
+      \verb{url}
+      \verb https://dare.uva.nl/id/796d8935-5077-4b60-8042-c959514d4283
+      \endverb
+    \endentry
+    \entry{barreto_fast_2020}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=bf0353157e3302a5be458a62f93abaa2}{%
+           family={Barreto},
+           familyi={B\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod}}}%
+        {{hash=dfe97de4c45eeb54c31466df32f36d11}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Shaobo},
+           giveni={S\bibinitperiod}}}%
+        {{hash=fa1366e530f91f400748a6e13b3c30ad}{%
+           family={Borsa},
+           familyi={B\bibinitperiod},
+           given={Diana},
+           giveni={D\bibinitperiod}}}%
+        {{hash=89dbd30410c2085cd059f32c57d4593e}{%
+           family={Silver},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4428b76e1301b2db58587fb18bb59a38}{%
+           family={Precup},
+           familyi={P\bibinitperiod},
+           given={Doina},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{fullhash}{dde57ea474ae9c01263a313fd2b64381}
+      \strng{fullhashraw}{dde57ea474ae9c01263a313fd2b64381}
+      \strng{bibnamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authorbibnamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authornamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authorfullhash}{dde57ea474ae9c01263a313fd2b64381}
+      \strng{authorfullhashraw}{dde57ea474ae9c01263a313fd2b64381}
+      \field{extraname}{1}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The combination of reinforcement learning with deep learning is a promising approach to tackle important sequential decision-making problems that are currently intractable. One obstacle to overcome is the amount of data needed by learning systems of this type. In this article, we propose to address this issue through a divide-and-conquer approach. We argue that complex decision problems can be naturally decomposed into multiple tasks that unfold in sequence or in parallel. By associating each task with a reward function, this problem decomposition can be seamlessly accommodated within the standard reinforcement-learning formalism. The specific way we do so is through a generalization of two fundamental operations in reinforcement learning: policy improvement and policy evaluation. The generalized version of these operations allow one to leverage the solution of some tasks to speed up the solution of others. If the reward function of a task can be well approximated as a linear combination of the reward functions of tasks previously solved, we can reduce a reinforcement-learning problem to a simpler linear regression. When this is not the case, the agent can still exploit the task solutions by using them to interact with and learn about the environment. Both strategies considerably reduce the amount of data needed to solve a reinforcement-learning problem.}
+      \field{day}{1}
+      \field{issn}{1091-6490}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences of the United States of America}
+      \field{month}{12}
+      \field{number}{48}
+      \field{shortjournal}{Proc Natl Acad Sci U S A}
+      \field{title}{Fast reinforcement learning with generalized policy updates}
+      \field{volume}{117}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{pages}{30079\bibrangedash 30087}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1073/pnas.1907370117
+      \endverb
+      \verb{file}
+      \verb PDF:/Users/guillemmasdemont/Zotero/storage/W3Q4QHI9/Barreto et al. - 2020 - Fast reinforcement learning with generalized policy updates.pdf:application/pdf
+      \endverb
+      \keyw{artificial intelligence,generalized policy evaluation,generalized policy improvement,reinforcement learning,successor features}
+    \endentry
+    \entry{zahavy_discovering_2021}{misc}{}{}
+      \name{author}{7}{}{%
+        {{hash=2240dcad4227b90a2f91747e9e5d182a}{%
+           family={Zahavy},
+           familyi={Z\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=c53eb4a374df4bfac9e88c6cd01fa57d}{%
+           family={Barreto},
+           familyi={B\bibinitperiod},
+           given={Andre},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d53f04077b0434704ab60a1a7bc58a71}{%
+           family={Mankowitz},
+           familyi={M\bibinitperiod},
+           given={Daniel\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=dfe97de4c45eeb54c31466df32f36d11}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Shaobo},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6e1e49f0776f645e4391a80d50112b5e}{%
+           family={O'Donoghue},
+           familyi={O\bibinitperiod},
+           given={Brendan},
+           giveni={B\bibinitperiod}}}%
+        {{hash=4ae271e8826431dc9e49d1c258700761}{%
+           family={Kemaev},
+           familyi={K\bibinitperiod},
+           given={Iurii},
+           giveni={I\bibinitperiod}}}%
+        {{hash=74d941c38e5affcd359ed5814815805f}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Satinder},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{9596ea2b80f4e28eb59531d120fb8c84}
+      \strng{fullhash}{84fbf45c014d67bfc92a7b18bba2ad40}
+      \strng{fullhashraw}{84fbf45c014d67bfc92a7b18bba2ad40}
+      \strng{bibnamehash}{9596ea2b80f4e28eb59531d120fb8c84}
+      \strng{authorbibnamehash}{9596ea2b80f4e28eb59531d120fb8c84}
+      \strng{authornamehash}{9596ea2b80f4e28eb59531d120fb8c84}
+      \strng{authorfullhash}{84fbf45c014d67bfc92a7b18bba2ad40}
+      \strng{authorfullhashraw}{84fbf45c014d67bfc92a7b18bba2ad40}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We study the problem of how to construct a set of policies that can be composed together to solve a collection of reinforcement learning tasks. Each task is a different reward function defined as a linear combination of known features. We consider a specific class of policy compositions which we call set improving policies ({SIPs}): given a set of policies and a set of tasks, a {SIP} is any composition of the former whose performance is at least as good as that of its constituents across all the tasks. We focus on the most conservative instantiation of {SIPs}, set-max policies ({SMPs}), so our analysis extends to any {SIP}. This includes known policy-composition operators like generalized policy improvement. Our main contribution is a policy iteration algorithm that builds a set of policies in order to maximize the worst-case performance of the resulting {SMP} on the set of tasks. The algorithm works by successively adding new policies to the set. We show that the worst-case performance of the resulting {SMP} strictly improves at each iteration, and the algorithm only stops when there does not exist a policy that leads to improved performance. We empirically evaluate our algorithm on a grid world and also on a set of domains from the {DeepMind} control suite. We confirm our theoretical results regarding the monotonically improving performance of our algorithm. Interestingly, we also show empirically that the sets of policies computed by the algorithm are diverse, leading to different trajectories in the grid world and very distinct locomotion skills in the control suite.}
+      \field{day}{10}
+      \field{eprinttype}{arxiv}
+      \field{month}{12}
+      \field{title}{Discovering a set of policies for the worst case reward}
+      \field{urlday}{30}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2102.04323
+      \endverb
+      \verb{eprint}
+      \verb 2102.04323
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/95R9A6UR/Zahavy et al. - 2021 - Discovering a set of policies for the worst case reward.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/VURLZUEY/2102.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2102.04323
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2102.04323
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning}
+    \endentry
+    \entry{alver_constructing_2022}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=b2236b16f8cfbed5318cebf1d5109f23}{%
+           family={Alver},
+           familyi={A\bibinitperiod},
+           given={Safa},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4428b76e1301b2db58587fb18bb59a38}{%
+           family={Precup},
+           familyi={P\bibinitperiod},
+           given={Doina},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{b4bbea9a3a45a30e37891cb7633d522e}
+      \strng{fullhash}{b4bbea9a3a45a30e37891cb7633d522e}
+      \strng{fullhashraw}{b4bbea9a3a45a30e37891cb7633d522e}
+      \strng{bibnamehash}{b4bbea9a3a45a30e37891cb7633d522e}
+      \strng{authorbibnamehash}{b4bbea9a3a45a30e37891cb7633d522e}
+      \strng{authornamehash}{b4bbea9a3a45a30e37891cb7633d522e}
+      \strng{authorfullhash}{b4bbea9a3a45a30e37891cb7633d522e}
+      \strng{authorfullhashraw}{b4bbea9a3a45a30e37891cb7633d522e}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We study the problem of learning a good set of policies, so that when combined together, they can solve a wide variety of unseen reinforcement learning tasks with no or very little new data. Speciﬁcally, we consider the framework of generalized policy evaluation and improvement, in which the rewards for all tasks of interest are assumed to be expressible as a linear combination of a ﬁxed set of features. We show theoretically that, under certain assumptions, having access to a speciﬁc set of diverse policies, which we call a set of independent policies, can allow for instantaneously achieving high-level performance on all possible downstream tasks which are typically more complex than the ones on which the agent was trained. Based on this theoretical analysis, we propose a simple algorithm that iteratively constructs this set of policies. In addition to empirically validating our theoretical results, we compare our approach with recently proposed diverse policy set construction methods and show that, while others fail, our approach is able to build a behavior basis that enables instantaneous transfer to all possible downstream tasks. We also show empirically that having access to a set of independent policies can better bootstrap the learning process on downstream tasks where the new reward function cannot be described as a linear combination of the features. Finally, we demonstrate how this policy set can be useful in a lifelong reinforcement learning setting.}
+      \field{booktitle}{International Conference on Learning Representations}
+      \field{langid}{english}
+      \field{title}{Constructing a Good Behavior Basis for Transfer using Generalized Policy Updates}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb PDF:/Users/guillemmasdemont/Zotero/storage/6CA6SKZG/Alver and Precup - 2022 - CONSTRUCTING A GOOD BEHAVIOR BASIS FOR TRANSFER USING GENERALIZED POLICY UPDATES.pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{alegre_constructing_2025}{misc}{}{}
+      \name{author}{4}{}{%
+        {{hash=a591489385951235bf74ba4e9557142b}{%
+           family={Alegre},
+           familyi={A\bibinitperiod},
+           given={Lucas\bibnamedelima N.},
+           giveni={L\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=7382af2d71f19a0578881114050235f1}{%
+           family={Bazzan},
+           familyi={B\bibinitperiod},
+           given={Ana\bibnamedelimb L.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=bf0353157e3302a5be458a62f93abaa2}{%
+           family={Barreto},
+           familyi={B\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod}}}%
+        {{hash=28ff63e2286ca501dd8df14fff6912f4}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Bruno\bibnamedelimb C.\bibnamedelimi da},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \strng{namehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{fullhash}{9f999ca9a44e58f9a086c9125b884415}
+      \strng{fullhashraw}{9f999ca9a44e58f9a086c9125b884415}
+      \strng{bibnamehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{authorbibnamehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{authornamehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{authorfullhash}{9f999ca9a44e58f9a086c9125b884415}
+      \strng{authorfullhashraw}{9f999ca9a44e58f9a086c9125b884415}
+      \field{extraname}{1}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Multi-task reinforcement learning aims to quickly identify solutions for new tasks with minimal or no additional interaction with the environment. Generalized Policy Improvement ({GPI}) addresses this by combining a set of base policies to produce a new one that is at least as good -- though not necessarily optimal -- as any individual base policy. Optimality can be ensured, particularly in the linear-reward case, via techniques that compute a Convex Coverage Set ({CCS}). However, these are computationally expensive and do not scale to complex domains. The Option Keyboard ({OK}) improves upon {GPI} by producing policies that are at least as good -- and often better. It achieves this through a learned meta-policy that dynamically combines base policies. However, its performance critically depends on the choice of base policies. This raises a key question: is there an optimal set of base policies -- an optimal behavior basis -- that enables zero-shot identification of optimal solutions for any linear tasks? We solve this open problem by introducing a novel method that efficiently constructs such an optimal behavior basis. We show that it significantly reduces the number of base policies needed to ensure optimality in new tasks. We also prove that it is strictly more expressive than a {CCS}, enabling particular classes of non-linear tasks to be solved optimally. We empirically evaluate our technique in challenging domains and show that it outperforms state-of-the-art approaches, increasingly so as task complexity increases.}
+      \field{day}{13}
+      \field{eprinttype}{arxiv}
+      \field{month}{11}
+      \field{title}{Constructing an Optimal Behavior Basis for the Option Keyboard}
+      \field{urlday}{31}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2505.00787
+      \endverb
+      \verb{eprint}
+      \verb 2505.00787
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/AFCVUTQM/Alegre et al. - 2025 - Constructing an Optimal Behavior Basis for the Option Keyboard.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/KTRHN78Z/2505.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2505.00787
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2505.00787
+      \endverb
+      \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence}
+    \endentry
+    \entry{carvalho_combining_2023}{misc}{}{}
+      \name{author}{10}{}{%
+        {{hash=f93b075eb9bb6a42cf9daef5bbe6cbd4}{%
+           family={Carvalho},
+           familyi={C\bibinitperiod},
+           given={Wilka},
+           giveni={W\bibinitperiod}}}%
+        {{hash=8d887ab81e66d390f92a9e53394173b9}{%
+           family={Saraiva},
+           familyi={S\bibinitperiod},
+           given={Andre},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f3fcb929e0e0aee224273c0c41507f1f}{%
+           family={Filos},
+           familyi={F\bibinitperiod},
+           given={Angelos},
+           giveni={A\bibinitperiod}}}%
+        {{hash=0b60721d53ef773d31519e7ce778970e}{%
+           family={Lampinen},
+           familyi={L\bibinitperiod},
+           given={Andrew\bibnamedelima Kyle},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=4ca99bbd5d79fc2a098b19d509dfd618}{%
+           family={Matthey},
+           familyi={M\bibinitperiod},
+           given={Loic},
+           giveni={L\bibinitperiod}}}%
+        {{hash=39722b0f7cf3e89609bff256eaec8e94}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={Richard\bibnamedelima L.},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=d09ea8631bf43468107b5ef02c5195aa}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Honglak},
+           giveni={H\bibinitperiod}}}%
+        {{hash=74d941c38e5affcd359ed5814815805f}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Satinder},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a0de5b19c734d1fa5491ea6ab13715a7}{%
+           family={Rezende},
+           familyi={R\bibinitperiod},
+           given={Danilo\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=d2e2b4eabdefa7f39ac95e0c2b6d7026}{%
+           family={Zoran},
+           familyi={Z\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{8ebeb77a041446dc5972bcb93e5520a1}
+      \strng{fullhash}{dc833e756dbeabd3067480c4192d5081}
+      \strng{fullhashraw}{dc833e756dbeabd3067480c4192d5081}
+      \strng{bibnamehash}{8ebeb77a041446dc5972bcb93e5520a1}
+      \strng{authorbibnamehash}{8ebeb77a041446dc5972bcb93e5520a1}
+      \strng{authornamehash}{8ebeb77a041446dc5972bcb93e5520a1}
+      \strng{authorfullhash}{dc833e756dbeabd3067480c4192d5081}
+      \strng{authorfullhashraw}{dc833e756dbeabd3067480c4192d5081}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Option Keyboard ({OK}) was recently proposed as a method for transferring behavioral knowledge across tasks. {OK} transfers knowledge by adaptively combining subsets of known behaviors using Successor Features ({SFs}) and Generalized Policy Improvement ({GPI}). However, it relies on hand-designed state-features and task encodings which are cumbersome to design for every new environment. In this work, we propose the "Successor Features Keyboard" ({SFK}), which enables transfer with discovered state-features and task encodings. To enable discovery, we propose the "Categorical Successor Feature Approximator" ({CSFA}), a novel learning algorithm for estimating {SFs} while jointly discovering state-features and task encodings. With {SFK} and {CSFA}, we achieve the first demonstration of transfer with {SFs} in a challenging 3D environment where all the necessary representations are discovered. We first compare {CSFA} against other methods for approximating {SFs} and show that only {CSFA} discovers representations compatible with {SF}\&{GPI} at this scale. We then compare {SFK} against transfer learning baselines and show that it transfers most quickly to long-horizon tasks.}
+      \field{day}{24}
+      \field{eprinttype}{arxiv}
+      \field{month}{10}
+      \field{title}{Combining Behaviors with the Successor Features Keyboard}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2310.15940
+      \endverb
+      \verb{eprint}
+      \verb 2310.15940
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/NKADI5RC/Carvalho et al. - 2023 - Combining Behaviors with the Successor Features Keyboard.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/7D2TN8XC/2310.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2310.15940
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2310.15940
+      \endverb
+      \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence}
+    \endentry
+    \entry{michailidis_scalable_2026}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=9a7d01c7e89cc09636180f3fa134ff4f}{%
+           family={Michailidis},
+           familyi={M\bibinitperiod},
+           given={Dimitris},
+           giveni={D\bibinitperiod}}}%
+        {{hash=2f38a9d6c48385f7acbdcf28597a84cb}{%
+           family={Röpke},
+           familyi={R\bibinitperiod},
+           given={Willem},
+           giveni={W\bibinitperiod}}}%
+        {{hash=09bc0f41d7dee4c9159d99584282aed9}{%
+           family={Roijers},
+           familyi={R\bibinitperiod},
+           given={Diederik\bibnamedelima M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=535029d46528912fa43941af9d089f34}{%
+           family={Ghebreab},
+           familyi={G\bibinitperiod},
+           given={Sennay},
+           giveni={S\bibinitperiod}}}%
+        {{hash=25ae3b07ce4e65f3d7ea80742d18229a}{%
+           family={Santos},
+           familyi={S\bibinitperiod},
+           given={Fernando\bibnamedelima P.},
+           giveni={F\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{28cd374454c5b31c256f5d0102d6bd47}
+      \strng{fullhash}{770931822878f45bf5fbd5188feace82}
+      \strng{fullhashraw}{770931822878f45bf5fbd5188feace82}
+      \strng{bibnamehash}{28cd374454c5b31c256f5d0102d6bd47}
+      \strng{authorbibnamehash}{28cd374454c5b31c256f5d0102d6bd47}
+      \strng{authornamehash}{28cd374454c5b31c256f5d0102d6bd47}
+      \strng{authorfullhash}{770931822878f45bf5fbd5188feace82}
+      \strng{authorfullhashraw}{770931822878f45bf5fbd5188feace82}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Multi-Objective Reinforcement Learning ({MORL}) aims to learn a set of policies that optimize trade-offs between multiple, often conflicting objectives. {MORL} is computationally more complex than single-objective {RL}, particularly as the number of objectives increases. Additionally, when objectives involve the preferences of agents or groups, incorporating fairness becomes both important and socially desirable. This paper introduces a principled algorithm that incorporates fairness into {MORL} while improving scalability to many-objective problems. We propose using Lorenz dominance to identify policies with equitable reward distributions and introduce λ-Lorenz dominance to enable flexible fairness preferences. We release a new, large-scale real-world transport planning environment and demonstrate that our method encourages the discovery of fair policies, showing improved scalability in two large cities (Xi’an and Amsterdam). Our methods outperform common multi-objective approaches, particularly in high-dimensional objective spaces.}
+      \field{day}{25}
+      \field{issn}{1076-9757}
+      \field{journaltitle}{Journal of Artificial Intelligence Research}
+      \field{month}{3}
+      \field{shortjournal}{jair}
+      \field{title}{Scalable Multi-Objective Reinforcement Learning with Fairness Guarantees using Lorenz Dominance}
+      \field{urlday}{1}
+      \field{urlmonth}{10}
+      \field{urlyear}{2026}
+      \field{volume}{85}
+      \field{year}{2026}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1613/jair.1.19862
+      \endverb
+      \verb{file}
+      \verb Full Text:/Users/guillemmasdemont/Zotero/storage/2MIJB8M3/Michailidis et al. - 2026 - Scalable Multi-Objective Reinforcement Learning with Fairness Guarantees using Lorenz Dominance.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.jair.org/index.php/jair/article/view/19862
+      \endverb
+      \verb{url}
+      \verb https://www.jair.org/index.php/jair/article/view/19862
+      \endverb
+    \endentry
+    \entry{felten_toolkit_2023}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=fd1b96c6dd727150fdacc3d916bb47a6}{%
+           family={Felten},
+           familyi={F\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=a591489385951235bf74ba4e9557142b}{%
+           family={Alegre},
+           familyi={A\bibinitperiod},
+           given={Lucas\bibnamedelima N.},
+           giveni={L\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=047d67d0d2f0d4b86529768aad0cc46c}{%
+           family={Nowe},
+           familyi={N\bibinitperiod},
+           given={Ann},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fbc01bf1f27d8f18953193005ad71927}{%
+           family={Bazzan},
+           familyi={B\bibinitperiod},
+           given={Ana},
+           giveni={A\bibinitperiod}}}%
+        {{hash=834c3d86a80bd54f329390b2b0389d06}{%
+           family={Talbi},
+           familyi={T\bibinitperiod},
+           given={El\bibnamedelima Ghazali},
+           giveni={E\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=2f7e5c067671055059ef49ac3666929d}{%
+           family={Danoy},
+           familyi={D\bibinitperiod},
+           given={Grégoire},
+           giveni={G\bibinitperiod}}}%
+        {{hash=cd80b319188c1bd67bc49cd1331d3e72}{%
+           family={C.\bibnamedelimi da\bibnamedelima Silva},
+           familyi={C\bibinitperiod\bibinitdelim d\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={Bruno},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{5d7c9da15284d2b6ed730f81ead213b2}
+      \strng{fullhash}{87303e45f2e42b9f412b29e94c81939f}
+      \strng{fullhashraw}{87303e45f2e42b9f412b29e94c81939f}
+      \strng{bibnamehash}{5d7c9da15284d2b6ed730f81ead213b2}
+      \strng{authorbibnamehash}{5d7c9da15284d2b6ed730f81ead213b2}
+      \strng{authornamehash}{5d7c9da15284d2b6ed730f81ead213b2}
+      \strng{authorfullhash}{87303e45f2e42b9f412b29e94c81939f}
+      \strng{authorfullhashraw}{87303e45f2e42b9f412b29e94c81939f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{15}
+      \field{journaltitle}{Advances in Neural Information Processing Systems}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{title}{A Toolkit for Reliable Benchmarking and Research in Multi-Objective Reinforcement Learning}
+      \field{urlday}{30}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{volume}{36}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{23671\bibrangedash 23700}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.52202/075280-1028
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/S5LUYDQV/Felten et al. - 2023 - A Toolkit for Reliable Benchmarking and Research in Multi-Objective Reinforcement Learning.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2023/hash/4aa8891583f07ae200ba07843954caeb-Abstract-Datasets_and_Benchmarks.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2023/hash/4aa8891583f07ae200ba07843954caeb-Abstract-Datasets_and_Benchmarks.html
+      \endverb
+    \endentry
+    \entry{kuric_planning_2024}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=a9852c94f1dbefeb02a3462350bb8ee5}{%
+           family={Kuric},
+           familyi={K\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b41f5619dfd1e1f640893ddd34af19fb}{%
+           family={Infante},
+           familyi={I\bibinitperiod},
+           given={Guillermo},
+           giveni={G\bibinitperiod}}}%
+        {{hash=114a65c67a00f129a8126dc62ed4aca4}{%
+           family={Gómez},
+           familyi={G\bibinitperiod},
+           given={Vicenç},
+           giveni={V\bibinitperiod}}}%
+        {{hash=04e29da5671d1500b96ab2d0d4b1c2c3}{%
+           family={Jonsson},
+           familyi={J\bibinitperiod},
+           given={Anders},
+           giveni={A\bibinitperiod}}}%
+        {{hash=f2db100b30806f7c8e894892db68dadb}{%
+           family={Hoof},
+           familyi={H\bibinitperiod},
+           given={Herke\bibnamedelima van},
+           giveni={H\bibinitperiod\bibinitdelim v\bibinitperiod}}}%
+      }
+      \strng{namehash}{08f8b0017a0f9887bae5830fd35569a8}
+      \strng{fullhash}{5a2ace89a30ca613073e63432aa457f1}
+      \strng{fullhashraw}{5a2ace89a30ca613073e63432aa457f1}
+      \strng{bibnamehash}{08f8b0017a0f9887bae5830fd35569a8}
+      \strng{authorbibnamehash}{08f8b0017a0f9887bae5830fd35569a8}
+      \strng{authornamehash}{08f8b0017a0f9887bae5830fd35569a8}
+      \strng{authorfullhash}{5a2ace89a30ca613073e63432aa457f1}
+      \strng{authorfullhashraw}{5a2ace89a30ca613073e63432aa457f1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Conventional reinforcement learning ({RL}) methods can successfully solve a wide range of sequential decision problems. However, learning policies that can generalize predictably across multiple tasks in a setting with non-Markovian reward specifications is a challenging problem. We propose to use successor features to learn a set of local policies that each solves a well-defined subproblem. In a task described by a finite state automaton ({FSA}) that involves the same set of subproblems, the combination of these local policies can then be used to generate an optimal solution without additional learning. In contrast to other methods that combine local policies via planning, our method asymptotically attains global optimality, even in stochastic environments.}
+      \field{day}{30}
+      \field{issn}{2334-0843}
+      \field{journaltitle}{Proceedings of the International Conference on Automated Planning and Scheduling}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{title}{Planning with a Learned Policy Basis to Optimally Solve Complex Tasks}
+      \field{urlday}{6}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{volume}{34}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{333\bibrangedash 341}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1609/icaps.v34i1.31492
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/LLQ5GXPG/Kuric et al. - 2024 - Planning with a Learned Policy Basis to Optimally Solve Complex Tasks.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://ojs.aaai.org/index.php/ICAPS/article/view/31492
+      \endverb
+      \verb{url}
+      \verb https://ojs.aaai.org/index.php/ICAPS/article/view/31492
+      \endverb
+    \endentry
+    \entry{sutton_between_1999}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=eb920e5277d3d5fd0903f3cd41e11871}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S.},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=4428b76e1301b2db58587fb18bb59a38}{%
+           family={Precup},
+           familyi={P\bibinitperiod},
+           given={Doina},
+           giveni={D\bibinitperiod}}}%
+        {{hash=74d941c38e5affcd359ed5814815805f}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Satinder},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{44c661a3489f85d89b75915acc5dce4e}
+      \strng{fullhash}{44c661a3489f85d89b75915acc5dce4e}
+      \strng{fullhashraw}{44c661a3489f85d89b75915acc5dce4e}
+      \strng{bibnamehash}{44c661a3489f85d89b75915acc5dce4e}
+      \strng{authorbibnamehash}{44c661a3489f85d89b75915acc5dce4e}
+      \strng{authornamehash}{44c661a3489f85d89b75915acc5dce4e}
+      \strng{authorfullhash}{44c661a3489f85d89b75915acc5dce4e}
+      \strng{authorfullhashraw}{44c661a3489f85d89b75915acc5dce4e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Learning, planning, and representing knowledge at multiple levels of temporal abstraction are key, longstanding challenges for {AI}. In this paper we consider how these challenges can be addressed within the mathematical framework of reinforcement learning and Markov decision processes ({MDPs}). We extend the usual notion of action in this framework to include options—closed-loop policies for taking action over a period of time. Examples of options include picking up an object, going to lunch, and traveling to a distant city, as well as primitive actions such as muscle twitches and joint torques. Overall, we show that options enable temporally abstract knowledge and action to be included in the reinforcement learning framework in a natural and general way. In particular, we show that options may be used interchangeably with primitive actions in planning methods such as dynamic programming and in learning methods such as Q-learning. Formally, a set of options deﬁned over an {MDP} constitutes a semi-Markov decision process ({SMDP}), and the theory of {SMDPs} provides the foundation for the theory of options. However, the most interesting issues concern the interplay between the underlying {MDP} and the {SMDP} and are thus beyond {SMDP} theory. We present results for three such cases: (1) we show that the results of planning with options can be used during execution to interrupt options and thereby perform even better than planned, (2) we introduce new intra-option methods that are able to learn about an option from fragments of its execution, and (3) we propose a notion of subgoal that can be used to improve the options themselves. All of these results have precursors in the existing literature; the contribution of this paper is to establish them in a simpler and more general setting with fewer changes to the existing reinforcement learning framework. In particular, we show that these results can be obtained without committing to (or ruling out) any particular approach to state abstraction, hierarchy, function approximation, or the macroutility problem.  1999 Published by Elsevier Science B.V. All rights reserved.}
+      \field{issn}{00043702}
+      \field{journaltitle}{Artificial Intelligence}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{1}
+      \field{shortjournal}{Artificial Intelligence}
+      \field{shorttitle}{Between {MDPs} and semi-{MDPs}}
+      \field{title}{Between {MDPs} and semi-{MDPs}: A framework for temporal abstraction in reinforcement learning}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{volume}{112}
+      \field{year}{1999}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{181\bibrangedash 211}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1016/S0004-3702(99)00052-1
+      \endverb
+      \verb{file}
+      \verb PDF:/Users/guillemmasdemont/Zotero/storage/DUG74845/Sutton et al. - 1999 - Between MDPs and semi-MDPs A framework for temporal abstraction in reinforcement learning.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0004370299000521
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0004370299000521
+      \endverb
+    \endentry
+    \entry{li_reward_2024}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=ac67101c4d48ebe7cbfd74eb9d838811}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+        {{hash=dbd88647bf3732dc4b5c06e5190cc36c}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Zizhao},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=9b7c89136c9d998576bf147e6e7854ae}{%
+           family={Klassen},
+           familyi={K\bibinitperiod},
+           given={Toryn\bibnamedelima Q.},
+           giveni={T\bibinitperiod\bibinitdelim Q\bibinitperiod}}}%
+        {{hash=5c630786217c1380dff9e94ef12e7f9a}{%
+           family={Vaezipoor},
+           familyi={V\bibinitperiod},
+           given={Pashootan},
+           giveni={P\bibinitperiod}}}%
+        {{hash=cc34529b6d7d674f36ee6b0afc39227b}{%
+           family={Icarte},
+           familyi={I\bibinitperiod},
+           given={Rodrigo\bibnamedelima Toro},
+           giveni={R\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=f32fc6ed5f782097e54c13ff21242dbb}{%
+           family={{McIlraith}},
+           familyi={M\bibinitperiod},
+           given={Sheila},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates, Inc.}%
+      }
+      \strng{namehash}{0f9380ec639e188968b1e47abd3959e0}
+      \strng{fullhash}{1151361e9e2e8f429c324099b7c06206}
+      \strng{fullhashraw}{1151361e9e2e8f429c324099b7c06206}
+      \strng{bibnamehash}{0f9380ec639e188968b1e47abd3959e0}
+      \strng{authorbibnamehash}{0f9380ec639e188968b1e47abd3959e0}
+      \strng{authornamehash}{0f9380ec639e188968b1e47abd3959e0}
+      \strng{authorfullhash}{1151361e9e2e8f429c324099b7c06206}
+      \strng{authorfullhashraw}{1151361e9e2e8f429c324099b7c06206}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Reward Machines provide an automaton-inspired structure for specifying instructions, safety constraints, and other temporally extended reward-worthy behaviour. By exposing the underlying structure of a reward function, they enable the decomposition of an {RL} task, leading to impressive gains in sample efficiency. Although Reward Machines and similar formal specifications have a rich history of application towards sequential decision-making problems, prior frameworks have traditionally ignored ambiguity and uncertainty when interpreting the domain-specific vocabulary forming the building blocks of the reward function. Such uncertainty critically arises in many real-world settings due to factors like partial observability or noisy sensors. In this work, we explore the use of Reward Machines for Deep {RL} in noisy and uncertain environments. We characterize this problem as a {POMDP} and propose a suite of {RL} algorithms that exploit task structure under uncertain interpretation of the domain-specific vocabulary. Through theory and experiments, we expose pitfalls in naive approaches to this problem while simultaneously demonstrating how task structure can be successfully leveraged under noisy interpretations of the vocabulary.}
+      \field{booktitle}{Advances in Neural Information Processing Systems}
+      \field{title}{Reward Machines for Deep {RL} in Noisy and Uncertain Environments}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{volume}{37}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{110341\bibrangedash 110368}
+      \range{pages}{28}
+      \verb{doi}
+      \verb 10.52202/079017-3502
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/XFTY26TZ/Li et al. - 2024 - Reward Machines for Deep RL in Noisy and Uncertain Environments.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2024/hash/c71769e2715835d37c3e25cc1173bd62-Abstract-Conference.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.neurips.cc/paper_files/paper/2024/hash/c71769e2715835d37c3e25cc1173bd62-Abstract-Conference.html
+      \endverb
+    \endentry
+    \entry{moffaert_multi-objective_2014}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5f888bdedc0d1551900eaee71d229842}{%
+           family={Moffaert},
+           familyi={M\bibinitperiod},
+           given={Kristof\bibnamedelima Van},
+           giveni={K\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=d102dc894eecfc3c92e136b9c56d3e6a}{%
+           family={Nowé},
+           familyi={N\bibinitperiod},
+           given={Ann},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{665b12e680d2ae5b023ae85be7760503}
+      \strng{fullhash}{665b12e680d2ae5b023ae85be7760503}
+      \strng{fullhashraw}{665b12e680d2ae5b023ae85be7760503}
+      \strng{bibnamehash}{665b12e680d2ae5b023ae85be7760503}
+      \strng{authorbibnamehash}{665b12e680d2ae5b023ae85be7760503}
+      \strng{authornamehash}{665b12e680d2ae5b023ae85be7760503}
+      \strng{authorfullhash}{665b12e680d2ae5b023ae85be7760503}
+      \strng{authorfullhashraw}{665b12e680d2ae5b023ae85be7760503}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Many real-world problems involve the optimization of multiple, possibly conflicting objectives. Multi-objective reinforcement learning ({MORL}) is a generalization of standard reinforcement learning where the scalar reward signal is extended to multiple feedback signals, in essence, one for each objective. {MORL} is the process of learning policies that optimize multiple criteria simultaneously. In this paper, we present a novel temporal difference learning algorithm that integrates the Pareto dominance relation into a reinforcement learning approach. This algorithm is a multi-policy algorithm that learns a set of Pareto dominating policies in a single run. We name this algorithm Pareto Q-learning and it is applicable in episodic environments with deterministic as well as stochastic transition functions. A crucial aspect of Pareto {QQQ}-learning is the updating mechanism that bootstraps sets of {QQQ}-vectors. One of our main contributions in this paper is a mechanism that separates the expected immediate reward vector from the set of expected future discounted reward vectors. This decomposition allows us to update the sets and to exploit the learned policies consistently throughout the state space. To balance exploration and exploitation during learning, we also propose three set evaluation mechanisms. These three mechanisms evaluate the sets of vectors to accommodate for standard action selection strategies, such as ϵϵ{\textbackslash}epsilon-greedy. More precisely, these mechanisms use multi-objective evaluation principles such as the hypervolume measure, the cardinality indicator and the Pareto dominance relation to select the most promising actions. We experimentally validate the algorithm on multiple environments with two and three objectives and we demonstrate that Pareto {QQQ}-learning outperforms current state-of-the-art {MORL} algorithms with respect to the hypervolume of the obtained policies. We note that (1) Pareto {QQQ}-learning is able to learn the entire Pareto front under the usual assumption that each state-action pair is sufficiently sampled, while (2) not being biased by the shape of the Pareto front. Furthermore, (3) the set evaluation mechanisms provide indicative measures for local action selection and (4) the learned policies can be retrieved throughout the state and action space.}
+      \field{issn}{1533-7928}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{107}
+      \field{title}{Multi-Objective Reinforcement Learning using Sets of Pareto Dominating Policies}
+      \field{urlday}{1}
+      \field{urlmonth}{10}
+      \field{urlyear}{2026}
+      \field{volume}{15}
+      \field{year}{2014}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{3663\bibrangedash 3692}
+      \range{pages}{30}
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/3LZL4VYP/Moffaert and Nowé - 2014 - Multi-Objective Reinforcement Learning using Sets of Pareto Dominating Policies.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://jmlr.org/papers/v15/vanmoffaert14a.html
+      \endverb
+      \verb{url}
+      \verb http://jmlr.org/papers/v15/vanmoffaert14a.html
+      \endverb
+    \endentry
+    \entry{barreto_successor_2017}{inproceedings}{}{}
+      \name{author}{7}{}{%
+        {{hash=bf0353157e3302a5be458a62f93abaa2}{%
+           family={Barreto},
+           familyi={B\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d5a44cbf0d05e4c50b512bb0c1368d2f}{%
+           family={Dabney},
+           familyi={D\bibinitperiod},
+           given={Will},
+           giveni={W\bibinitperiod}}}%
+        {{hash=5d8fa91764a27bf97b87fdcac885745d}{%
+           family={Munos},
+           familyi={M\bibinitperiod},
+           given={Rémi},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e0c5cec59a932511b2af6220473fad61}{%
+           family={Hunt},
+           familyi={H\bibinitperiod},
+           given={Jonathan\bibnamedelima J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=a56e72b23778a835bdade7d0511e43a3}{%
+           family={Schaul},
+           familyi={S\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f5a8983bab24d2cd5670100e485fc883}{%
+           family={Hasselt},
+           familyi={H\bibinitperiod},
+           given={Hado},
+           giveni={H\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=89dbd30410c2085cd059f32c57d4593e}{%
+           family={Silver},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates Inc.}%
+      }
+      \strng{namehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{fullhash}{ecdb935acbe8c25e35bd1e654cabb49c}
+      \strng{fullhashraw}{ecdb935acbe8c25e35bd1e654cabb49c}
+      \strng{bibnamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authorbibnamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authornamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authorfullhash}{ecdb935acbe8c25e35bd1e654cabb49c}
+      \strng{authorfullhashraw}{ecdb935acbe8c25e35bd1e654cabb49c}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Transfer in reinforcement learning refers to the notion that generalization should occur not only within a task but also across tasks. We propose a transfer framework for the scenario where the reward function changes between tasks but the environment's dynamics remain the same. Our approach rests on two key ideas: successor features, a value function representation that decouples the dynamics of the environment from the rewards, and generalized policy improvement, a generalization of dynamic programming's policy improvement operation that considers a set of policies rather than a single one. Put together, the two ideas lead to an approach that integrates seamlessly within the reinforcement learning framework and allows the free exchange of information across tasks. The proposed method also provides performance guarantees for the transferred policy even before any learning has taken place. We derive two theorems that set our approach in firm theoretical ground and present experiments that show that it successfully promotes transfer in practice, significantly outperforming alternative methods in a sequence of navigation tasks and in the control of a simulated robotic arm.}
+      \field{booktitle}{Proceedings of the 31st International Conference on Neural Information Processing Systems}
+      \field{isbn}{978-1-5108-6096-4}
+      \field{title}{Successor features for transfer in reinforcement learning}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{4058\bibrangedash 4068}
+      \range{pages}{11}
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/52TLT6RT/Barreto et al. - 2017 - Successor features for transfer in reinforcement learning.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/10.5555/3294996.3295161
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/10.5555/3294996.3295161
+      \endverb
+    \endentry
+    \entry{hunt_composing_2019}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=8853d85fce0f50bae8ed489294bbb22f}{%
+           family={Hunt},
+           familyi={H\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c53eb4a374df4bfac9e88c6cd01fa57d}{%
+           family={Barreto},
+           familyi={B\bibinitperiod},
+           given={Andre},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3a6fdf4df9a25f1d2d506ad9e86e1f6c}{%
+           family={Lillicrap},
+           familyi={L\bibinitperiod},
+           given={Timothy},
+           giveni={T\bibinitperiod}}}%
+        {{hash=231312991eab5915498d6c19c2a8cd4e}{%
+           family={Heess},
+           familyi={H\bibinitperiod},
+           given={Nicolas},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{a13fe27f8e511246a0a076f42bdaedd9}
+      \strng{fullhash}{b82a7b92a7cd77b8b43b8522d1d6df17}
+      \strng{fullhashraw}{b82a7b92a7cd77b8b43b8522d1d6df17}
+      \strng{bibnamehash}{a13fe27f8e511246a0a076f42bdaedd9}
+      \strng{authorbibnamehash}{a13fe27f8e511246a0a076f42bdaedd9}
+      \strng{authornamehash}{a13fe27f8e511246a0a076f42bdaedd9}
+      \strng{authorfullhash}{b82a7b92a7cd77b8b43b8522d1d6df17}
+      \strng{authorfullhashraw}{b82a7b92a7cd77b8b43b8522d1d6df17}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Composing skills mastered in one task to solve novel tasks promises dramatic improvements in the data efficiency of reinforcement learning. Here, we analyze two recent works composing behaviors represented in the form of action-value functions and show that they perform poorly in some situations. As part of this analysis, we extend an important generalization of policy improvement to the maximum entropy framework and introduce an algorithm for the practical implementation of successor features in continuous action spaces. Then we propose a novel approach which addresses the failure cases of prior work and, in principle, recovers the optimal policy during transfer. This method works by explicitly learning the (discounted, future) divergence between base policies. We study this approach in the tabular case and on non-trivial continuous control problems with compositional structure and show that it outperforms or matches existing methods across all tasks considered.}
+      \field{booktitle}{Proceedings of the 36th International Conference on Machine Learning}
+      \field{day}{24}
+      \field{issn}{2640-3498}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{title}{Composing Entropic Policies using Divergence Correction}
+      \field{urlday}{1}
+      \field{urlmonth}{10}
+      \field{urlyear}{2026}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2911\bibrangedash 2920}
+      \range{pages}{10}
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/B63D2KCJ/Hunt et al. - 2019 - Composing Entropic Policies using Divergence Correction.pdf:application/pdf;Supplementary PDF:/Users/guillemmasdemont/Zotero/storage/255FHE8G/Hunt et al. - 2019 - Composing Entropic Policies using Divergence Correction.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v97/hunt19a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v97/hunt19a.html
+      \endverb
+    \endentry
+    \entry{alegre_sample-efficient_2023}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=a591489385951235bf74ba4e9557142b}{%
+           family={Alegre},
+           familyi={A\bibinitperiod},
+           given={Lucas\bibnamedelima N.},
+           giveni={L\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=7382af2d71f19a0578881114050235f1}{%
+           family={Bazzan},
+           familyi={B\bibinitperiod},
+           given={Ana\bibnamedelimb L.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=09bc0f41d7dee4c9159d99584282aed9}{%
+           family={Roijers},
+           familyi={R\bibinitperiod},
+           given={Diederik\bibnamedelima M.},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=d102dc894eecfc3c92e136b9c56d3e6a}{%
+           family={Nowé},
+           familyi={N\bibinitperiod},
+           given={Ann},
+           giveni={A\bibinitperiod}}}%
+        {{hash=28ff63e2286ca501dd8df14fff6912f4}{%
+           family={Silva},
+           familyi={S\bibinitperiod},
+           given={Bruno\bibnamedelima C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           prefix={da},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {International Foundation for Autonomous Agents}%
+        {Multiagent Systems}%
+      }
+      \strng{namehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{fullhash}{6e24024db3dfa9b3881f5f92c1ec385b}
+      \strng{fullhashraw}{6e24024db3dfa9b3881f5f92c1ec385b}
+      \strng{bibnamehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{authorbibnamehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{authornamehash}{03c11ed1b296178882ed5f665149b61b}
+      \strng{authorfullhash}{6e24024db3dfa9b3881f5f92c1ec385b}
+      \strng{authorfullhashraw}{6e24024db3dfa9b3881f5f92c1ec385b}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Multi-objective reinforcement learning ({MORL}) algorithms tackle sequential decision problems where agents may have different preferences over (possibly conflicting) reward functions. Such algorithms often learn a set of policies (each optimized for a particular agent preference) that can later be used to solve problems with novel preferences. We introduce a novel algorithm that uses Generalized Policy Improvement ({GPI}) to define principled, formally-derived prioritization schemes that improve sample-efficient learning. They implement active-learning strategies by which the agent can (i) identify the most promising preferences/objectives to train on at each moment, to more rapidly solve a given {MORL} problem; and (ii) identify which previous experiences are most relevant when learning a policy for a particular agent preference, via a novel Dyna-style {MORL} method. We prove our algorithm is guaranteed to always converge to an optimal solution in a finite number of steps, or an ε-optimal solution (for a bounded ε) if the agent is limited and can only identify possibly sub-optimal policies. We also prove that our method monotonically improves the quality of its partial solutions while learning. Finally, we introduce a bound that characterizes the maximum utility loss (with respect to the optimal solution) incurred by the partial solutions computed by our method throughout learning. We empirically show that our method outperforms state-of-the-art {MORL} algorithms in challenging multi-objective tasks, both with discrete and continuous state and action spaces.}
+      \field{booktitle}{Proceedings of the 2023 International Conference on Autonomous Agents and Multiagent Systems}
+      \field{isbn}{978-1-4503-9432-1}
+      \field{title}{Sample-Efficient Multi-Objective Learning via Generalized Policy Improvement Prioritization}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2003\bibrangedash 2012}
+      \range{pages}{10}
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/H5V6LWPT/Alegre et al. - 2023 - Sample-Efficient Multi-Objective Learning via Generalized Policy Improvement Prioritization.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://dl.acm.org/doi/10.5555/3545946.3598872
+      \endverb
+      \verb{url}
+      \verb https://dl.acm.org/doi/10.5555/3545946.3598872
+      \endverb
+    \endentry
+    \entry{cassimon_review_2024}{misc}{}{}
+      \name{author}{5}{}{%
+        {{hash=11bb7592d6aeb9b8cef148a450234fb2}{%
+           family={Cassimon},
+           familyi={C\bibinitperiod},
+           given={Amber},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d46d53b6a2cb74bcb434f1cdbe6087a9}{%
+           family={Eyckerman},
+           familyi={E\bibinitperiod},
+           given={Reinout},
+           giveni={R\bibinitperiod}}}%
+        {{hash=6c91b88d4da6fdd2d1fad49e599e360b}{%
+           family={Mercelis},
+           familyi={M\bibinitperiod},
+           given={Siegfried},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a90fcfbdb93c8d5f74e60a16b052576e}{%
+           family={Latré},
+           familyi={L\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=edb8cd46e2d9acfbccb6aeda1c3bf6ff}{%
+           family={Hellinckx},
+           familyi={H\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e37d235b0a4dc9c10304822c0f0434d}
+      \strng{fullhash}{11cb4c6cb3cc549ca7aeb8f23c241f30}
+      \strng{fullhashraw}{11cb4c6cb3cc549ca7aeb8f23c241f30}
+      \strng{bibnamehash}{9e37d235b0a4dc9c10304822c0f0434d}
+      \strng{authorbibnamehash}{9e37d235b0a4dc9c10304822c0f0434d}
+      \strng{authornamehash}{9e37d235b0a4dc9c10304822c0f0434d}
+      \strng{authorfullhash}{11cb4c6cb3cc549ca7aeb8f23c241f30}
+      \strng{authorfullhashraw}{11cb4c6cb3cc549ca7aeb8f23c241f30}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{In this paper, the authors investigate the Deep Sea Treasure ({DST}) problem as proposed by Vamplew et al. Through a number of proofs, the authors show the original {DST} problem to be quite basic, and not always representative of practical Multi-Objective Optimization problems. In an attempt to bring theory closer to practice, the authors propose an alternative, improved version of the {DST} problem, and prove that some of the properties that simplify the original {DST} problem no longer hold. The authors also provide a reference implementation and perform a comparison between their implementation, and other existing open-source implementations of the problem. Finally, the authors also provide a complete Pareto-front for their new {DST} problem.}
+      \field{day}{21}
+      \field{eprinttype}{arxiv}
+      \field{month}{5}
+      \field{title}{A Review of the Deep Sea Treasure problem as a Multi-Objective Reinforcement Learning Benchmark}
+      \field{urlday}{6}
+      \field{urlmonth}{2}
+      \field{urlyear}{2026}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2110.06742
+      \endverb
+      \verb{eprint}
+      \verb 2110.06742
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/2KM8IHNP/Cassimon et al. - 2024 - A Review of the Deep Sea Treasure problem as a Multi-Objective Reinforcement Learning Benchmark.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/JHTJX4VQ/2110.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2110.06742
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2110.06742
+      \endverb
+      \keyw{Computer Science - Machine Learning}
+    \endentry
+    \entry{nemecek_policy_2021}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=ee010a85c14ca85113b001b989a0a577}{%
+           family={Nemecek},
+           familyi={N\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+        {{hash=46907c8a370c4b2e289debe4da4aa547}{%
+           family={Parr},
+           familyi={P\bibinitperiod},
+           given={Ronald},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{20198afdfd6d990f73ec7547083f6f53}
+      \strng{fullhash}{20198afdfd6d990f73ec7547083f6f53}
+      \strng{fullhashraw}{20198afdfd6d990f73ec7547083f6f53}
+      \strng{bibnamehash}{20198afdfd6d990f73ec7547083f6f53}
+      \strng{authorbibnamehash}{20198afdfd6d990f73ec7547083f6f53}
+      \strng{authornamehash}{20198afdfd6d990f73ec7547083f6f53}
+      \strng{authorfullhash}{20198afdfd6d990f73ec7547083f6f53}
+      \strng{authorfullhashraw}{20198afdfd6d990f73ec7547083f6f53}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Transfer in reinforcement learning is based on the idea that it is possible to use what is learned in one task to improve the learning process in another task. For transfer between tasks which share transition dynamics but differ in reward function, successor features have been shown to be a useful representation which allows for efficient computation of action-value functions for previously-learned policies in new tasks. These functions induce policies in the new tasks, so an agent may not need to learn a new policy for each new task it encounters, especially if it is allowed some amount of suboptimality in those tasks. We present new bounds for the performance of optimal policies in a new task, as well as an approach to use these bounds to decide, when presented with a new task, whether to use cached policies or learn a new policy.}
+      \field{booktitle}{Proceedings of the 38th International Conference on Machine Learning}
+      \field{day}{1}
+      \field{issn}{2640-3498}
+      \field{langid}{english}
+      \field{month}{7}
+      \field{title}{Policy Caches with Successor Features}
+      \field{urlday}{5}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{8025\bibrangedash 8033}
+      \range{pages}{9}
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/VY83XKFA/Nemecek and Parr - 2021 - Policy Caches with Successor Features.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://proceedings.mlr.press/v139/nemecek21a.html
+      \endverb
+      \verb{url}
+      \verb https://proceedings.mlr.press/v139/nemecek21a.html
+      \endverb
+    \endentry
+    \entry{chandrasekar_towards_2025}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=fa11149434844903161fc1cbf56c1c52}{%
+           family={Chandrasekar},
+           familyi={C\bibinitperiod},
+           given={Siddarth},
+           giveni={S\bibinitperiod}}}%
+        {{hash=047139ed2def73e6bd22052df612962f}{%
+           family={Machado},
+           familyi={M\bibinitperiod},
+           given={Marlos\bibnamedelima C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \strng{fullhash}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \strng{fullhashraw}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \strng{bibnamehash}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \strng{authorbibnamehash}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \strng{authornamehash}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \strng{authorfullhash}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \strng{authorfullhashraw}{6ad45af3aaec3383b8892cc1daa6ebbf}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The Option Keyboard framework enables efficient behavior generation by composing a set of basis options. However, it remains unclear how to construct a global and compact basis, from scratch, for solving any given task in an environment. In this work, we investigate using the eigenvectors of the graph Laplacian of the environment to form such a basis. The behaviors obtained from such eigenvectors are known as eigenoptions. We empirically demonstrate that a sufficiently large eigenoption basis, combined with Generalized Policy Improvement, can recover near-optimal policies in the goal-reaching tasks we considered. Building on this, we introduce the Laplacian Keyboard, which matches this performance while requiring a substantially smaller set of options. Finally, we briefly outline a method for constructing a universal optimal option basis capable of solving any task within a given environment.}
+      \field{booktitle}{Workshop on Reinforcement Learning Beyond Rewards @ Reinforcement Learning Conference 2025}
+      \field{day}{1}
+      \field{langid}{english}
+      \field{month}{7}
+      \field{title}{Towards An Option Basis To Optimize All Rewards}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2026}
+      \field{year}{2025}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/Q6527FFB/Chandrasekar and Machado - 2025 - Towards An Option Basis To Optimize All Rewards.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://openreview.net/forum?id=93kcaZhYgG
+      \endverb
+      \verb{url}
+      \verb https://openreview.net/forum?id=93kcaZhYgG
+      \endverb
+    \endentry
+    \entry{borsa_universal_2018}{misc}{}{}
+      \name{author}{8}{}{%
+        {{hash=fa1366e530f91f400748a6e13b3c30ad}{%
+           family={Borsa},
+           familyi={B\bibinitperiod},
+           given={Diana},
+           giveni={D\bibinitperiod}}}%
+        {{hash=bf0353157e3302a5be458a62f93abaa2}{%
+           family={Barreto},
+           familyi={B\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d1c6b8444cb95e400ca38d5ae5c5afd3}{%
+           family={Quan},
+           familyi={Q\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+        {{hash=b7e6e2df642e1f6fd5a12cbb7843962f}{%
+           family={Mankowitz},
+           familyi={M\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=5d8fa91764a27bf97b87fdcac885745d}{%
+           family={Munos},
+           familyi={M\bibinitperiod},
+           given={Rémi},
+           giveni={R\bibinitperiod}}}%
+        {{hash=f5a8983bab24d2cd5670100e485fc883}{%
+           family={Hasselt},
+           familyi={H\bibinitperiod},
+           given={Hado\bibnamedelima van},
+           giveni={H\bibinitperiod\bibinitdelim v\bibinitperiod}}}%
+        {{hash=89dbd30410c2085cd059f32c57d4593e}{%
+           family={Silver},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=a56e72b23778a835bdade7d0511e43a3}{%
+           family={Schaul},
+           familyi={S\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{cb80fe814b0c30850d585861ad14d809}
+      \strng{fullhash}{e4465c5a2764e35001c043b37f060269}
+      \strng{fullhashraw}{e4465c5a2764e35001c043b37f060269}
+      \strng{bibnamehash}{cb80fe814b0c30850d585861ad14d809}
+      \strng{authorbibnamehash}{cb80fe814b0c30850d585861ad14d809}
+      \strng{authornamehash}{cb80fe814b0c30850d585861ad14d809}
+      \strng{authorfullhash}{e4465c5a2764e35001c043b37f060269}
+      \strng{authorfullhashraw}{e4465c5a2764e35001c043b37f060269}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The ability of a reinforcement learning ({RL}) agent to learn about many reward functions at the same time has many potential benefits, such as the decomposition of complex tasks into simpler ones, the exchange of information between tasks, and the reuse of skills. We focus on one aspect in particular, namely the ability to generalise to unseen tasks. Parametric generalisation relies on the interpolation power of a function approximator that is given the task description as input; one of its most common form are universal value function approximators ({UVFAs}). Another way to generalise to new tasks is to exploit structure in the {RL} problem itself. Generalised policy improvement ({GPI}) combines solutions of previous tasks into a policy for the unseen task; this relies on instantaneous policy evaluation of old policies under the new reward function, which is made possible through successor features ({SFs}). Our proposed universal successor features approximators ({USFAs}) combine the advantages of all of these, namely the scalability of {UVFAs}, the instant inference of {SFs}, and the strong generalisation of {GPI}. We discuss the challenges involved in training a {USFA}, its generalisation properties and demonstrate its practical benefits and transfer abilities on a large-scale domain in which the agent has to navigate in a first-person perspective three-dimensional environment.}
+      \field{day}{18}
+      \field{eprinttype}{arxiv}
+      \field{month}{12}
+      \field{title}{Universal Successor Features Approximators}
+      \field{urlday}{1}
+      \field{urlmonth}{10}
+      \field{urlyear}{2026}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.1812.07626
+      \endverb
+      \verb{eprint}
+      \verb 1812.07626
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/RNGQEPHT/Borsa et al. - 2018 - Universal Successor Features Approximators.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/PKW3KHTB/1812.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1812.07626
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1812.07626
+      \endverb
+      \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Statistics - Machine Learning}
+    \endentry
+    \entry{barreto_option_2021}{misc}{}{}
+      \name{author}{11}{}{%
+        {{hash=bf0353157e3302a5be458a62f93abaa2}{%
+           family={Barreto},
+           familyi={B\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fa1366e530f91f400748a6e13b3c30ad}{%
+           family={Borsa},
+           familyi={B\bibinitperiod},
+           given={Diana},
+           giveni={D\bibinitperiod}}}%
+        {{hash=dfe97de4c45eeb54c31466df32f36d11}{%
+           family={Hou},
+           familyi={H\bibinitperiod},
+           given={Shaobo},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0254d1c3232bc638c906d797da65f578}{%
+           family={Comanici},
+           familyi={C\bibinitperiod},
+           given={Gheorghe},
+           giveni={G\bibinitperiod}}}%
+        {{hash=49558ad9139ff6dc57463604e98c8a89}{%
+           family={Aygün},
+           familyi={A\bibinitperiod},
+           given={Eser},
+           giveni={E\bibinitperiod}}}%
+        {{hash=dba11c89254b0908c0259f2700397ecc}{%
+           family={Hamel},
+           familyi={H\bibinitperiod},
+           given={Philippe},
+           giveni={P\bibinitperiod}}}%
+        {{hash=e5b1add6c471f3fafdef5a3c23345091}{%
+           family={Toyama},
+           familyi={T\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8853d85fce0f50bae8ed489294bbb22f}{%
+           family={Hunt},
+           familyi={H\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=dbc74250e2ecdd53fe447aadf1eab62f}{%
+           family={Mourad},
+           familyi={M\bibinitperiod},
+           given={Shibl},
+           giveni={S\bibinitperiod}}}%
+        {{hash=89dbd30410c2085cd059f32c57d4593e}{%
+           family={Silver},
+           familyi={S\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4428b76e1301b2db58587fb18bb59a38}{%
+           family={Precup},
+           familyi={P\bibinitperiod},
+           given={Doina},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{fullhash}{3ef20585889a9074a9eb9f2d1a12c107}
+      \strng{fullhashraw}{3ef20585889a9074a9eb9f2d1a12c107}
+      \strng{bibnamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authorbibnamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authornamehash}{d6fae9e0474cc23764d79d725fbcf4cd}
+      \strng{authorfullhash}{3ef20585889a9074a9eb9f2d1a12c107}
+      \strng{authorfullhashraw}{3ef20585889a9074a9eb9f2d1a12c107}
+      \field{extraname}{3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The ability to combine known skills to create new ones may be crucial in the solution of complex reinforcement learning problems that unfold over extended periods. We argue that a robust way of combining skills is to define and manipulate them in the space of pseudo-rewards (or "cumulants"). Based on this premise, we propose a framework for combining skills using the formalism of options. We show that every deterministic option can be unambiguously represented as a cumulant defined in an extended domain. Building on this insight and on previous results on transfer learning, we show how to approximate options whose cumulants are linear combinations of the cumulants of known options. This means that, once we have learned options associated with a set of cumulants, we can instantaneously synthesise options induced by any linear combination of them, without any learning involved. We describe how this framework provides a hierarchical interface to the environment whose abstract actions correspond to combinations of basic skills. We demonstrate the practical benefits of our approach in a resource management problem and a navigation task involving a quadrupedal simulated robot.}
+      \field{day}{24}
+      \field{eprinttype}{arxiv}
+      \field{month}{6}
+      \field{shorttitle}{The Option Keyboard}
+      \field{title}{The Option Keyboard: Combining Skills in Reinforcement Learning}
+      \field{urlday}{2}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2106.13105
+      \endverb
+      \verb{eprint}
+      \verb 2106.13105
+      \endverb
+      \verb{file}
+      \verb Preprint PDF:/Users/guillemmasdemont/Zotero/storage/3XJTSMX2/Barreto et al. - 2021 - The Option Keyboard Combining Skills in Reinforcement Learning.pdf:application/pdf;Snapshot:/Users/guillemmasdemont/Zotero/storage/ZKQI9XU4/2106.html:text/html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2106.13105
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2106.13105
+      \endverb
+      \keyw{Computer Science - Machine Learning,Computer Science - Artificial Intelligence}
+    \endentry
+    \entry{robbins_stochastic_1951}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=163566b92b332258782e61e3d217a2bb}{%
+           family={Robbins},
+           familyi={R\bibinitperiod},
+           given={Herbert},
+           giveni={H\bibinitperiod}}}%
+        {{hash=95751f7f614bc2af42f1a078b3e2ba61}{%
+           family={Monro},
+           familyi={M\bibinitperiod},
+           given={Sutton},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Institute of Mathematical Statistics}%
+      }
+      \strng{namehash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \strng{fullhash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \strng{fullhashraw}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \strng{bibnamehash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \strng{authorbibnamehash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \strng{authornamehash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \strng{authorfullhash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \strng{authorfullhashraw}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Let \$M(x)\$ denote the expected value at level \$x\$ of the response to a certain experiment. \$M(x)\$ is assumed to be a monotone function of \$x\$ but is unknown to the experimenter, and it is desired to find the solution \$x = {\textbackslash}theta\$ of the equation \$M(x) = {\textbackslash}alpha\$, where \${\textbackslash}alpha\$ is a given constant. We give a method for making successive experiments at levels \$x\_1,x\_2,{\textbackslash}cdots\$ in such a way that \$x\_n\$ will tend to \${\textbackslash}theta\$ in probability.}
+      \field{issn}{0003-4851, 2168-8990}
+      \field{journaltitle}{The Annals of Mathematical Statistics}
+      \field{langid}{english}
+      \field{month}{9}
+      \field{number}{3}
+      \field{title}{A Stochastic Approximation Method}
+      \field{urlday}{4}
+      \field{urlmonth}{10}
+      \field{urlyear}{2026}
+      \field{volume}{22}
+      \field{year}{1951}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{400\bibrangedash 407}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1214/aoms/1177729586
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/MF4FG9B8/Robbins and Monro - 1951 - A Stochastic Approximation Method.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://projecteuclid.org/journals/annals-of-mathematical-statistics/volume-22/issue-3/A-Stochastic-Approximation-Method/10.1214/aoms/1177729586.full
+      \endverb
+      \verb{url}
+      \verb https://projecteuclid.org/journals/annals-of-mathematical-statistics/volume-22/issue-3/A-Stochastic-Approximation-Method/10.1214/aoms/1177729586.full
+      \endverb
+    \endentry
+    \entry{watkins_q-learning_1992}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=6522b6087fe013d303faca6da91596ca}{%
+           family={Watkins},
+           familyi={W\bibinitperiod},
+           given={Christopher\bibnamedelimb J.\bibnamedelimi C.\bibnamedelimi H.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=ef0afbe0b4e15059c963e026fe213c34}{%
+           family={Dayan},
+           familyi={D\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{1f776b9a46cb729efd9599e3af8beeef}
+      \strng{fullhash}{1f776b9a46cb729efd9599e3af8beeef}
+      \strng{fullhashraw}{1f776b9a46cb729efd9599e3af8beeef}
+      \strng{bibnamehash}{1f776b9a46cb729efd9599e3af8beeef}
+      \strng{authorbibnamehash}{1f776b9a46cb729efd9599e3af8beeef}
+      \strng{authornamehash}{1f776b9a46cb729efd9599e3af8beeef}
+      \strng{authorfullhash}{1f776b9a46cb729efd9599e3af8beeef}
+      \strng{authorfullhashraw}{1f776b9a46cb729efd9599e3af8beeef}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Q-learning (Watkins, 1989) is a simple way for agents to learn how to act optimally in controlled Markovian domains. It amounts to an incremental method for dynamic programming which imposes limited computational demands. It works by successively improving its evaluations of the quality of particular actions at particular states.}
+      \field{day}{1}
+      \field{issn}{1573-0565}
+      \field{journaltitle}{Machine Learning}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{number}{3}
+      \field{shortjournal}{Mach Learn}
+      \field{title}{Q-learning}
+      \field{urlday}{4}
+      \field{urlmonth}{10}
+      \field{urlyear}{2026}
+      \field{volume}{8}
+      \field{year}{1992}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{279\bibrangedash 292}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1007/BF00992698
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/44KS4PYJ/Watkins and Dayan - 1992 - Q-learning.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF00992698
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF00992698
+      \endverb
+      \keyw{asynchronous dynamic programming,Q-learning,reinforcement learning,temporal differences}
+    \endentry
+    \entry{tsitsiklis_asynchronous_1994}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=c68e0327319b548306afacf417d06ebf}{%
+           family={Tsitsiklis},
+           familyi={T\bibinitperiod},
+           given={John\bibnamedelima N.},
+           giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{fullhash}{c68e0327319b548306afacf417d06ebf}
+      \strng{fullhashraw}{c68e0327319b548306afacf417d06ebf}
+      \strng{bibnamehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{authorbibnamehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{authornamehash}{c68e0327319b548306afacf417d06ebf}
+      \strng{authorfullhash}{c68e0327319b548306afacf417d06ebf}
+      \strng{authorfullhashraw}{c68e0327319b548306afacf417d06ebf}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We provide some general results on the convergence of a class of stochastic approximation algorithms and their parallel and asynchronous variants. We then use these results to study the Q-learning algorithm, a reinforcement learning method for solving Markov decision problems, and establish its convergence under conditions more general than previously available.}
+      \field{day}{1}
+      \field{issn}{1573-0565}
+      \field{journaltitle}{Machine Learning}
+      \field{langid}{english}
+      \field{month}{9}
+      \field{number}{3}
+      \field{shortjournal}{Machine Learning}
+      \field{title}{Asynchronous Stochastic Approximation and Q-Learning}
+      \field{urlday}{4}
+      \field{urlmonth}{10}
+      \field{urlyear}{2026}
+      \field{volume}{16}
+      \field{year}{1994}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{185\bibrangedash 202}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1023/A:1022689125041
+      \endverb
+      \verb{file}
+      \verb Full Text PDF:/Users/guillemmasdemont/Zotero/storage/XX8G9ALP/Tsitsiklis - 1994 - Asynchronous Stochastic Approximation and Q-Learning.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1023/A:1022689125041
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1023/A:1022689125041
+      \endverb
+      \keyw{dynamic programming,Q-learning,Reinforcement learning,stochastic approximation}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,0 +1,21 @@
+windy: 60 tasks (Kuric semantics: self-loops on exits without an edge), base = 6 extremes, full eps-CCS from SFOLS = 117 policies
+  5/60 tasks (197s); stream base: CoG 11, PI 11 policies
+  10/60 tasks (372s); stream base: CoG 11, PI 11 policies
+  15/60 tasks (559s); stream base: CoG 11, PI 11 policies
+  20/60 tasks (745s); stream base: CoG 11, PI 11 policies
+  25/60 tasks (954s); stream base: CoG 11, PI 11 policies
+  30/60 tasks (1183s); stream base: CoG 12, PI 12 policies
+  35/60 tasks (1408s); stream base: CoG 12, PI 12 policies
+  40/60 tasks (1606s); stream base: CoG 13, PI 13 policies
+  45/60 tasks (1787s); stream base: CoG 13, PI 13 policies
+  50/60 tasks (1977s); stream base: CoG 13, PI 13 policies
+  55/60 tasks (2167s); stream base: CoG 13, PI 13 policies
+  60/60 tasks (2358s); stream base: CoG 13, PI 13 policies
+
+windy: 60 tasks. Max relative regret: Kuric + 6 extremes 1.4e-02, Kuric + eps-CCS (117 policies) 0.0e+00
+  product VI from scratch (no SFs): 282 sweeps per task
+  OLS-order CCS prefix that makes Kuric exact: median 6, max 6, never within the eps-CCS on 0 of 60 tasks
+  cog_fresh   max rel regret 0.0e+00, W error 3e-14, all certified True | per task: rounds 2.00, policies added 2.20, cost 229 sweeps (solves 44 + SF tables 169 + checks 17) | added policies by kind {'metapolicy': 24, 'hybrid': 81, 'gpi': 0, 'policy iteration': 27}; states changed vs nearest stored policy: median 58; final base 8
+  pi_fresh    max rel regret 0.0e+00, W error 3e-14, all certified True | per task: rounds 2.00, policies added 2.20, cost 219 sweeps (solves 31 + SF tables 171 + checks 17) | added policies by kind {'metapolicy': 0, 'hybrid': 0, 'gpi': 85, 'policy iteration': 47}; states changed vs nearest stored policy: median 57; final base 8
+  cog_stream  max rel regret 0.0e+00, W error 5e-14, all certified True | per task: rounds 1.08, policies added 0.12, cost 24 sweeps (solves 2 + SF tables 10 + checks 12) | added policies by kind {'metapolicy': 3, 'hybrid': 4, 'gpi': 0, 'policy iteration': 0}; states changed vs nearest stored policy: median 36; final base 13
+  pi_stream   max rel regret 0.0e+00, W error 5e-14, all certified True | per task: rounds 1.08, policies added 0.12, cost 24 sweeps (solves 2 + SF tables 10 + checks 12) | added policies by kind {'metapolicy': 0, 'hybrid': 0, 'gpi': 5, 'policy iteration': 2}; states changed vs nearest stored policy: median 36; final base 13

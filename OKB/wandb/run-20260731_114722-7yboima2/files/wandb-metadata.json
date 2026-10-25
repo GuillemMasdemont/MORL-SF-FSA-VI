@@ -1,0 +1,29 @@
+{
+  "os": "macOS-26.5.2-x86_64-i386-64bit",
+  "python": "CPython 3.10.18",
+  "startedAt": "2026-07-31T09:47:22.269160Z",
+  "args": [
+    "--use_ok=True",
+    "--weight_selection=okb",
+    "--run_name=OKB"
+  ],
+  "program": "/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB/experiments/okb_item_collector.py",
+  "codePath": "experiments/okb_item_collector.py",
+  "codePathLocal": "experiments/okb_item_collector.py",
+  "email": "guillem.masdemont@autonoma.cat",
+  "root": "/Users/guillemmasdemont/Documents/Master/Summer-Research/MORL/OKB",
+  "host": "MacBook-Pro-de-Guillem.local",
+  "executable": "/opt/anaconda3/envs/okb/bin/python",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "disk": {
+    "/": {
+      "total": "1000240963584",
+      "used": "608600121344"
+    }
+  },
+  "memory": {
+    "total": "34359738368"
+  },
+  "writerId": "chn0srl5ejasdydwd4asbsk1d31sylr5"
+}

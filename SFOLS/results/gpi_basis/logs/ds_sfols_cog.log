@@ -1,0 +1,7 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/opt/anaconda3/envs/okb/lib/python3.10/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+sfols_cog: {'queries': 203, 'full': 11, 'meta_ok': 192, 'meta_fail': 10, 'sweeps_full': 23, 'sweeps_meta': 249} pool 203 in 112s
+sfols_cog: done; final true max loss at start 1.19e-09, total time 1011s

@@ -1,0 +1,5 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+exact corners=False: 63 queries, CCS 63, true gap on 300 weights max 0.0053 (eps 0.05), 19s
+exact corners=True: 63 queries, CCS 63, true gap on 300 weights max 0.0053 (eps 0.05), 62s

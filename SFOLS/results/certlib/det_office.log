@@ -1,0 +1,31 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+  q   25 gap 6.92e-01 lib 6 learned 6 sweeps 320 {'free': 19, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q   50 gap 4.92e-01 lib 6 learned 6 sweeps 345 {'free': 44, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q   75 gap 8.26e-02 lib 6 learned 6 sweeps 370 {'free': 69, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  100 gap 5.19e-02 lib 6 learned 6 sweeps 395 {'free': 94, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  125 gap 3.82e-02 lib 6 learned 6 sweeps 420 {'free': 119, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  150 gap 3.12e-02 lib 6 learned 6 sweeps 445 {'free': 144, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  175 gap 2.62e-02 lib 6 learned 6 sweeps 470 {'free': 169, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  200 gap 1.98e-02 lib 6 learned 6 sweeps 495 {'free': 194, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  225 gap 1.58e-02 lib 6 learned 6 sweeps 520 {'free': 219, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  250 gap 1.46e-02 lib 6 learned 6 sweeps 545 {'free': 244, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  275 gap 1.16e-02 lib 6 learned 6 sweeps 570 {'free': 269, 'gpi': 0, 'meta': 0, 'learn': 6}
+deterministic office eps 1e-02: queries 293 library 6 learned 6 {'free': 293, 'gpi': 0, 'meta': 0, 'learn': 6} sweeps 594 cert 1.0e-02 time 99s
+  q   25 gap 6.92e-01 lib 6 learned 6 sweeps 320 {'free': 19, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q   50 gap 4.92e-01 lib 6 learned 6 sweeps 345 {'free': 44, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q   75 gap 8.26e-02 lib 6 learned 6 sweeps 370 {'free': 69, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  100 gap 5.19e-02 lib 6 learned 6 sweeps 395 {'free': 94, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  125 gap 3.82e-02 lib 6 learned 6 sweeps 420 {'free': 119, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  150 gap 3.12e-02 lib 6 learned 6 sweeps 445 {'free': 144, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  175 gap 2.62e-02 lib 6 learned 6 sweeps 470 {'free': 169, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  200 gap 1.98e-02 lib 6 learned 6 sweeps 495 {'free': 194, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  225 gap 1.58e-02 lib 6 learned 6 sweeps 520 {'free': 219, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  250 gap 1.46e-02 lib 6 learned 6 sweeps 545 {'free': 244, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  275 gap 1.16e-02 lib 6 learned 6 sweeps 570 {'free': 269, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  300 gap 9.95e-03 lib 6 learned 6 sweeps 595 {'free': 294, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  325 gap 7.91e-03 lib 6 learned 6 sweeps 620 {'free': 319, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  350 gap 5.92e-03 lib 6 learned 6 sweeps 645 {'free': 344, 'gpi': 0, 'meta': 0, 'learn': 6}
+  q  375 gap 4.38e-03 lib 6 learned 6 sweeps 670 {'free': 369, 'gpi': 0, 'meta': 0, 'learn': 6}
+deterministic office eps 1e-03: queries 383 library 6 learned 6 {'free': 383, 'gpi': 0, 'meta': 0, 'learn': 6} sweeps 684 cert 1.1e-14 time 66s
