@@ -2447,14 +2447,17 @@
     <bcf:citekey order="42" intorder="1">kuric_planning_2024</bcf:citekey>
     <bcf:citekey order="43" intorder="1">kuric_planning_2024</bcf:citekey>
     <bcf:citekey order="44" intorder="1">kuric_planning_2024</bcf:citekey>
-    <bcf:citekey order="45" intorder="1">cassimon_review_2024</bcf:citekey>
-    <bcf:citekey order="45" intorder="2">felten_toolkit_2023</bcf:citekey>
-    <bcf:citekey order="45" intorder="3">kuric_planning_2024</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">alegre_optimistic_2022</bcf:citekey>
-    <bcf:citekey order="47" intorder="1">kuric_planning_2024</bcf:citekey>
-    <bcf:citekey order="48" intorder="1">robbins_stochastic_1951</bcf:citekey>
-    <bcf:citekey order="49" intorder="1">watkins_q-learning_1992</bcf:citekey>
-    <bcf:citekey order="50" intorder="1">tsitsiklis_asynchronous_1994</bcf:citekey>
+    <bcf:citekey order="45" intorder="1">kuric_planning_2024</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">cassimon_review_2024</bcf:citekey>
+    <bcf:citekey order="46" intorder="2">felten_toolkit_2023</bcf:citekey>
+    <bcf:citekey order="46" intorder="3">kuric_planning_2024</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">alegre_optimistic_2022</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">kuric_planning_2024</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">kuric_planning_2024</bcf:citekey>
+    <bcf:citekey order="50" intorder="1">kuric_planning_2024</bcf:citekey>
+    <bcf:citekey order="51" intorder="1">robbins_stochastic_1951</bcf:citekey>
+    <bcf:citekey order="52" intorder="1">watkins_q-learning_1992</bcf:citekey>
+    <bcf:citekey order="53" intorder="1">tsitsiklis_asynchronous_1994</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

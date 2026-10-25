@@ -290,7 +290,34 @@ This does not hold for stochastic transitions because a policy can then split it
 
 \subsection{SF-FSA-VI for stochastic domains}
 
-In such environments, the extreme policies are not sufficient to complete every task optimally, since the optimal Q-function is no longer attained by a single exit. Hence, zero-shot optimality requires the whole CCS. On the other hand, GPI can achieve the optimal policy with far fewer policies than the whole CCS. However, the backward propagation of SF-FSA-VI makes us compute the whole CCS, because it needs not only the optimal policy for each weight, but also its value at the exits. Given this, we propose an algorithm....
+In such environments, the extreme policies are not sufficient to complete every task optimally, since the optimal Q-function is no longer attained by a single exit. Hence, zero-shot optimality requires the whole CCS. On the other hand, GPI can achieve the optimal policy with far fewer policies than the whole CCS. However, the backward propagation of SF-FSA-VI makes us compute the whole CCS, because it needs not only the optimal policy for each weight, but also its value at the exits. Given this, we propose \textsc{Lazy SF-FSA-VI} (Algorithm~\ref{alg:lazy}), which only requires this value at the weights that the task visits.
+
+The algorithm starts from the $d$ extreme policies, runs Eq.~\eqref{eq:sf-fsa-vi} until convergence, and checks whether GPI is exact at every $\mathbf{w}(u)$. Let $V^{GPI}(s) = \max_a Q^{GPI}_{\mathbf{w}}(s,a)$. Since $V^{\pi_j} \leq V^{GPI}$, every $j$ satisfies $Q^{\pi_j}_{\mathbf{w}} = Q_{V^{\pi_j}} \leq Q_{V^{GPI}}$, hence $Q^{GPI}_{\mathbf{w}} \leq Q_{V^{GPI}}$ and also $Q^{GPI}_{\mathbf{w}} \leq Q^*_{\mathbf{w}}$. Therefore, the instant GPI value is optimal if and only if $Q^{GPI}_{\mathbf{w}} = Q_{V^{GPI}}$, which a single backup checks. If the check fails at some $\mathbf{w}(u)$, we call \textsc{Certify-or-Grow} at that weight: the metapolicy over the current policies is added if it is certified, and otherwise the task is solved warm-started with $\pi^{\mathrm{hyb}}$. The weights are then recomputed, until every automaton state is certified.
+
+\begin{algorithm}[H]
+\caption{\textsc{Lazy SF-FSA-VI}$(\Pi)$}\label{alg:lazy}
+\begin{algorithmic}[1]
+\Require $\Pi$: the $d$ extreme policies, or the policies kept from previous tasks
+\Repeat
+    \State $\{\mathbf{w}(u)\}_{u \in \mathcal{U}} \gets$ fixed point of Eq.~\eqref{eq:sf-fsa-vi} over $\Pi$
+    \For{every $u \in \mathcal{U}$ such that $Q^{GPI}_{\mathbf{w}(u)} \neq Q_{V^{GPI}}$} \Comment{GPI is not exact}
+        \State $\pi,\ \vpsi^{\pi} \gets \textsc{Certify-or-Grow}(\mathbf{w}(u), \Pi)$ \Comment{Algorithm~\ref{alg:certify-or-grow}}
+        \State $\Pi \gets \Pi \cup \{\pi\}$
+    \EndFor
+\Until{no policy was added}
+\State \Return $\{\mathbf{w}(u)\}_{u \in \mathcal{U}}$; act with GPI over $\Pi$ at $\mathbf{w}(u)$ in every $u$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{proposition}\label{prop:lazy}
+    Algorithm~\ref{alg:lazy} terminates, and at termination the weights $\mathbf{w}(u)$ are optimal and GPI is optimal in every automaton state. If the low-level MDP is deterministic, it adds no policy.
+\end{proposition}
+
+\begin{proof}
+    If $\Pi$ contained an optimal policy for $\mathbf{w}(u)$, then $Q^{GPI}_{\mathbf{w}(u)} = Q^*_{\mathbf{w}(u)}$ and the check would pass. Hence, every added policy is new and, since there are finitely many deterministic policies, the algorithm terminates. At termination, $Q^{GPI}_{\mathbf{w}(u)} = Q^*_{\mathbf{w}(u)}$ for every $u$, so Eq.~\eqref{eq:sf-fsa-vi} uses the optimal values at the exits, and its fixed point is the optimal one \cite{kuric_planning_2024}. GPI is then greedy with respect to $Q^*_{\mathbf{w}(u)}$ in every automaton state. Finally, in deterministic domains Theorem~\ref{thm:det} gives $Q^{GPI}_{\mathbf{w}} = Q^*_{\mathbf{w}}$ over the extreme policies for every weight, so the check always passes.
+\end{proof}
+
+Every low-level solve happens at a weight that the task needs, and the added policies can be kept for the next tasks, so the set only grows where the tasks require it.
 
 
 
@@ -320,6 +347,17 @@ In both domains, composing the extreme policies is enough to reach optimality. I
 On the other hand, the extreme policies are not always enough to compose the optimal policy of every task. For example, consider the double slit domain~\cite{kuric_planning_2024} (Figure~\ref{fig:double_slit}a). The agent starts at the left of a corridor, always drifts to the right, and a random wind pushes it up or down until it reaches one of the two exits, $\vphi = \mathbf{e}_1$ at the top and $\vphi = \mathbf{e}_2$ at the bottom. We use a strong wind ($\pm 3$ cells per step) and $\gamma = 0.9$. When both exits have a similar weight, the optimal policy keeps both exits open until late, moving forward and letting the wind decide which exit to take. None of the two corner policies has this behaviour, so the optimal value is up to $20.7\%$ higher than the one of the best corner policy, and the CCS has 181 policies.
 
 We compare three ways of acting with the same basis: GPI (Eq.~\eqref{eq:gpi}), the metapolicy (Eq.~\eqref{eq:metapolicy}) and $\pi^{\mathrm{hyb}}$ (Eq.~\eqref{eq:hyb}) on $200$ random held-out weights $\mathbf{w} = (w_1, 1 - w_1)$. We evaluate each policy exactly and count the weights where it is suboptimal (Figure~\ref{fig:double_slit}b). With only the 2 corner policies, GPI is suboptimal on $58\%$ of the weights and the metapolicy on $54\%$, whereas $\pi^{\mathrm{hyb}}$ is suboptimal on $15\%$, and always by less than $0.02\%$ of the optimal value. The performance of $\pi^{\mathrm{hyb}}$ originates from the possibility of locally taking suboptimal actions while using the metapolicy for future rewards. By contrast, the metapolicy can only switch between the two corner policies at each state. Lastly, GPI evaluates every action following a single base policy afterwards, hence, cannot adapt to a policy that keeps both exits open, see Fig~\ref{fig:double_slit}a. As we add policies in the order OLS finds them, the metapolicy performance greatly surpasses the GPI one. Furthermore, $\pi^{\mathrm{hyb}}$ becomes optimal on all the held-out weights with 9 policies, while with 20 policies the metapolicy is suboptimal on $2.5\%$ of the weights and GPI on $12.4\%$. Notice that the number of suboptimal weights can also increase in GPI, for example, from $k=16$ to $k=17$ it goes $13.9\%$ to $14.4\%$. In general, $\pi^{hyb}$ can replace a large part of the CCS in exchange of performing extra computations for the particular task. In this domain, 9 policies are enough to be optimal on every held-out weight, instead of the 181 required by the full CCS.
+
+Finally, we evaluate Algorithm~\ref{alg:lazy} with exact SFs in two stochastic domains. In the Office domain, the chosen action is replaced by one of the other three with probability $p \in \{0.1, 0.3\}$ ($\gamma = 0.99$), and we use the three tasks of \cite{kuric_planning_2024} together with 30 random automata. The windy domain ($\gamma = 0.95$) has two stages: the wind of the double slit decides between two exits, $A$ and $B$, and from each of them corridors lead to four further exits. 52 of its 60 tasks are of the form ``$A$ or $B$, then a corridor exit'', so the first stage must keep both exits open. As in \cite{kuric_planning_2024}, reaching an exit whose symbol has no edge keeps the automaton in the same state, and we discount the transition between automaton states by $\gamma$, so that Eq.~\eqref{eq:sf-fsa-vi} remains a contraction when an exit can be re-entered immediately. We start either from the 6 extreme policies on every task, or keep the added policies over the sequence of tasks.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=\textwidth]{lazy_fsa.pdf}
+    \caption{\textsc{Lazy SF-FSA-VI} (Algorithm~\ref{alg:lazy}) with exact SFs, starting from the 6 extreme policies. (a) Maximum relative regret over the tasks of zero-shot SF-FSA-VI over the extreme policies and over the whole $\varepsilon$-CCS of SFOLS; Algorithm~\ref{alg:lazy} has zero regret on every task. (b) Policies stored by Algorithm~\ref{alg:lazy} when the added policies are kept over the sequence of tasks. (c) How the added policies were certified: as the metapolicy, as $\pi^{\mathrm{hyb}}$, or after policy iteration, starting from the extreme policies on every task or keeping the added ones (the number of added policies is on the right).}
+    \label{fig:lazy}
+\end{figure}
+
+Zero-shot SF-FSA-VI over the extreme policies is suboptimal by up to $0.11\%$, $0.32\%$ and $1.4\%$, and even over the whole $\varepsilon$-CCS of SFOLS ($262$ and $572$ policies, $\varepsilon = 2 \cdot 10^{-3}$) it remains suboptimal in the Office domain (Figure~\ref{fig:lazy}a). In contrast, Algorithm~\ref{alg:lazy} is optimal on all $126$ tasks. From the extreme policies, it needs $2$ to $2.6$ rounds and adds about $2$ policies per task. When the added policies are kept, it stores $28$, $30$ and $13$ policies after all the tasks, far fewer than the CCS (Figure~\ref{fig:lazy}b). Moreover, most of the added policies are compositions of the stored ones: when they are kept, $91$--$100\%$ of them are certified metapolicies or $\pi^{\mathrm{hyb}}$, without any improvement step over the full action set (Figure~\ref{fig:lazy}c). In the windy domain, $\pi^{\mathrm{hyb}}$ provides the action that keeps both exits open, as in the double slit. With the model, the cost of Algorithm~\ref{alg:lazy} is comparable to solving the product MDP in the Office domain, and $12\times$ lower in the windy domain, since the stored policies can be reused across tasks.
 
 \section{Conclusion}\label{sec:conclusions}
 

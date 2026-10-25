@@ -1630,8 +1630,8 @@
       \strng{authornamehash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
       \strng{authorfullhash}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
       \strng{authorfullhashraw}{5d85b58c5cbfcc8fc266cf4f5f6fbdbb}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Let \$M(x)\$ denote the expected value at level \$x\$ of the response to a certain experiment. \$M(x)\$ is assumed to be a monotone function of \$x\$ but is unknown to the experimenter, and it is desired to find the solution \$x = {\textbackslash}theta\$ of the equation \$M(x) = {\textbackslash}alpha\$, where \${\textbackslash}alpha\$ is a given constant. We give a method for making successive experiments at levels \$x\_1,x\_2,{\textbackslash}cdots\$ in such a way that \$x\_n\$ will tend to \${\textbackslash}theta\$ in probability.}
@@ -1684,8 +1684,8 @@
       \strng{authornamehash}{1f776b9a46cb729efd9599e3af8beeef}
       \strng{authorfullhash}{1f776b9a46cb729efd9599e3af8beeef}
       \strng{authorfullhashraw}{1f776b9a46cb729efd9599e3af8beeef}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Q-learning (Watkins, 1989) is a simple way for agents to learn how to act optimally in controlled Markovian domains. It amounts to an incremental method for dynamic programming which imposes limited computational demands. It works by successively improving its evaluations of the quality of particular actions at particular states.}
