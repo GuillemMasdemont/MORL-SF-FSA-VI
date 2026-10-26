@@ -1,0 +1,104 @@
+query 1 |CCS| 0 steps 1,417,000 to-converge 1,417,000 {'full learns': 1}
+query 2 |CCS| 1 steps 2,885,000 to-converge 2,885,000 {'full learns': 2}
+query 3 |CCS| 2 steps 4,355,000 to-converge 4,355,000 {'full learns': 3}
+query 4 |CCS| 3 steps 6,710,000 to-converge 6,382,000 {'full learns': 4}
+query 5 |CCS| 4 steps 8,884,000 to-converge 7,225,000 {'full learns': 5}
+query 6 |CCS| 5 steps 10,599,000 to-converge 8,844,000 {'full learns': 6}
+query 7 |CCS| 6 steps 12,467,000 to-converge 10,635,000 {'full learns': 7}
+query 8 |CCS| 7 steps 14,865,000 to-converge 11,863,000 {'full learns': 8}
+query 9 |CCS| 7 steps 16,877,000 to-converge 13,875,000 {'full learns': 9}
+query 10 |CCS| 7 steps 18,474,000 to-converge 15,472,000 {'full learns': 10}
+query 11 |CCS| 8 steps 20,880,000 to-converge 17,460,000 {'full learns': 11}
+query 12 |CCS| 9 steps 22,671,000 to-converge 19,251,000 {'full learns': 12}
+query 13 |CCS| 9 steps 25,671,000 to-converge 21,179,000 {'full learns': 13, 'learns that hit the step cap': 1}
+query 14 |CCS| 9 steps 27,836,000 to-converge 22,701,000 {'full learns': 14, 'learns that hit the step cap': 1}
+query 15 |CCS| 9 steps 29,829,000 to-converge 24,613,000 {'full learns': 15, 'learns that hit the step cap': 1}
+query 16 |CCS| 9 steps 31,257,000 to-converge 25,902,000 {'full learns': 16, 'learns that hit the step cap': 1}
+query 17 |CCS| 9 steps 32,982,000 to-converge 27,417,000 {'full learns': 17, 'learns that hit the step cap': 1}
+query 18 |CCS| 10 steps 35,982,000 to-converge 30,405,000 {'full learns': 18, 'learns that hit the step cap': 2}
+query 19 |CCS| 10 steps 38,033,000 to-converge 32,418,000 {'full learns': 19, 'learns that hit the step cap': 2}
+query 20 |CCS| 10 steps 39,745,000 to-converge 34,130,000 {'full learns': 20, 'learns that hit the step cap': 2}
+query 21 |CCS| 10 steps 42,152,000 to-converge 36,469,000 {'full learns': 21, 'learns that hit the step cap': 2}
+query 22 |CCS| 10 steps 44,070,000 to-converge 37,948,000 {'full learns': 22, 'learns that hit the step cap': 2}
+query 23 |CCS| 10 steps 45,554,000 to-converge 38,905,000 {'full learns': 23, 'learns that hit the step cap': 2}
+query 24 |CCS| 10 steps 48,554,000 to-converge 41,212,000 {'full learns': 24, 'learns that hit the step cap': 3}
+query 25 |CCS| 10 steps 50,189,000 to-converge 42,552,000 {'full learns': 25, 'learns that hit the step cap': 3}
+query 26 |CCS| 10 steps 53,189,000 to-converge 45,152,000 {'full learns': 26, 'learns that hit the step cap': 4}
+query 27 |CCS| 10 steps 55,031,000 to-converge 46,994,000 {'full learns': 27, 'learns that hit the step cap': 4}
+query 28 |CCS| 10 steps 58,031,000 to-converge 49,270,000 {'full learns': 28, 'learns that hit the step cap': 5}
+query 29 |CCS| 10 steps 60,142,000 to-converge 51,350,000 {'full learns': 29, 'learns that hit the step cap': 5}
+query 30 |CCS| 10 steps 63,142,000 to-converge 54,350,000 {'full learns': 30, 'learns that hit the step cap': 6}
+query 31 |CCS| 10 steps 64,717,000 to-converge 55,516,000 {'full learns': 31, 'learns that hit the step cap': 6}
+query 32 |CCS| 10 steps 67,655,000 to-converge 57,502,000 {'full learns': 32, 'learns that hit the step cap': 6}
+query 33 |CCS| 10 steps 70,655,000 to-converge 59,822,000 {'full learns': 33, 'learns that hit the step cap': 7}
+query 34 |CCS| 10 steps 72,425,000 to-converge 61,592,000 {'full learns': 34, 'learns that hit the step cap': 7}
+query 35 |CCS| 10 steps 74,008,000 to-converge 63,133,000 {'full learns': 35, 'learns that hit the step cap': 7}
+query 36 |CCS| 10 steps 77,000,000 to-converge 65,200,000 {'full learns': 36, 'learns that hit the step cap': 7}
+query 37 |CCS| 11 steps 79,223,000 to-converge 67,364,000 {'full learns': 37, 'learns that hit the step cap': 7}
+query 38 |CCS| 11 steps 81,024,000 to-converge 68,949,000 {'full learns': 38, 'learns that hit the step cap': 7}
+query 39 |CCS| 11 steps 84,024,000 to-converge 71,126,000 {'full learns': 39, 'learns that hit the step cap': 8}
+query 40 |CCS| 11 steps 85,885,000 to-converge 72,702,000 {'full learns': 40, 'learns that hit the step cap': 8}
+query 41 |CCS| 11 steps 87,967,000 to-converge 74,784,000 {'full learns': 41, 'learns that hit the step cap': 8}
+query 42 |CCS| 11 steps 89,626,000 to-converge 76,258,000 {'full learns': 42, 'learns that hit the step cap': 8}
+query 43 |CCS| 11 steps 91,032,000 to-converge 77,619,000 {'full learns': 43, 'learns that hit the step cap': 8}
+query 44 |CCS| 11 steps 92,756,000 to-converge 79,343,000 {'full learns': 44, 'learns that hit the step cap': 8}
+query 45 |CCS| 11 steps 94,609,000 to-converge 81,196,000 {'full learns': 45, 'learns that hit the step cap': 8}
+query 46 |CCS| 11 steps 96,344,000 to-converge 82,931,000 {'full learns': 46, 'learns that hit the step cap': 8}
+query 47 |CCS| 11 steps 97,985,000 to-converge 84,338,000 {'full learns': 47, 'learns that hit the step cap': 8}
+query 48 |CCS| 11 steps 99,798,000 to-converge 86,105,000 {'full learns': 48, 'learns that hit the step cap': 8}
+query 49 |CCS| 11 steps 101,623,000 to-converge 86,145,000 {'full learns': 49, 'learns that hit the step cap': 8}
+query 50 |CCS| 12 steps 103,635,000 to-converge 86,955,000 {'full learns': 50, 'learns that hit the step cap': 8}
+query 51 |CCS| 13 steps 106,635,000 to-converge 87,474,000 {'full learns': 51, 'learns that hit the step cap': 9}
+query 52 |CCS| 14 steps 107,774,000 to-converge 87,772,000 {'full learns': 52, 'learns that hit the step cap': 9}
+query 53 |CCS| 15 steps 110,569,000 to-converge 88,739,000 {'full learns': 53, 'learns that hit the step cap': 9}
+query 54 |CCS| 16 steps 112,993,000 to-converge 89,801,000 {'full learns': 54, 'learns that hit the step cap': 9}
+query 55 |CCS| 17 steps 114,491,000 to-converge 90,331,000 {'full learns': 55, 'learns that hit the step cap': 9}
+query 56 |CCS| 18 steps 115,374,000 to-converge 91,075,000 {'full learns': 56, 'learns that hit the step cap': 9}
+query 57 |CCS| 19 steps 116,203,000 to-converge 91,601,000 {'full learns': 57, 'learns that hit the step cap': 9}
+query 58 |CCS| 20 steps 118,581,000 to-converge 91,774,000 {'full learns': 58, 'learns that hit the step cap': 9}
+query 59 |CCS| 21 steps 119,917,000 to-converge 93,071,000 {'full learns': 59, 'learns that hit the step cap': 9}
+query 60 |CCS| 22 steps 122,917,000 to-converge 94,455,000 {'full learns': 60, 'learns that hit the step cap': 10}
+query 61 |CCS| 23 steps 123,833,000 to-converge 95,371,000 {'full learns': 61, 'learns that hit the step cap': 10}
+query 62 |CCS| 24 steps 126,833,000 to-converge 97,001,000 {'full learns': 62, 'learns that hit the step cap': 11}
+query 63 |CCS| 25 steps 128,404,000 to-converge 97,783,000 {'full learns': 63, 'learns that hit the step cap': 11}
+query 64 |CCS| 26 steps 130,655,000 to-converge 98,685,000 {'full learns': 64, 'learns that hit the step cap': 11}
+query 65 |CCS| 27 steps 132,672,000 to-converge 100,459,000 {'full learns': 65, 'learns that hit the step cap': 11}
+query 66 |CCS| 28 steps 134,543,000 to-converge 101,591,000 {'full learns': 66, 'learns that hit the step cap': 11}
+query 67 |CCS| 29 steps 136,071,000 to-converge 102,035,000 {'full learns': 67, 'learns that hit the step cap': 11}
+query 68 |CCS| 30 steps 137,821,000 to-converge 102,590,000 {'full learns': 68, 'learns that hit the step cap': 11}
+query 69 |CCS| 31 steps 140,821,000 to-converge 105,562,000 {'full learns': 69, 'learns that hit the step cap': 12}
+query 70 |CCS| 32 steps 142,354,000 to-converge 106,485,000 {'full learns': 70, 'learns that hit the step cap': 12}
+query 71 |CCS| 33 steps 143,596,000 to-converge 107,408,000 {'full learns': 71, 'learns that hit the step cap': 12}
+query 72 |CCS| 34 steps 145,677,000 to-converge 108,887,000 {'full learns': 72, 'learns that hit the step cap': 12}
+query 73 |CCS| 35 steps 148,114,000 to-converge 111,324,000 {'full learns': 73, 'learns that hit the step cap': 12}
+query 74 |CCS| 36 steps 150,580,000 to-converge 113,140,000 {'full learns': 74, 'learns that hit the step cap': 12}
+query 75 |CCS| 37 steps 153,580,000 to-converge 116,139,000 {'full learns': 75, 'learns that hit the step cap': 13}
+query 76 |CCS| 38 steps 155,647,000 to-converge 117,201,000 {'full learns': 76, 'learns that hit the step cap': 13}
+query 77 |CCS| 39 steps 158,647,000 to-converge 118,786,000 {'full learns': 77, 'learns that hit the step cap': 14}
+query 78 |CCS| 40 steps 160,507,000 to-converge 120,646,000 {'full learns': 78, 'learns that hit the step cap': 14}
+query 79 |CCS| 41 steps 161,595,000 to-converge 121,683,000 {'full learns': 79, 'learns that hit the step cap': 14}
+query 80 |CCS| 42 steps 162,674,000 to-converge 122,690,000 {'full learns': 80, 'learns that hit the step cap': 14}
+query 81 |CCS| 43 steps 164,307,000 to-converge 123,993,000 {'full learns': 81, 'learns that hit the step cap': 14}
+query 82 |CCS| 44 steps 167,307,000 to-converge 125,248,000 {'full learns': 82, 'learns that hit the step cap': 15}
+query 83 |CCS| 45 steps 169,713,000 to-converge 127,385,000 {'full learns': 83, 'learns that hit the step cap': 15}
+query 84 |CCS| 46 steps 171,498,000 to-converge 128,196,000 {'full learns': 84, 'learns that hit the step cap': 15}
+query 85 |CCS| 47 steps 174,498,000 to-converge 130,010,000 {'full learns': 85, 'learns that hit the step cap': 16}
+query 86 |CCS| 48 steps 176,292,000 to-converge 131,188,000 {'full learns': 86, 'learns that hit the step cap': 16}
+query 87 |CCS| 49 steps 179,292,000 to-converge 132,671,000 {'full learns': 87, 'learns that hit the step cap': 17}
+query 88 |CCS| 50 steps 181,788,000 to-converge 134,168,000 {'full learns': 88, 'learns that hit the step cap': 17}
+query 89 |CCS| 51 steps 184,788,000 to-converge 137,019,000 {'full learns': 89, 'learns that hit the step cap': 18}
+query 90 |CCS| 52 steps 185,494,000 to-converge 137,395,000 {'full learns': 90, 'learns that hit the step cap': 18}
+query 91 |CCS| 53 steps 188,195,000 to-converge 138,604,000 {'full learns': 91, 'learns that hit the step cap': 18}
+query 92 |CCS| 54 steps 189,301,000 to-converge 139,529,000 {'full learns': 92, 'learns that hit the step cap': 18}
+query 93 |CCS| 55 steps 190,326,000 to-converge 140,033,000 {'full learns': 93, 'learns that hit the step cap': 18}
+query 94 |CCS| 56 steps 192,921,000 to-converge 140,572,000 {'full learns': 94, 'learns that hit the step cap': 18}
+query 95 |CCS| 57 steps 195,921,000 to-converge 140,963,000 {'full learns': 95, 'learns that hit the step cap': 19}
+query 96 |CCS| 58 steps 197,334,000 to-converge 141,478,000 {'full learns': 96, 'learns that hit the step cap': 19}
+query 97 |CCS| 59 steps 198,772,000 to-converge 142,043,000 {'full learns': 97, 'learns that hit the step cap': 19}
+query 98 |CCS| 60 steps 200,719,000 to-converge 143,102,000 {'full learns': 98, 'learns that hit the step cap': 19}
+query 99 |CCS| 61 steps 202,525,000 to-converge 143,520,000 {'full learns': 99, 'learns that hit the step cap': 19}
+query 100 |CCS| 62 steps 204,622,000 to-converge 144,176,000 {'full learns': 100, 'learns that hit the step cap': 19}
+query 101 |CCS| 63 steps 206,455,000 to-converge 144,420,000 {'full learns': 101, 'learns that hit the step cap': 19}
+query 102 |CCS| 64 steps 208,248,000 to-converge 146,001,000 {'full learns': 102, 'learns that hit the step cap': 19}
+query 103 |CCS| 65 steps 210,617,000 to-converge 146,684,000 {'full learns': 103, 'learns that hit the step cap': 19}
+query 104 |CCS| 66 steps 212,356,000 to-converge 148,269,000 {'full learns': 104, 'learns that hit the step cap': 19}

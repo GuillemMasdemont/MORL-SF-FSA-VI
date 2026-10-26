@@ -1,0 +1,29 @@
+# Model-free Lazy SF-FSA-VI against SF-FSA-VI over SFOLS, Lazy with Q-learning growth and flat Q-learning on the product
+# MDP (q_lazy_fsa.py), 10 seeds per domain, the task sets of the exact experiments (certlib/lazyfsa.py): windy (60 tasks),
+# slippery Office p = 0.1 and p = 0.3 (33 tasks each); lazy_mf_ds.yaml: the double slit. Oracle checks of the policies
+# at delta = 1e-3 and of the estimated values at 1e-2 (relative to max V* at the start and exits), pessimistic start;
+# warm starts with and without inherited visit counts (each method is reported with its better setting).
+#   python cluster/sweep.py submit cluster/sweeps/lazy_mf.yaml
+#   python cluster/sweep.py merge SFOLS/runs/lazy_mf-<ts> --into SFOLS/results/lazy_mf    # then plot_lazy_mf.py
+name: lazy_mf
+command: env {domain} python q_lazy_fsa.py {cpus}
+grid:
+  domain: ["QDOM=windy QNTASK=60", "QDOM=office QSLIP=0.1 QNTASK=33", "QDOM=office QSLIP=0.3 QNTASK=33"]
+  QINHERIT: [0, 1]
+  QSEED: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QINIT: zero
+  QESTIMATE: 1
+  QDELTA: 1e-3
+  QDELTAEST: 1e-2
+  QBASE: 5e7
+  QBUDGET: 5e7
+  QFLAT: 3e8
+  QOLSMAX: 100
+  QROUNDS: 5
+slurm:
+  partition: amd
+  cpus: 16
+  pack: 2
+  mem: 12G              # per run; ~10 GB per job of 2 runs x 17 processes
+  time: "12:00:00"

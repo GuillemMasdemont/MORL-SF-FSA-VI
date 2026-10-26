@@ -1,0 +1,23 @@
+# Environment for the SFOLS/ experiments (tabular SF / GPI / Certify-or-Grow / Lazy SF-FSA-VI).
+# Pins follow HANDOFF.md §9 (the laptop's `okb` env); numba is added for speeding up the learners.
+#   conda env create -f environment.yml      (or: conda env update -f environment.yml --prune)
+name: sffsa
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy=1.26.4
+  - scipy=1.12.0
+  - matplotlib=3.10
+  - numba=0.60
+  - pandas
+  - pyyaml
+  - pillow
+  - ipykernel
+  - nbconvert
+  - nbformat
+  - pip
+  - pip:
+      - pycddlib==2.1.6      # `import cdd`; 3.x changed the API
+      - gym==0.23.1          # old gym, for RM/sf-fsa-vi/envs
+      - mo-gymnasium==1.3.1  # DST only

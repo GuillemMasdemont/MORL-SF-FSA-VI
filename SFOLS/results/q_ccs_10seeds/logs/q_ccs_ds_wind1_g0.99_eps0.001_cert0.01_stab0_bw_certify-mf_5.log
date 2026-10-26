@@ -1,0 +1,6 @@
+query 1 |CCS| 0 steps 14,009,000 to-converge 3,611,000 {'learns that hit the step cap': 2, 'full learns': 2, 'true gap <= cert tol': 1, 'certified': 1, 'false certificates': 0}
+query 2 |CCS| 1 steps 16,277,000 to-converge 3,670,000 {'learns that hit the step cap': 2, 'full learns': 2, 'true gap <= cert tol': 2, 'certified': 2, 'false certificates': 0}
+query 3 |CCS| 2 steps 18,532,000 to-converge 3,729,000 {'learns that hit the step cap': 2, 'full learns': 2, 'true gap <= cert tol': 3, 'certified': 3, 'false certificates': 0}
+query 4 |CCS| 3 steps 19,215,000 to-converge 3,788,000 {'learns that hit the step cap': 2, 'full learns': 2, 'true gap <= cert tol': 4, 'certified': 4, 'false certificates': 0}
+query 5 |CCS| 4 steps 19,946,000 to-converge 3,847,000 {'learns that hit the step cap': 2, 'full learns': 2, 'true gap <= cert tol': 5, 'certified': 5, 'false certificates': 0}
+query 6 |CCS| 5 steps 20,888,000 to-converge 3,906,000 {'learns that hit the step cap': 2, 'full learns': 2, 'true gap <= cert tol': 6, 'certified': 6, 'false certificates': 0}

@@ -1,0 +1,29 @@
+# Smoke test: every entry point of HANDOFF §9 on a tiny budget (~1–5 min each). Run after any environment change.
+#   python cluster/sweep.py submit cluster/sweeps/smoke.yaml
+name: smoke
+command: "{cmd}"            # each run below gives its own command
+runs:
+  - name: lazyfsa
+    cmd: python -m certlib.lazyfsa office1f2 2                 # E8, with a model
+  - name: hybrid-tasks
+    cmd: python -m certlib.hybrid tasks office1f2 6            # E2 (acyclic semantics)
+  - name: ccs-exact
+    cmd: python q_ccs_stochastic.py exact 0                    # exact OLS + cdd (double slit)
+    QDOMAIN: ds
+    QEPS: 1e-3
+  - name: ccs-run
+    cmd: python q_ccs_stochastic.py run 0.05 1 0 {cpus}        # E5, one seed, two arms, tiny step cap
+    ARMS: standard,certify
+    QMAX: 2e4
+  - name: lazy-mf
+    cmd: python q_lazy_fsa.py {cpus}                           # model-free Lazy SF-FSA-VI and baselines, tiny
+    QNTASK: 2
+    QBASE: 2e5
+    QBUDGET: 2e5
+    QFLAT: 2e5
+    QOLSMAX: 3
+slurm:
+  partition: amd
+  cpus: 2
+  mem: 4G
+  time: "00:30:00"

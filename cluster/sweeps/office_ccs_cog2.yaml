@@ -1,0 +1,23 @@
+# E5b: Certify-or-Grow without the overheads that SFOLS/analyze_ccs_speed.py found in E5 (office_ccs_mf.yaml).
+# QREUSE=1 answers OLS's re-queried extremes with the basis policies; QFALLBACK is the full learn after a failed
+# certificate: cold (as E5), gpi (GPI warm start over every learned table, the failed metapolicy's included) or
+# continue (the metapolicy learn goes on with all actions, keeping its table and visit counts).
+# The SFOLS arms do not change, so Figure 2 keeps them from results/q_ccs_10seeds/. ~50 min per job.
+#   python cluster/sweep.py submit cluster/sweeps/office_ccs_cog2.yaml
+#   python cluster/sweep.py merge SFOLS/runs/office_ccs_cog2-<ts> --into SFOLS/results/q_ccs_cog2
+name: office_ccs_cog2
+command: python q_ccs_stochastic.py run 0.05 1 0 1      # one seed (QSEED0), one arm (ARMS), one worker
+grid:
+  ARMS: [certify, certify-mf]
+  QFALLBACK: [cold, gpi, continue]
+  QSEED0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QBASISWARM: 1
+  QREUSE: 1
+  QEPS: 0.05
+slurm:
+  partition: amd
+  cpus: 1
+  pack: 20               # 60 runs -> 3 jobs of 20 cores
+  mem: 1G                # a 20-run job of E5 peaked at 1.8 GB in total
+  time: "06:00:00"

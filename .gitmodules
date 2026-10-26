@@ -1,0 +1,3 @@
+[submodule "RM/sf-fsa-vi"]
+	path = RM/sf-fsa-vi
+	url = https://github.com/guillermoim/sf-fsa-vi.git

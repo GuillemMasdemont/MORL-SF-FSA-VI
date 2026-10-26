@@ -1,0 +1,23 @@
+# Pilot 2 of q_lazy_fsa.py: estimate-aware checks (QESTIMATE=1) and pessimistic start (QINIT=zero); which delta the
+# learners can reach in each domain.
+name: lazy_mf_pilot2
+command: python q_lazy_fsa.py {cpus}
+runs:
+  - {QDOM: windy, QDELTA: 1e-3}
+  - {QDOM: windy, QDELTA: 3e-3}
+  - {QDOM: windy, QDELTA: 1e-2}
+  - {QDOM: office, QSLIP: 0.3, QDELTA: 1e-3}
+  - {QDOM: ds, QDELTA: 1e-3}
+env:
+  QINIT: zero
+  QESTIMATE: 1
+  QNTASK: 8
+  QBASE: 5e7
+  QBUDGET: 5e7
+  QFLAT: 1e8
+  QOLSMAX: 40
+slurm:
+  partition: amd
+  cpus: 8
+  mem: 16G
+  time: "04:00:00"

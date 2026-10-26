@@ -1,0 +1,22 @@
+# E5: model-free CCS construction on the double slit (wind +-1, gamma 0.99, OLS eps 1e-3), 10 seeds. ~10-15 min per run.
+#   python cluster/sweep.py submit cluster/sweeps/ds_ccs_mf.yaml
+name: ds_ccs_mf
+command: python q_ccs_stochastic.py run 0 1 0 1
+grid:
+  ARMS: [standard, standard-warm, certify, certify-mf]
+  QSEED0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QDOMAIN: ds
+  QWIND: 1
+  QGAMMA: 0.99
+  QEPS: 1e-3
+  QCERT: 1e-2
+  QSTABK: 0
+  QMAX: 5e6
+  QBASISWARM: 1
+slurm:
+  partition: amd
+  cpus: 1
+  pack: 20
+  mem: 3G
+  time: "06:00:00"

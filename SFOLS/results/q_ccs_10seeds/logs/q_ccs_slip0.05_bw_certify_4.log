@@ -1,0 +1,97 @@
+query 1 |CCS| 0 steps 9,904,000 to-converge 9,224,000 {'full learns': 6, 'certified': 1}
+query 2 |CCS| 1 steps 11,281,000 to-converge 10,516,000 {'full learns': 6, 'certified': 2}
+query 3 |CCS| 2 steps 12,430,000 to-converge 11,535,000 {'full learns': 6, 'certified': 3}
+query 4 |CCS| 3 steps 15,576,000 to-converge 14,203,000 {'full learns': 7, 'certified': 3, 'fallbacks': 1}
+query 5 |CCS| 4 steps 17,182,000 to-converge 15,367,000 {'full learns': 7, 'certified': 4, 'fallbacks': 1}
+query 6 |CCS| 5 steps 20,106,000 to-converge 18,259,000 {'full learns': 7, 'certified': 5, 'fallbacks': 1}
+query 7 |CCS| 6 steps 21,519,000 to-converge 19,548,000 {'full learns': 7, 'certified': 6, 'fallbacks': 1}
+query 8 |CCS| 7 steps 22,774,000 to-converge 20,077,000 {'full learns': 7, 'certified': 7, 'fallbacks': 1}
+query 9 |CCS| 8 steps 26,344,000 to-converge 23,647,000 {'full learns': 8, 'certified': 7, 'fallbacks': 2, 'learns that hit the step cap': 1}
+query 10 |CCS| 8 steps 27,523,000 to-converge 24,753,000 {'full learns': 8, 'certified': 8, 'fallbacks': 2, 'learns that hit the step cap': 1}
+query 11 |CCS| 8 steps 30,734,000 to-converge 27,930,000 {'full learns': 9, 'certified': 8, 'fallbacks': 3, 'learns that hit the step cap': 1}
+query 12 |CCS| 8 steps 34,163,000 to-converge 31,359,000 {'full learns': 10, 'certified': 8, 'fallbacks': 4, 'learns that hit the step cap': 1}
+query 13 |CCS| 9 steps 35,668,000 to-converge 32,747,000 {'full learns': 10, 'certified': 9, 'fallbacks': 4, 'learns that hit the step cap': 1}
+query 14 |CCS| 10 steps 37,985,000 to-converge 34,993,000 {'full learns': 11, 'certified': 9, 'fallbacks': 5, 'learns that hit the step cap': 1}
+query 15 |CCS| 10 steps 39,637,000 to-converge 36,345,000 {'full learns': 11, 'certified': 10, 'fallbacks': 5, 'learns that hit the step cap': 1}
+query 16 |CCS| 10 steps 42,416,000 to-converge 39,124,000 {'full learns': 12, 'certified': 10, 'fallbacks': 6, 'learns that hit the step cap': 1}
+query 17 |CCS| 10 steps 45,301,000 to-converge 39,587,000 {'full learns': 12, 'certified': 11, 'fallbacks': 6, 'learns that hit the step cap': 1}
+query 18 |CCS| 10 steps 47,787,000 to-converge 42,035,000 {'full learns': 13, 'certified': 11, 'fallbacks': 7, 'learns that hit the step cap': 1}
+query 19 |CCS| 10 steps 49,370,000 to-converge 43,499,000 {'full learns': 13, 'certified': 12, 'fallbacks': 7, 'learns that hit the step cap': 1}
+query 20 |CCS| 10 steps 52,092,000 to-converge 45,890,000 {'full learns': 14, 'certified': 12, 'fallbacks': 8, 'learns that hit the step cap': 1}
+query 21 |CCS| 10 steps 53,945,000 to-converge 47,542,000 {'full learns': 14, 'certified': 13, 'fallbacks': 8, 'learns that hit the step cap': 1}
+query 22 |CCS| 10 steps 55,609,000 to-converge 49,023,000 {'full learns': 14, 'certified': 14, 'fallbacks': 8, 'learns that hit the step cap': 1}
+query 23 |CCS| 11 steps 57,612,000 to-converge 49,309,000 {'full learns': 14, 'certified': 15, 'fallbacks': 8, 'learns that hit the step cap': 1}
+query 24 |CCS| 11 steps 60,276,000 to-converge 51,759,000 {'full learns': 15, 'certified': 15, 'fallbacks': 9, 'learns that hit the step cap': 1}
+query 25 |CCS| 11 steps 62,660,000 to-converge 53,704,000 {'full learns': 15, 'certified': 16, 'fallbacks': 9, 'learns that hit the step cap': 1}
+query 26 |CCS| 11 steps 65,929,000 to-converge 56,911,000 {'full learns': 16, 'certified': 16, 'fallbacks': 10, 'learns that hit the step cap': 1}
+query 27 |CCS| 11 steps 71,117,000 to-converge 61,634,000 {'full learns': 17, 'certified': 16, 'fallbacks': 11, 'learns that hit the step cap': 2}
+query 28 |CCS| 11 steps 71,925,000 to-converge 62,338,000 {'full learns': 17, 'certified': 17, 'fallbacks': 11, 'learns that hit the step cap': 2}
+query 29 |CCS| 11 steps 74,417,000 to-converge 64,469,000 {'full learns': 17, 'certified': 18, 'fallbacks': 11, 'learns that hit the step cap': 2}
+query 30 |CCS| 11 steps 76,683,000 to-converge 66,659,000 {'full learns': 17, 'certified': 19, 'fallbacks': 11, 'learns that hit the step cap': 2}
+query 31 |CCS| 11 steps 77,526,000 to-converge 67,458,000 {'full learns': 17, 'certified': 20, 'fallbacks': 11, 'learns that hit the step cap': 2}
+query 32 |CCS| 11 steps 80,125,000 to-converge 69,948,000 {'full learns': 17, 'certified': 21, 'fallbacks': 11, 'learns that hit the step cap': 2}
+query 33 |CCS| 11 steps 81,421,000 to-converge 71,194,000 {'full learns': 17, 'certified': 22, 'fallbacks': 11, 'learns that hit the step cap': 2}
+query 34 |CCS| 11 steps 85,463,000 to-converge 75,121,000 {'full learns': 18, 'certified': 22, 'fallbacks': 12, 'learns that hit the step cap': 2}
+query 35 |CCS| 12 steps 86,809,000 to-converge 76,007,000 {'full learns': 18, 'certified': 23, 'fallbacks': 12, 'learns that hit the step cap': 2}
+query 36 |CCS| 12 steps 89,403,000 to-converge 78,601,000 {'full learns': 19, 'certified': 23, 'fallbacks': 13, 'learns that hit the step cap': 2}
+query 37 |CCS| 12 steps 91,243,000 to-converge 80,289,000 {'full learns': 19, 'certified': 24, 'fallbacks': 13, 'learns that hit the step cap': 2}
+query 38 |CCS| 12 steps 94,983,000 to-converge 83,841,000 {'full learns': 20, 'certified': 24, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 39 |CCS| 12 steps 96,547,000 to-converge 85,350,000 {'full learns': 20, 'certified': 25, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 40 |CCS| 12 steps 99,075,000 to-converge 87,784,000 {'full learns': 20, 'certified': 26, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 41 |CCS| 12 steps 101,092,000 to-converge 89,458,000 {'full learns': 20, 'certified': 27, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 42 |CCS| 12 steps 102,980,000 to-converge 91,214,000 {'full learns': 20, 'certified': 28, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 43 |CCS| 12 steps 104,393,000 to-converge 92,588,000 {'full learns': 20, 'certified': 29, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 44 |CCS| 12 steps 105,138,000 to-converge 93,223,000 {'full learns': 20, 'certified': 30, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 45 |CCS| 13 steps 105,646,000 to-converge 93,300,000 {'full learns': 20, 'certified': 31, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 46 |CCS| 14 steps 107,044,000 to-converge 93,577,000 {'full learns': 20, 'certified': 32, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 47 |CCS| 15 steps 108,433,000 to-converge 94,966,000 {'full learns': 20, 'certified': 33, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 48 |CCS| 16 steps 109,464,000 to-converge 95,135,000 {'full learns': 20, 'certified': 34, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 49 |CCS| 17 steps 110,604,000 to-converge 95,326,000 {'full learns': 20, 'certified': 35, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 50 |CCS| 18 steps 111,174,000 to-converge 95,326,000 {'full learns': 20, 'certified': 36, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 51 |CCS| 19 steps 112,399,000 to-converge 95,890,000 {'full learns': 20, 'certified': 37, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 52 |CCS| 20 steps 114,566,000 to-converge 96,445,000 {'full learns': 20, 'certified': 38, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 53 |CCS| 21 steps 116,546,000 to-converge 97,559,000 {'full learns': 20, 'certified': 39, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 54 |CCS| 22 steps 117,547,000 to-converge 98,371,000 {'full learns': 20, 'certified': 40, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 55 |CCS| 23 steps 119,135,000 to-converge 98,642,000 {'full learns': 20, 'certified': 41, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 56 |CCS| 24 steps 120,927,000 to-converge 99,003,000 {'full learns': 20, 'certified': 42, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 57 |CCS| 25 steps 121,940,000 to-converge 99,700,000 {'full learns': 20, 'certified': 43, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 58 |CCS| 26 steps 123,946,000 to-converge 101,419,000 {'full learns': 20, 'certified': 44, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 59 |CCS| 27 steps 125,892,000 to-converge 102,391,000 {'full learns': 20, 'certified': 45, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 60 |CCS| 28 steps 127,193,000 to-converge 102,721,000 {'full learns': 20, 'certified': 46, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 61 |CCS| 29 steps 128,046,000 to-converge 102,989,000 {'full learns': 20, 'certified': 47, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 62 |CCS| 30 steps 130,714,000 to-converge 103,308,000 {'full learns': 20, 'certified': 48, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 63 |CCS| 31 steps 132,088,000 to-converge 104,651,000 {'full learns': 20, 'certified': 49, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 64 |CCS| 32 steps 133,463,000 to-converge 106,026,000 {'full learns': 20, 'certified': 50, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 65 |CCS| 33 steps 134,855,000 to-converge 107,123,000 {'full learns': 20, 'certified': 51, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 66 |CCS| 34 steps 135,514,000 to-converge 107,782,000 {'full learns': 20, 'certified': 52, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 67 |CCS| 35 steps 137,545,000 to-converge 109,514,000 {'full learns': 20, 'certified': 53, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 68 |CCS| 36 steps 139,615,000 to-converge 109,735,000 {'full learns': 20, 'certified': 54, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 69 |CCS| 37 steps 140,813,000 to-converge 110,933,000 {'full learns': 20, 'certified': 55, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 70 |CCS| 38 steps 142,386,000 to-converge 112,425,000 {'full learns': 20, 'certified': 56, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 71 |CCS| 39 steps 145,178,000 to-converge 115,217,000 {'full learns': 20, 'certified': 57, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 72 |CCS| 40 steps 146,466,000 to-converge 116,505,000 {'full learns': 20, 'certified': 58, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 73 |CCS| 41 steps 148,719,000 to-converge 118,639,000 {'full learns': 20, 'certified': 59, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 74 |CCS| 42 steps 151,144,000 to-converge 121,064,000 {'full learns': 20, 'certified': 60, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 75 |CCS| 43 steps 152,894,000 to-converge 122,092,000 {'full learns': 20, 'certified': 61, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 76 |CCS| 44 steps 155,061,000 to-converge 124,208,000 {'full learns': 20, 'certified': 62, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 77 |CCS| 45 steps 156,035,000 to-converge 124,723,000 {'full learns': 20, 'certified': 63, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 78 |CCS| 46 steps 157,654,000 to-converge 125,307,000 {'full learns': 20, 'certified': 64, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 79 |CCS| 47 steps 158,915,000 to-converge 125,795,000 {'full learns': 20, 'certified': 65, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 80 |CCS| 48 steps 161,485,000 to-converge 127,293,000 {'full learns': 20, 'certified': 66, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 81 |CCS| 49 steps 162,848,000 to-converge 128,625,000 {'full learns': 20, 'certified': 67, 'fallbacks': 14, 'learns that hit the step cap': 2}
+query 82 |CCS| 50 steps 166,941,000 to-converge 131,850,000 {'full learns': 21, 'certified': 67, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 83 |CCS| 51 steps 168,630,000 to-converge 132,928,000 {'full learns': 21, 'certified': 68, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 84 |CCS| 52 steps 169,761,000 to-converge 133,911,000 {'full learns': 21, 'certified': 69, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 85 |CCS| 53 steps 170,896,000 to-converge 133,911,000 {'full learns': 21, 'certified': 70, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 86 |CCS| 54 steps 173,179,000 to-converge 133,911,000 {'full learns': 21, 'certified': 71, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 87 |CCS| 55 steps 174,687,000 to-converge 134,020,000 {'full learns': 21, 'certified': 72, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 88 |CCS| 56 steps 175,683,000 to-converge 134,020,000 {'full learns': 21, 'certified': 73, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 89 |CCS| 57 steps 177,115,000 to-converge 134,049,000 {'full learns': 21, 'certified': 74, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 90 |CCS| 58 steps 178,871,000 to-converge 134,069,000 {'full learns': 21, 'certified': 75, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 91 |CCS| 59 steps 179,824,000 to-converge 134,752,000 {'full learns': 21, 'certified': 76, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 92 |CCS| 60 steps 180,551,000 to-converge 134,752,000 {'full learns': 21, 'certified': 77, 'fallbacks': 15, 'learns that hit the step cap': 2}
+query 93 |CCS| 61 steps 183,551,000 to-converge 135,150,000 {'full learns': 21, 'certified': 78, 'fallbacks': 15, 'learns that hit the step cap': 3}
+query 94 |CCS| 62 steps 185,440,000 to-converge 136,447,000 {'full learns': 21, 'certified': 79, 'fallbacks': 15, 'learns that hit the step cap': 3}
+query 95 |CCS| 63 steps 186,832,000 to-converge 136,650,000 {'full learns': 21, 'certified': 80, 'fallbacks': 15, 'learns that hit the step cap': 3}
+query 96 |CCS| 64 steps 189,090,000 to-converge 136,650,000 {'full learns': 21, 'certified': 81, 'fallbacks': 15, 'learns that hit the step cap': 3}
+query 97 |CCS| 65 steps 191,180,000 to-converge 136,650,000 {'full learns': 21, 'certified': 82, 'fallbacks': 15, 'learns that hit the step cap': 3}

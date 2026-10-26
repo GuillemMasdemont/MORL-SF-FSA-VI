@@ -42,7 +42,7 @@ BUDGET = int(float(os.environ.get("QBUDGET", 2e6)))
 STABLE = int(os.environ.get("QSTABLE", 300))              # good checks in a row before stopping (300k steps)
 DELTA = 1e-3
 SEEDS = int(os.environ.get("QSEEDS", 2))                   # learner seeds per problem (the base is learned once)
-OUT = os.path.join(HERE, "results", f"fsa_q_office_slip{SLIP}.pkl")
+OUT = os.path.join(os.environ.get("SF_OUT") or os.path.join(HERE, "results"), f"fsa_q_office_slip{SLIP}.pkl")
 
 DOM = os.environ.get("QDOM", "office")                    # office (slip QSLIP) | windy (two-stage, wind +-3)
 mdp = office(p=SLIP) if DOM == "office" else windy_two_stage()

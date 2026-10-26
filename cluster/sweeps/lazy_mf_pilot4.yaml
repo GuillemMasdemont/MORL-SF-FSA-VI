@@ -1,0 +1,21 @@
+# Pilot 4 of q_lazy_fsa.py: estimates checked at 1e-2, policies at 1e-3; with SFOLS.
+name: lazy_mf_pilot4
+command: python q_lazy_fsa.py {cpus}
+runs:
+  - {QDOM: windy}
+  - {QDOM: office, QSLIP: 0.1}
+  - {QDOM: ds}
+env:
+  QINIT: zero
+  QDELTA: 1e-3
+  QNTASK: 8
+  QBASE: 5e7
+  QBUDGET: 5e7
+  QFLAT: 3e8
+  QOLSMAX: 40
+  QDELTAEST: 1e-2
+slurm:
+  partition: amd
+  cpus: 16
+  mem: 24G
+  time: "04:00:00"

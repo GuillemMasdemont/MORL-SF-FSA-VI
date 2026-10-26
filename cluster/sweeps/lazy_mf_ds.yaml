@@ -1,0 +1,26 @@
+# The double slit (Kuric et al.'s "reach blue or red", wind +-3, gamma 0.9) for the model-free comparison of
+# lazy_mf.yaml, with and without inherited counts, 10 seeds (one task: each run is small, so 5 runs share a job).
+#   python cluster/sweep.py submit cluster/sweeps/lazy_mf_ds.yaml
+#   python cluster/sweep.py merge SFOLS/runs/lazy_mf_ds-<ts> --into SFOLS/results/lazy_mf
+name: lazy_mf_ds
+command: python q_lazy_fsa.py {cpus}
+grid:
+  QINHERIT: [0, 1]
+  QSEED: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QDOM: ds
+  QINIT: zero
+  QESTIMATE: 1
+  QDELTA: 1e-3
+  QDELTAEST: 1e-2
+  QBASE: 5e7
+  QBUDGET: 5e7
+  QFLAT: 3e8
+  QOLSMAX: 100
+  QROUNDS: 5
+slurm:
+  partition: amd
+  cpus: 6
+  pack: 5
+  mem: 2400M
+  time: "12:00:00"

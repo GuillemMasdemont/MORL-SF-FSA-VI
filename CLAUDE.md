@@ -38,6 +38,17 @@ notebook/script to its environment — don't assume the currently-active shell e
 | `sf-fsa-vi` (conda, `/opt/anaconda3/envs/sf-fsa-vi`) | `RM/sf-fsa-vi/run_sfols.py`, `run_lof.py`, and `RM/sf-fsa-vi/notebooks/*.ipynb`. |
 | `morl-sfols` (kernel name) → `venv/` at repo root | `SFOLS/01_dst_exploration.ipynb` only (uses `mo_gymnasium`, no OKB/sf-fsa-vi deps). |
 
+## Cluster (FRIDA, SLURM) — where the SFOLS/ experiments run now
+
+See `cluster/README.md`. In short: conda env `sffsa` (`environment.yml`, `bash cluster/setup.sh`), python at
+`~/miniconda3/envs/sffsa/bin/python`; experiments are launched as sweeps with `cluster/sweep.py submit
+cluster/sweeps/<spec>.yaml`, each run in its own directory under `SFOLS/runs/` (outputs via `$SF_OUT`, code snapshot,
+git provenance), and promoted to `SFOLS/results/` with `sweep.py merge`. CPU partition `amd` (2-day limit), `frida`
+for longer jobs; **max 8 running jobs per user**, so pack work per job. Nothing runs on the login node: experiments,
+plots and LaTeX go through SLURM (`cluster/tex.sh` compiles the paper/notes and renders usetex figures inside a TeX Live
+container). The model-free learners are numba kernels in `SFOLS/mf.py` (~50x the Python loops). The laptop envs
+below do not exist there.
+
 ## Common commands
 
 **Install OKB** (from `OKB/`): `pip install -e .` — pulls in pinned jax/jaxlib/flax/optax/chex versions (flax 0.7.5

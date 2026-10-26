@@ -1,0 +1,14 @@
+# E8: Lazy SF-FSA-VI with a model (Kuric semantics), the paper's Figure 3 inputs. ~1 min Office, ~40 min windy.
+#   python cluster/sweep.py submit cluster/sweeps/lazyfsa_model.yaml
+#   python cluster/sweep.py merge SFOLS/runs/lazyfsa_model-<ts> --into SFOLS/results/certlib --force   # then plot_lazy_fsa.py
+name: lazyfsa_model
+command: python -m certlib.lazyfsa {domain} {n_tasks}
+runs:
+  - {name: office1f2, domain: office1f2, n_tasks: 30}
+  - {name: office3f2, domain: office3f2, n_tasks: 30}
+  - {name: windy, domain: windy, n_tasks: 60}
+slurm:
+  partition: amd
+  cpus: 1
+  mem: 8G
+  time: "04:00:00"

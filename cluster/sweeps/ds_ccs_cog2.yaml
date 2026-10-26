@@ -1,0 +1,26 @@
+# E5b on the double slit (see office_ccs_cog2.yaml). Without fallbacks the three QFALLBACK variants are identical runs.
+# ~10-15 min per run.
+#   python cluster/sweep.py submit cluster/sweeps/ds_ccs_cog2.yaml
+#   python cluster/sweep.py merge SFOLS/runs/ds_ccs_cog2-<ts> --into SFOLS/results/q_ccs_cog2
+name: ds_ccs_cog2
+command: python q_ccs_stochastic.py run 0 1 0 1
+grid:
+  ARMS: [certify, certify-mf]
+  QFALLBACK: [cold, gpi, continue]
+  QSEED0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QDOMAIN: ds
+  QWIND: 1
+  QGAMMA: 0.99
+  QEPS: 1e-3
+  QCERT: 1e-2
+  QSTABK: 0
+  QMAX: 5e6
+  QBASISWARM: 1
+  QREUSE: 1
+slurm:
+  partition: amd
+  cpus: 1
+  pack: 30               # 60 runs -> 2 jobs of 30 cores
+  mem: 1G
+  time: "04:00:00"

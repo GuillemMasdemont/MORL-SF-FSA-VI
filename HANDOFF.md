@@ -19,11 +19,18 @@ first, then the experiment you need. Paths are relative to the repository root `
   91–100% of the added policies (base kept across tasks) are metapolicy/pi_hyb compositions.
 - **With a model the metapolicy saves no compute** versus policy iteration; its value is that new policies are
   compositions of stored ones (cheap to learn) and pi_hyb handles hedging.
-- **Without a model: open.** Noise dominates learning cost; Certify-or-Grow's CCS speed-up mostly vanishes; the
-  effective lever is **inherited visit counts** (~2x); **certification without a model is the main open problem**
-  (sampled certificates false-certify 15–22%). The model-free windy run was killed after 3 h (see §7, §8).
-- **Paper.** `paper/article.tex` Section 4 (SF-FSA-VI) was written/edited in this session: deterministic theorem,
-  Lazy SF-FSA-VI (Alg. 4, Prop. 1), results paragraph and Figure `lazy_fsa.pdf` at the end of Section 5.
+- **Without a model (E10, cluster session):** with an oracle certificate that checks the GPI *policy and estimate* at
+  w(u), Lazy SF-FSA-VI brings every windy task within 0.4% (zero-shot over the learned extremes: up to 2.1%) with ~1
+  new policy and ~1M steps per task; with the added policies kept, 87–97% of new tasks need no new policy. It needs
+  2–4x fewer samples than SF-FSA-VI over SFOLS (20–260x after the shared extremes); SFOLS's plan even degrades as
+  noisy tables accumulate. Metapolicy growth costs as much as Q-learning over all actions. Flat Q-learning on the
+  product MDP is 120x more expensive per task in windy but cheaper than learning the extremes in Office.
+  **Certification without a model is still the main open problem** (the experiments use an oracle).
+- **CCS under noise (E5, 10 seeds):** Certify-or-Grow's gain over SFOLS mostly vanishes (Office: +9% with the model
+  certificate, −11% model-free with 16% false certificates; double slit: as fast as warm SFOLS).
+- **Paper.** Section 4 (SF-FSA-VI) written in the laptop session; the cluster session added Figure 2 (stochastic CCS
+  cost), Figure 5 (model-free Lazy SF-FSA-VI), their paragraphs, the zero-shot/planning sentences for Figure 4, and
+  updated the abstract, contributions, outline and conclusion (§6). Analysis note: `notes/lazy_sf_fsa_vi.tex`.
 
 ---
 
@@ -34,15 +41,18 @@ first, then the experiment you need. Paths are relative to the repository root `
 - **Paper draft**: `paper/article.tex` ("Faster convex coverage sets via metapolicies over base policies").
   Sections: Background (SFs, GPI, CCS, OLS/SFOLS); Formalism (metapolicy over the base actions B(s); restricted SF
   Q-learning, Alg. 2; Bellman certificate; Certify-or-Grow, Alg. 3; hybrid policy pi_hyb, Eq. 14); **Section 4
-  SF-FSA-VI** (new); Results (Figure 1: model-free CCS cost in DST/Office; Figure 2: double slit; Figure 3: Lazy
-  SF-FSA-VI); Conclusion; Appendix (convergence of the metapolicy recursion). Compile:
-  `cd paper && pdflatex article && biber article && pdflatex article && pdflatex article`.
+  SF-FSA-VI**; Results (Figure 1: model-free CCS cost in DST/Office; Figure 2: the same in stochastic Office and
+  the double slit; Figure 3: double slit, pi_hyb; Figure 4: Lazy SF-FSA-VI with exact SFs; Figure 5: Lazy SF-FSA-VI
+  without a model); Conclusion; Appendix (convergence of the metapolicy recursion). 27 pages. Compile on the
+  laptop with `cd paper && pdflatex article && biber article && pdflatex article && pdflatex article`, on the cluster
+  with `bash cluster/tex.sh paper article` (identical output).
 - **Notes** (LaTeX, `notes/`):
   - `gpi_basis.tex` — 5-page note: Theorem (deterministic), Proposition (pi_hyb dominance / action gap / coverage),
     hedging example figure, per-automaton-state ladder (GPI -> pi_hyb -> PI), per-task-type tables, model-free
     results. Uses the **acyclic** task semantics (see §3). Older versions in `notes/archive/`.
-  - `lazy_sf_fsa_vi.tex` — 3-page draft of Lazy SF-FSA-VI with Kuric semantics. **Contains a literal placeholder
-    `WINDY_MF` that breaks compilation**; replace it with the model-free windy result or delete that line.
+  - `lazy_sf_fsa_vi.tex` — **the 6-page analysis note** of the cluster session: CoG for the CCS under noise (E5,
+    10 seeds), Lazy SF-FSA-VI with the model (E8 + zero-shot share, planning cost) and without it (E10), with tables
+    and `notes/figures/lazy_mf_all.pdf`. Compile with `bash cluster/tex.sh notes lazy_sf_fsa_vi nobib`.
   - `certified_library.tex` — earlier 8-page note on an all-weights certificate (superseded; see §5 E1).
 - **User's analysis document**: `fsa-rm-vi-directions.md` (directions D1–D6: cache certification, lazy CCS, local
   grow, CCS traversal by flips, compressed metapolicy, large action spaces). D2+D3 became Lazy SF-FSA-VI.
@@ -98,6 +108,11 @@ The full transcript of the last session is on the user's laptop at
     "a constrained CCS plus a small refinement per iteration instead of the whole basis" -> Lazy SF-FSA-VI (E8, E9).
 12. Paper Section 4 edited (deterministic theorem fixed, user's style kept); Section 4.2 completed with Algorithm 4,
     Proposition 1 and Figure 3. The model-free windy run was killed; the user is moving the code to a cluster.
+13. Cluster session (2026-10-25, FRIDA): environment `sffsa`, sweep tool `cluster/sweep.py`, TeX container. The user
+    asked to "fix everything left", add the stochastic CoG plots to the paper (concisely), and analyse Lazy SF-FSA-VI
+    "like Infante's plots": how long a new task takes, how many certificates / growths, whether it stays zero-shot,
+    and CoG against plain Q-learning over all actions. Done as E5 (10 seeds) and E10 below; nothing runs on the login
+    node (user's instruction).
 
 ## 3. Concepts and notation
 
@@ -209,6 +224,19 @@ diluted by the ~120k steps both pay to learn the two extremes.
   converge in 3M steps per learn.
 - The all-steps panels are dominated by the step cap: the noise-robust stopping rule (policy stable for 30 checks)
   almost never fires because near-tie actions keep flipping.
+- **10 seeds (cluster, 2026-10-25; paper Figure 2, `paper/figures/q_ccs_cost_stochastic.pdf`; data
+  `SFOLS/results/q_ccs_10seeds/`; sweeps `cluster/sweeps/{office,ds}_ccs_mf.yaml`; all arms with QBASISWARM=1; seeds
+  0–2 reproduce the 3-seed runs exactly).** Steps to converge, mean +- std:
+
+  | arm | Office slip 0.05 | double slit wind +-1 |
+  |---|---|---|
+  | SFOLS | 135.7 +- 5.6M (all steps 191.6M) | 13.2 +- 1.3M (26.0M) |
+  | SFOLS + warm start | 133.4 +- 5.4M (193.2M) | 4.24 +- 0.66M (30.6M) |
+  | CoG, model certificate | 147.4 +- 12.6M (206.5M); 17.5 fallbacks / 96.5 queries | 4.49 +- 1.36M (21.3M) |
+  | CoG, model-free certificate | 120.9 +- 10.9M (176.6M); 15.5 false of 94 certified | 4.94 +- 1.59M (22.5M) |
+
+  The 3-seed claim "CoG 12% faster than warm SFOLS in the double slit" does not hold with 10 seeds (4.49 vs 4.24M);
+  CoG stops earlier (21 vs 31M all steps). Under noise the gain of CoG over SFOLS mostly vanishes.
 
 ### E6. Model-free learning per automaton state — `q_fsa_stochastic.py`, `results/fsa_q_office_slip0.05.pkl`
 Office slip 0.05, 20 tasks = 24 distinct automaton-state problems, base = 6 extremes learned model-free (2.5M steps
@@ -256,6 +284,7 @@ disjunction 1.40 vs 1.65, random 0.39 vs 0.38. A 20-policy base was no better. I
   Deterministic Office (`office0f2`, 5 tasks): nothing added, as Theorem 2 predicts.
 
 ### E9. Lazy SF-FSA-VI without a model — `q_lazy_fsa.py` (uses `q_fsa_stochastic.py` learners)
+- *Superseded by E10: `q_lazy_fsa.py` was rewritten (the E9 version is in git, commit 06c7d91).*
 - Assumption: the certificate is an oracle check that GPI over the stored tables is within delta = 1e-3 of optimal at
   the start and the exits; learners stop after STABLE=100 good oracle checks or a 3M budget; added policies are learned
   first on B(s) with inherited counts (metapolicy), then on all actions if not certified.
@@ -264,6 +293,45 @@ disjunction 1.40 vs 1.65, random 0.39 vs 0.38. A 20-policy base was no better. I
   SFOLS's eps-CCS in the same domain.
 - **Windy, 12 tasks**: killed after ~3 h with no result (stream mode prints only at the end; learns likely hit the 3M
   cap because the strict oracle stop rarely holds under noise, and certification kept failing). Needs a rerun (§8).
+
+### E10. Model-free Lazy SF-FSA-VI against the previous algorithms (cluster) — `q_lazy_fsa.py` (rewritten), `mf.py`
+- **Question (user):** how long a new task takes, how many certificates / growths, whether it stays zero-shot, and CoG
+  against plain Q-learning over all actions; plots "like Infante's" (Kuric et al. Figure 3: performance vs samples).
+- **Methods** (all learn from samples with the numba learners of `mf.py`, same step size 1/(n+1)^0.7, eps 0.1,
+  exploring starts; the model only measures): the d extremes (shared); Lazy SF-FSA-VI growing with the metapolicy
+  (model-free CoG: learn on B(s) until the policy converges; keep it if optimal, else continue on all actions) or
+  with Q-learning over all actions, both from the GPI table, from the extremes on every task (fresh, parallel) or
+  keeping the added policies (stream), at most 5 rounds; SF-FSA-VI over all policies learned by SFOLS from the same
+  extremes (OLS eps 1e-3, up to 100 queries, plan evaluated after every query); flat Q-learning on the product MDP.
+- **Certificate (assumption):** oracle check that at w(u) the GPI policy is within 1e-3 and the GPI estimate within
+  1e-2 of V*_w(u) at the start and exits (relative to max V*); learners stop after 100 good checks of 1000 steps or
+  50M steps (flat: 300M; flat's tolerance is 1e-3 V* at the start). SF tables start at zero (pessimistic).
+- **Data:** `SFOLS/results/lazy_mf/inherit{0,1}/lazy_mf_<domain>_s<seed>.pkl` (10 seeds; windy 60 tasks, Office
+  p = 0.1 / 0.3 33 tasks, double slit 1 task), sweeps `cluster/sweeps/lazy_mf.yaml`, `lazy_mf_ds.yaml`; figures
+  `plot_lazy_mf.py` -> `paper/figures/lazy_mf.pdf` (windy, Office p = 0.3), `notes/figures/lazy_mf_all.pdf`.
+  Each method with its better count setting: Lazy without inherited counts, SFOLS with (windy, Office) / without (ds).
+
+  | | windy | Office 0.1 | Office 0.3 | double slit |
+  |---|---|---|---|---|
+  | learned extremes: steps; zero-shot regret mean / max | 42.6M; 0.90 / 2.1% | 128M; 0.008 / 0.15% | 231M; 0.054 / 0.33% | 33.6M; 2.1% |
+  | Lazy (metapolicy) from extremes: policies, steps / task; regret | 0.85, 1.07M; 0.17 / 0.32% | 0.68, 0.32M; 0.008 / 0.11% | 1.31, 1.03M; 0.014 / 0.12% | 1, 2.2M; 0.024% |
+  | Lazy (Q-learning) from extremes: steps / task | 1.04M | 0.23M | 0.82M | 2.26M |
+  | kept: tasks with no new policy (2nd half); steps / task | 97% (100%); 0.043M | 91% (95%); 0.045M | 87% (91%); 0.15M | – |
+  | SFOLS: steps after the extremes; final regret mean / max | 61.8M; 0.21 / 0.50% | 384M; 0.004 / 0.11% | 646M; 0.021 / 0.27% | 40.7M; 0.012% |
+  | flat Q on the product: steps / task | 127M (96% converge) | 0.87M | 2.85M | 2.07M |
+  | total SFOLS / total Lazy; tasks for SFs to beat flat Q | 2.3x; <1 | 4.0x; 155 | 3.7x; 85 | 2.1x; – |
+
+- **Findings:** (1) the oracle must check the *estimates*: a policy-only check certified windy tasks with 15% regret
+  (pilot 1); (2) with the policies kept most new tasks are zero-shot; (3) metapolicy and Q-learning growth cost the
+  same (0.93–1.4x); the metapolicy is certified alone for 8–19% of the new policies (33–58% when kept); (4) in windy
+  80% of the new policies are the hedging one at u0 (~220 of 611 states differ from any stored policy); (5) SFOLS
+  without inherited counts degrades: mean regret ~1e-3 after 9–17 queries, 1.3–9.2% at 62–100 (max over noisy
+  tables overestimates the exits); (6) the shared extremes are 94–99% of Lazy's total cost.
+- **Pilots** (`cluster/sweeps/lazy_mf_pilot{,2,3,4,5}.yaml`, 8 tasks, 1 seed) fixed: estimate checks (pilot 2), cheap
+  model-free CoG that decides on the restricted policy before refining estimates (3), estimate tolerance 1e-2 (4),
+  no inherited counts for Lazy (5). Optimistic vs zero start: `SFOLS/checks/check_init.py` (zero is 20–60x faster on
+  windy corridor extremes, slower on one Office extreme). `SFOLS/checks/check_mf.py` validates the numba learners
+  against the Python loop (same Q error at fixed budgets) and the evaluators against exact solves.
 
 ## 6. Paper edits made in this session (`paper/article.tex`)
 
@@ -275,7 +343,11 @@ disjunction 1.40 vs 1.65, random 0.39 vs 0.38. A 20-policy base was no better. I
 - End of Section 5: setup paragraph (slippery Office p in {0.1, 0.3}, windy two-stage, Kuric semantics + gamma jump
   assumption), **Figure 3** (`lazy_fsa.pdf`), results paragraph. Exact SFs only; the model-free FSA results are NOT in
   the paper.
-- Not done: the introduction's outline (line ~85) does not mention Section 4; the conclusion does not mention FSA.
+- Cluster session: Figure 2 `q_ccs_cost_stochastic.pdf` + paragraph (E5, 10 seeds); Figure 5 `lazy_mf.pdf` +
+  paragraph (E10); two sentences after Figure 4 (zero-shot share with kept policies, planning 10–18x cheaper); abstract
+  and first contribution qualified for stochastic domains, a third contribution (SF-FSA-VI), outline mentions
+  Section 4, conclusion mentions SF-FSA-VI and the model-free certificate. The user's typos (e.g. "hemce",
+  "optimallity") are still untouched.
 
 ## 7. Problems, pitfalls and fixed bugs
 
@@ -302,10 +374,32 @@ disjunction 1.40 vs 1.65, random 0.39 vs 0.38. A 20-policy base was no better. I
 - **Metapolicy restriction is weak with corner bases**: |B(s)| ~ 2.9 of 4 in Office; the "compressed metapolicy" (D5:
   solve only on states where base policies disagree) does not pay here.
 - **Python stdout is buffered when piped**: use `flush=True`; long multiprocessing runs should log per job / per task.
+- **Model-free SF-FSA-VI needs accurate estimates, not only good policies** (E10): an oracle certificate that checks
+  only the GPI *policy* at w(u) certified windy tasks with 15% regret, because Kuric's iteration reads the GPI
+  *estimates* at the exits. Check the estimates too (`q_lazy_fsa.py`, QESTIMATE=1).
+- **Optimistic starts in windy**: Psi = e_i takes 7–26M steps to unlearn in corridors that cannot reach the exit
+  (0.2–0.4M from zero); use the pessimistic (zero) start, which also keeps GPI an approximate lower bound.
+- **Inherited counts hurt when the new policy is new** (hedging): the copied counts make the step sizes tiny, ~10x
+  slower learning (E10 pilot 5). They help SFOLS (queries close to stored policies) in windy/Office.
+- **Many noisy tables overestimate**: SF-FSA-VI over the SFOLS policies gets *worse* after ~15 queries (mean regret
+  1e-3 -> 1–9e-2 at 100 queries, windy): the max over noisy learned estimates is biased upwards at the exits.
+- **Estimate accuracy has a noise floor**: requiring estimates within 1e-3 at every exit is out of reach with
+  1/(n+1)^0.7 steps in Office (extremes capped at 50M); 1e-2 removes the gross biases.
+- **Cluster**: the `amd` node is shared and memory-bound (other users hold ~720 of 773 GB); ask for what the job uses
+  (~0.6 GB per process). The sbatch wrapper prints a banner on stdout. The login node's /tmp (and the scratchpad)
+  are not visible from compute nodes: use the repository's `.build/` (git-ignored). `os.cpu_count()` returns the
+  whole node inside an allocation.
 - **Runtime**: everything is single-core Python (~50k vector SF-Q steps/s, ~140k scalar Q steps/s per core). The
   scratchpad directory is wiped between sessions; keep results under `SFOLS/results/`.
 
 ## 8. Open problems and next steps (in order)
+
+*Cluster-session status:* item 2 is done (E10, all fixes in); item 4 is done (outline, conclusion). Still open: 1
+(the experiments use an oracle certificate), 3, 5. New: (6) the model-free plan's precision is limited by the noise
+of the learned SFs at the exits (estimates to 1e-2); a pessimistic estimate (confidence bound) for the GPI max would
+also remove the overestimation of SF-FSA-VI over many tables; (7) learning the extremes accurately at every exit is
+94–99% of the model-free cost — reusing samples across extremes (one behaviour policy, all d SF components) is the
+obvious lever.
 
 1. **Model-free certificate with confidence bounds.** Use the visit counts (already stored for inherited counts) to put
    a confidence interval on the Bellman gap of the GPI estimate / metapolicy; certify when gap + interval <= eps, with
@@ -367,7 +461,22 @@ QBASISWARM, QSTABK, QMC (completion samples), QCERT (certificate tolerance), ARM
 standard-warm, certify, certify-mf). `q_fsa_stochastic.py`: QDOM (office|windy), QSLIP, QBASE (base steps), QBUDGET,
 QSTABLE, QSEEDS. `q_lazy_fsa.py`: QBUDGET, QSTABLE (plus the q_fsa_stochastic ones).
 
-### Cluster notes
+### Cluster workflow (FRIDA, since 2026-10-25) — see `cluster/README.md`
+```bash
+bash cluster/setup.sh                                            # env sffsa + RM/sf-fsa-vi (gitlink, cloned)
+PY=~/miniconda3/envs/sffsa/bin/python
+$PY cluster/sweep.py submit cluster/sweeps/smoke.yaml            # every entry point, ~1 min
+$PY cluster/sweep.py submit cluster/sweeps/lazy_mf.yaml          # E10 (60 runs) and lazy_mf_ds.yaml (20)
+$PY cluster/sweep.py status [SWEEP_DIR]                          # done / failed / lost / running / queued
+$PY cluster/sweep.py merge SWEEP_DIR --into DIR [--only i,j]     # gather outputs (list pickles concatenated)
+bash cluster/tex.sh --run 'cd SFOLS && python plot_lazy_mf.py'   # figures with TeX (TeX Live container)
+bash cluster/tex.sh paper article                                # paper/article.pdf (pdflatex + biber)
+```
+Every run of a sweep has its own directory `SFOLS/runs/<sweep>-<ts>/r/<id>/` (log, status, outputs via `SF_OUT`) and
+runs from a code snapshot. Final outputs were merged into `SFOLS/results/q_ccs_10seeds/` (E5) and
+`SFOLS/results/lazy_mf/inherit{0,1}/` (E10).
+
+### Cluster notes (older)
 - No GPU needed: tabular, sample-by-sample Python loops. Throughput scales with cores; per-job speed needs numba (the
   inner loops `sfql`, `learn`, `q_learn`, `sf_learn` are plain Python over numpy rows; expect 10–50x with numba).
 - Embarrassingly parallel units: (domain, arm, seed) for `q_ccs_stochastic.py` (use `ARMS` and one seed per job);
@@ -397,3 +506,8 @@ QSTABLE, QSEEDS. `q_lazy_fsa.py`: QBUDGET, QSTABLE (plus the q_fsa_stochastic on
 | `notes/gpi_basis.tex`, `notes/lazy_sf_fsa_vi.tex` | current notes (see §1) |
 | `paper/article.tex`, `paper/figures/` | the paper |
 | `fsa-rm-vi-directions.md` | the user's direction document (D1–D6) |
+| `SFOLS/mf.py` | numba learners (vector SFQL, flat Q on the product MDP) and Gauss–Seidel oracle evaluators |
+| `SFOLS/q_lazy_fsa.py` | **rewritten**: model-free Lazy SF-FSA-VI vs SF-FSA-VI over SFOLS, Q-learning growth, flat Q (E10) |
+| `SFOLS/plot_ccs_cost_stochastic.py`, `SFOLS/plot_lazy_mf.py` | the two new paper figures |
+| `cluster/` | `sweep.py`, `setup.sh`, `tex.sh`, `sweeps/*.yaml`, `README.md` |
+| `notes/lazy_sf_fsa_vi.tex` | **the analysis note** of this session (CoG under noise, Lazy with and without a model) |

@@ -14,6 +14,10 @@ more than DELTA below the optimum of the learner's own problem (full MDP, or the
 Double slit (Kuric et al.): QDOMAIN=ds [QWIND=1] [QGAMMA=0.99] [QEPS=0.05]. The wind (uniform +-QWIND rows per step)
 is the only noise, so the <slip> argument is ignored; exploring starts and the stopping rule skip the two exits.
 
+Certify-or-Grow options (defaults = the E5 runs): QBASISWARM=1 warm-starts the basis like SFOLS + warm start; QREUSE=1
+answers OLS's re-queried extremes with the basis; QFALLBACK=gpi|continue warm-starts the full learn after a failed
+certificate (see CertifyOrGrowQModelFree._grow).
+
 usage: python q_ccs_stochastic.py pilot <slip>          one learn per weight, to calibrate
        python q_ccs_stochastic.py run <slip> <seeds>    all arms x seeds (multiprocessing), cached in results/
        python q_ccs_stochastic.py exact <slip>          exact OLS (model, no learning): size of the eps-CCS
@@ -44,9 +48,13 @@ GAMMA, OLS_EPS = float(os.environ.get("QGAMMA", 0.99)), float(os.environ.get("QE
 KAPPA, ALPHA, Q_EPS, Q_HORIZON = 0.7, None, 0.1, 100      # ALPHA set -> constant step size (Kuric: 0.3)
 CHECK, STABLE, NMIN, MAX_STEPS = 1000, 30, 30, int(float(os.environ.get("QMAX", 3_000_000)))
 BASIS_WARM = os.environ.get("QBASISWARM", "0") == "1"   # CoG learns the 2nd..d-th extreme warm-started (as SFOLS+warm)
+REUSE = os.environ.get("QREUSE", "0") == "1"   # CoG answers OLS's re-queried extremes with its basis policies (no learn)
+FALLBACK = os.environ.get("QFALLBACK", "cold")  # CoG's full learn after a failed certificate: cold | gpi | continue (_grow)
 STAB_K = int(os.environ.get("QSTABK", 0))   # a check counts as stable if <= STAB_K greedy actions changed (0 = none)
 DELTA = 1e-3
 M_COMPLETE, CERT_TOL = int(os.environ.get("QMC", 100)), float(os.environ.get("QCERT", 1e-2))
+SEED0 = int(os.environ.get("QSEED0", 0))   # first seed of `run` (split seeds across jobs)
+OUT_DIR = os.environ.get("SF_OUT") or os.path.join(ROOT, "results")   # where outputs go (cluster/sweep.py sets it)
 N0 = 0                      # warm starts count as N0 prior visits (step size starts at 1/(N0+2)^KAPPA); 0 = none
 
 office = (Office(add_obj_to_start=True, random_act_prob=0.0) if DOMAIN == "office" else DoubleSlit(max_wind=WIND))
@@ -260,13 +268,16 @@ def env_step(s, a, rng):
     return _NEXT_L[s][a], _DONE_L[s][a], _PHI_L[s][a]
 
 
-def sfql(w, psi_init, allowed, rng, oracle, n0=0):
-    """oracle = (v_opt at INIT, model): measurement only. Returns (Psi, steps, steps_to_converge)."""
+def sfql(w, psi_init, allowed, rng, oracle, n0=0, visits0=None):
+    """oracle = (v_opt at INIT, model): measurement only. visits0: real visits inherited from an earlier learn of the
+    same w (they set the step sizes and count towards NMIN). Returns (Psi, steps, steps_to_converge, visits)."""
     Psi = psi_init.copy()
     Qw = Psi @ w
     masked = np.where(allowed, 0.0, -np.inf)
     allowed_l = [np.flatnonzero(allowed[s]).tolist() for s in range(S)]
     visits = np.full((S, A_N), n0, dtype=int)                  # n0 pseudo-visits for a warm-started table
+    if visits0 is not None:
+        visits += visits0
     v_opt, M = oracle
 
     def greedy(s):
@@ -309,7 +320,7 @@ def sfql(w, psi_init, allowed, rng, oracle, n0=0):
     PROF.n["env steps to converge"] += last_bad
     PROF.log.append((PROF.query, last_bad))
     PROF.log_total.append((PROF.query, steps))
-    return Psi, steps, last_bad
+    return Psi, steps, last_bad, visits
 
 
 def learned_policy(w, Psi, allowed, source, learned=None):
@@ -329,12 +340,14 @@ class Learner:
     def __init__(self, rng, M):
         self.rng, self.M = rng, M
 
-    def full_learn(self, w, warm_tables=None):
+    def full_learn(self, w, warm_tables=None, init=None, visits0=None):
         # optimistic init, tight: Q = max(w) everywhere (Psi = 1 in every component gives Q = sum(w), which
         # decaying step sizes with gamma = 0.99 take millions of steps to unlearn)
-        init = np.tile(np.eye(D)[int(np.argmax(w))], (S, A_N, 1)) if not warm_tables else gpi_init(w, warm_tables)
+        if init is None:
+            init = np.tile(np.eye(D)[int(np.argmax(w))], (S, A_N, 1)) if not warm_tables else gpi_init(w, warm_tables)
         v_opt = policy_iteration(w, self.M)[1][INIT].mean()
-        Psi, steps, conv = sfql(w, init, FULL, self.rng, (v_opt, self.M), n0=N0 if warm_tables else 0)
+        Psi, steps, conv, _ = sfql(w, init, FULL, self.rng, (v_opt, self.M), n0=N0 if warm_tables else 0,
+                                   visits0=visits0)
         PROF.n["full learns"] += 1
         PROF.learns.append(("full", PROF.query, steps, conv))
         return learned_policy(w, Psi, FULL, "q-full")
@@ -367,11 +380,39 @@ class CertifyOrGrowQModelFree(Learner):
         allowed[ROWS[None, :].repeat(len(own), 0), own] = True
         return allowed
 
+    def _reuse(self, w):
+        """QREUSE=1: OLS's first d queries are the extremes, which the basis already answers (no learn)."""
+        for p in (self.basis[:D] if REUSE else []):
+            if np.allclose(p.w, w):
+                PROF.n["reused"] += 1
+                return p
+        return None
+
+    def _grow(self, w, Psi, visits, allowed, learned):
+        """Full learn of w after a failed certificate; the new policy joins the basis. QFALLBACK = cold: from the
+        optimistic init; gpi: GPI warm start over every table learned so far, the failed metapolicy's (its `learned`
+        entries) included, as SFOLS + warm start; continue: the metapolicy learn goes on with all actions (its table
+        and visit counts on `learned`, GPI over the basis and pool elsewhere)."""
+        PROF.n["fallbacks"] += 1
+        tables = [p.psi_sa for p in self.basis + self.pool]
+        if FALLBACK == "cold":
+            p = self.full_learn(w)
+        elif FALLBACK == "gpi":
+            p = self.full_learn(w, tables + [np.where(learned[..., None], Psi, np.nan)])
+        else:
+            p = self.full_learn(w, init=np.where(learned[..., None], Psi, gpi_init(w, tables)),
+                                visits0=np.where(allowed, visits, 0))
+        self.basis.append(p)
+        return p
+
     def __call__(self, w):
+        reused = self._reuse(w)
+        if reused is not None:
+            return reused
         allowed = self._allowed()
         init = np.where(allowed[..., None], gpi_init(w, [p.psi_sa for p in self.basis + self.pool]), 0.0)
         v_opt = policy_iteration(w, self.M, allowed)[1][INIT].mean()              # oracle: restricted optimum
-        Psi, steps, conv = sfql(w, init, allowed, self.rng, (v_opt, self.M), n0=N0)
+        Psi, steps, conv, visits = sfql(w, init, allowed, self.rng, (v_opt, self.M), n0=N0)
         PROF.learns.append(("meta", PROF.query, steps, conv))
         acts = np.where(allowed, Psi @ w, -np.inf).argmax(1)
         c = self._complete(Psi, allowed, acts)
@@ -388,11 +429,8 @@ class CertifyOrGrowQModelFree(Learner):
         true_gap = (q_backup(V, w, self.M).max(1) - V).max()
         PROF.n["true gap <= cert tol"] += true_gap <= CERT_TOL
         if gap > CERT_TOL:
-            PROF.n["fallbacks"] += 1
             PROF.n["false fallbacks"] += true_gap <= CERT_TOL
-            p = self.full_learn(w)
-            self.basis.append(p)
-            return p
+            return self._grow(w, Psi, visits, allowed, FULL)
         PROF.n["certified"] += 1
         PROF.n["false certificates"] += true_gap > CERT_TOL
         if not any(np.allclose(policy.psi0, q.psi0, atol=1e-6) for q in self.pool):
@@ -419,19 +457,19 @@ class CertifyOrGrowQ(CertifyOrGrowQModelFree):
     the learned metapolicy, no completion samples."""
 
     def __call__(self, w):
+        reused = self._reuse(w)
+        if reused is not None:
+            return reused
         allowed = self._allowed()
         init = np.where(allowed[..., None], gpi_init(w, [p.psi_sa for p in self.basis + self.pool]), 0.0)
         v_opt = policy_iteration(w, self.M, allowed)[1][INIT].mean()
-        Psi, steps, conv = sfql(w, init, allowed, self.rng, (v_opt, self.M), n0=N0)
+        Psi, steps, conv, visits = sfql(w, init, allowed, self.rng, (v_opt, self.M), n0=N0)
         PROF.learns.append(("meta", PROF.query, steps, conv))
         policy = learned_policy(w, Psi, allowed, "q-meta")
         V = sf_state(policy.actions, self.M) @ w
         gap = (q_backup(V, w, self.M).max(1) - V)[NONTERM].max()
         if gap > CERT_TOL:
-            PROF.n["fallbacks"] += 1
-            p = self.full_learn(w)
-            self.basis.append(p)
-            return p
+            return self._grow(w, Psi, visits, allowed, allowed)
         PROF.n["certified"] += 1
         if not any(np.allclose(policy.psi0, q.psi0, atol=1e-6) for q in self.pool):
             self.pool.append(policy)
@@ -443,16 +481,18 @@ ARMS = {"standard": "standard SFOLS", "standard-warm": "standard + GPI warm star
 
 
 def _tag(slip):
+    cog = f"{'_bw' if BASIS_WARM else ''}{'_reuse' if REUSE else ''}{'' if FALLBACK == 'cold' else '_fb' + FALLBACK}"
     if DOMAIN == "office":
-        return f"slip{slip}{'_bw' if BASIS_WARM else ''}"
-    return f"wind{WIND}_g{GAMMA}_eps{OLS_EPS}_cert{CERT_TOL}_stab{STAB_K}{'_bw' if BASIS_WARM else ''}"
+        return f"slip{slip}{cog}"
+    return f"wind{WIND}_g{GAMMA}_eps{OLS_EPS}_cert{CERT_TOL}_stab{STAB_K}{cog}"
 
 
 def run_q(arm, seed, slip, n0=0):
     global PROF, SLIP, N0
     SLIP, N0 = slip, n0
     PROF = Profile()
-    PROF.logfile = os.path.join(ROOT, "results", "logs", f"q_ccs_{'' if DOMAIN == 'office' else 'ds_'}{_tag(slip)}{'_n0%d' % N0 if N0 else ''}_{arm}_{seed}.log")
+    PROF.logfile = os.path.join(OUT_DIR, "logs", f"q_ccs_{'' if DOMAIN == 'office' else 'ds_'}{_tag(slip)}{'_n0%d' % N0 if N0 else ''}_{arm}_{seed}.log")
+    os.makedirs(os.path.dirname(PROF.logfile), exist_ok=True)
     open(PROF.logfile, "w").close()
     rng = random.Random(seed)
     M = _model()
@@ -464,7 +504,7 @@ def run_q(arm, seed, slip, n0=0):
     return dict(arm=arm, seed=seed, slip=slip, n_queries=n_queries, total=time.perf_counter() - t0,
                 n=dict(PROF.n), log=PROF.log, log_total=PROF.log_total, learns=PROF.learns,
                 ccs_actions=[p.actions for p in ccs], ccs_psi0=[p.psi0 for p in ccs], true_psi0=true_psi0,
-                n_basis=len(getattr(query, "basis", [])))
+                n_basis=len(getattr(query, "basis", [])), reuse=REUSE, fallback=FALLBACK)
 
 
 def _job(args):
@@ -479,12 +519,12 @@ def main_run(slip, seeds, n0=0, workers=None):
     global SLIP, N0
     SLIP, N0 = slip, n0
     arms = [a for a in ARMS if a in os.environ.get("ARMS", ",".join(ARMS)).split(",")]
-    jobs = [(arm, seed, slip, n0) for seed in range(seeds) for arm in arms]
-    out = os.path.join(ROOT, "results", f"{'office' if DOMAIN == 'office' else 'ds'}_q_runs_{_tag(slip)}"
+    jobs = [(arm, seed, slip, n0) for seed in range(SEED0, SEED0 + seeds) for arm in arms]
+    out = os.path.join(OUT_DIR, f"{'office' if DOMAIN == 'office' else 'ds'}_q_runs_{_tag(slip)}"
                                          f"{'_n0%d' % n0 if n0 else ''}.pkl")
     t0 = time.perf_counter()
     runs = []
-    with mp.get_context("fork").Pool(workers or min(len(jobs), max(1, (os.cpu_count() or 2) - 1))) as pool:
+    with mp.get_context("fork").Pool(workers or min(len(jobs), max(1, len(os.sched_getaffinity(0)) - 1))) as pool:
         for r in pool.imap_unordered(_job, jobs):
             runs.append(r)
             if "error" in r:
@@ -510,6 +550,8 @@ def main_run(slip, seeds, n0=0, workers=None):
         tot = np.median([r["n"]["env steps"] for r in rs])
         print(f"{ARMS[arm]:30s} median steps to converge {conv:,.0f}, all steps {tot:,.0f}, CCS size "
               f"{np.median([len(r['ccs_psi0']) for r in rs]):.0f}, worst eps-gap of the learned CCS {max(gaps):.4f}")
+    if any("error" in r for r in runs):
+        sys.exit(1)                                # failed runs must show up as failed (cluster/sweep.py status)
 
 
 def main_exact(slip):
@@ -554,7 +596,7 @@ def main_pilot(slip):
         t0 = time.perf_counter()
         v_opt = policy_iteration(w, M)[1][INIT].mean()
         init = np.tile(np.eye(D)[int(np.argmax(w))], (S, A_N, 1))
-        Psi, steps, conv = sfql(w, init, FULL, rng, (v_opt, M))
+        Psi, steps, conv, _ = sfql(w, init, FULL, rng, (v_opt, M))
         p = learned_policy(w, Psi, FULL, "pilot")
         tv = (sf_state(p.actions, M) @ w)[INIT].mean()
         err = np.abs(p.psi0 - sf_state(p.actions, M)[INIT].mean(0)).max()

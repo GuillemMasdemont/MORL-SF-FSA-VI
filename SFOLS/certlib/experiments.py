@@ -23,7 +23,8 @@ from .library import Library
 from .truth import gpi_loss, vstar
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "results", "certlib")
-os.makedirs(OUT, exist_ok=True)
+SAVE_DIR = os.environ.get("SF_OUT") or OUT      # outputs (cluster/sweep.py sets SF_OUT); inputs are also looked up in OUT
+os.makedirs(SAVE_DIR, exist_ok=True)
 
 
 def get(domain):
@@ -47,11 +48,13 @@ def get(domain):
 
 
 def fname(*parts):
-    return os.path.join(OUT, "_".join(str(p) for p in parts) + ".pkl")
+    name = "_".join(str(p) for p in parts) + ".pkl"
+    f = os.path.join(SAVE_DIR, name)
+    return f if os.path.exists(f) else os.path.join(OUT, name)
 
 
 def save(obj, *parts):
-    with open(fname(*parts), "wb") as fh:
+    with open(os.path.join(SAVE_DIR, "_".join(str(p) for p in parts) + ".pkl"), "wb") as fh:
         pickle.dump(obj, fh)
 
 

@@ -1,0 +1,5 @@
+# sweep directories (cluster/sweep.py); promote results with `sweep.py merge`
+SFOLS/runs/
+__pycache__/
+*.pyc
+.build/

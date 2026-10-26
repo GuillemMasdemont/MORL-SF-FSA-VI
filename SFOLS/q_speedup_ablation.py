@@ -23,7 +23,7 @@ from multiprocessing import Pool
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "results", "q_speedup_ablation_dst.pkl")
+OUT = os.path.join(os.environ.get("SF_OUT") or os.path.join(HERE, "results"), "q_speedup_ablation_dst.pkl")
 
 
 def _load_notebook():
