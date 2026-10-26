@@ -1,0 +1,21 @@
+# Instrumented rerun (exploratory): q_ccs_stochastic.py records, at every metapolicy learn, the mean |B(s)| (allowed
+# actions per state, `basis_cover`) and, with the model, the true Bellman gap and the loss of the metapolicy at the
+# start states (`cert`). CoG (both certificates) as in E5 and as in E5b (reuse + continued fallback), seeds
+# 0-2: the recording uses no random numbers, so these are the same trajectories as office_ccs_mf / office_ccs_cog2.
+#   python cluster/sweep.py submit cluster/sweeps/office_ccs_cover.yaml
+#   python cluster/sweep.py merge SFOLS/runs/office_ccs_cover-<ts> --into SFOLS/results/q_ccs_cover
+name: office_ccs_cover
+command: env {variant} python q_ccs_stochastic.py run 0.05 1 0 1
+grid:
+  ARMS: [certify, certify-mf]
+  variant: ["QREUSE=0 QFALLBACK=cold", "QREUSE=1 QFALLBACK=continue"]
+  QSEED0: [0, 1, 2]
+env:
+  QBASISWARM: 1
+  QEPS: 0.05
+slurm:
+  partition: amd
+  cpus: 1
+  pack: 12
+  mem: 1G
+  time: "06:00:00"

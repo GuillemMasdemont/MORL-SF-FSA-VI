@@ -29,17 +29,20 @@ building the CCS with \textsc{Certify-or-Grow} (CoG) under noise (\S\ref{sec:ccs
 
 \paragraph{Summary.}
 \begin{itemize}\setlength\itemsep{1pt}
-\item \textbf{CCS under noise.} The sample gain of CoG over SFOLS is a deterministic-domain effect. In the double slit
-(wind $\pm1$) CoG is as fast as warm-started SFOLS (and $3\times$ faster than SFOLS); in slippery Office it is $9\%$
-slower with the model certificate and $11\%$ faster with the model-free one, which false-certifies $16\%$ of the
-metapolicies.
+\item \textbf{CCS under noise.} The gain of CoG over warm-started SFOLS is smaller than in deterministic domains, and
+it needs two implementation details: answering OLS's re-queried extremes with the basis, and continuing the metapolicy
+learn (table and visit counts) when the certificate fails. With them, CoG needs $15\%$ fewer steps to converge in
+slippery Office ($23\%$ with the model-free certificate) and $8\%$ fewer in the double slit, where it also stops
+$2.4\times$ earlier. Without them it was $10\%$ slower in Office. Observations for future work:
+\texttt{notes/cog\_stochastic\_observations.md}.
 \item \textbf{Lazy SF-FSA-VI with exact SFs} is optimal on all 126 tasks with about 2 added policies per task; keeping
 them, a new task is zero-shot (no policy added) in 58--92\% of the cases, 71--97\% in the second half of the sequence.
 \item \textbf{Without a model} (oracle certificate on policies and estimates), Lazy SF-FSA-VI brings every windy task
 within $0.4\%$ of optimal (zero-shot over the learned extremes: up to $2.1\%$) with about one new policy and 1M steps per
 task; once a few policies are stored, 87--97\% of new tasks need none. It needs $2$--$4\times$ fewer samples than
-SF-FSA-VI over SFOLS ($20$--$260\times$ after the shared extremes), whose plan even degrades as noisy tables accumulate.
-Growing with the metapolicy costs as much as Q-learning over all actions. Q-learning on the product MDP is $120\times$
+SF-FSA-VI over SFOLS ($21$--$350\times$ after the shared extremes), whose plan even degrades as noisy tables accumulate.
+Growing with the metapolicy costs the same per task as Q-learning over all actions ($0.97$--$1.03\times$), but
+$2$--$38\%$ less for the new policies that are compositions (certified metapolicy or $\pi^{\mathrm{hyb}}$). Q-learning on the product MDP is $120\times$
 more expensive per task in windy, but in Office it is cheaper than learning the extremes (they pay off after 85--155
 tasks).
 \end{itemize}
@@ -52,7 +55,10 @@ $\epsilon$-greedy $0.1$, exploring starts, tight optimistic start; a learn stops
 for 30 checks of 1000 steps (and every pair has 30 visits) or at the step cap (3M Office, 5M double slit); ``steps to
 converge'' is the last check where the greedy value at the start is more than $10^{-3}$ below the optimum (oracle).
 Certificate tolerance $10^{-2}$; the model-free version completes the pairs outside $B(s)$ with 100 samples each. CoG
-learns its 2nd..$d$-th extreme warm-started, as SFOLS + warm start (\texttt{QBASISWARM=1}).
+learns its 2nd..$d$-th extreme warm-started, as SFOLS + warm start (\texttt{QBASISWARM=1}). E5 is the first version;
+E5b (\texttt{QREUSE=1 QFALLBACK=continue}, the paper's Figure 2) answers OLS's queries at the extremes with the basis
+and, after a failed certificate, continues the metapolicy learn over all actions from its table and visit counts (the
+entries outside $B(s)$ from GPI over the basis and pool, or from the completion samples).
 
 \begin{table}[h]\centering\small
 \caption{Model-free CCS construction under noise: mean $\pm$ std over 10 seeds (Figure
@@ -65,22 +71,39 @@ wind $\pm1$, $\gamma=0.99$, $\varepsilon=10^{-3}$.}\label{tab:ccs}
 \midrule
 SFOLS & $135.7\pm5.6$M & $191.6\pm8.9$M & $13.2\pm1.3$M & $26.0\pm2.0$M\\
 SFOLS + warm start & $133.4\pm5.4$M & $193.2\pm9.4$M & $4.24\pm0.66$M & $30.6\pm2.8$M\\
-CoG + warm start (model certificate) & $147.4\pm12.6$M & $206.5\pm14.5$M & $4.49\pm1.36$M & $21.3\pm2.7$M\\
-CoG + warm start (model-free certificate) & $120.9\pm10.9$M & $176.6\pm15.4$M & $4.94\pm1.59$M & $22.5\pm3.8$M\\
+CoG, model certificate (E5) & $147.4\pm12.6$M & $206.5\pm14.5$M & $4.49\pm1.36$M & $21.3\pm2.7$M\\
+CoG, model-free certificate (E5) & $120.9\pm10.9$M & $176.6\pm15.4$M & $4.94\pm1.59$M & $22.5\pm3.8$M\\
+CoG, model certificate (E5b) & $\mathbf{113.8\pm4.7}$M & $164.9\pm6.8$M & $\mathbf{3.91\pm0.69}$M & $\mathbf{13.0\pm1.4}$M\\
+CoG, model-free certificate (E5b) & $\mathbf{102.5\pm4.7}$M & $\mathbf{150.4\pm9.7}$M & $4.15\pm0.69$M & $13.8\pm2.3$M\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{itemize}\setlength\itemsep{1pt}
-\item \textbf{Double slit.} After the basis, the metapolicies are certified (5.2 of 5.4 queries) and converge almost
-immediately; the basis is most of the cost. CoG matches warm-started SFOLS in steps to converge and stops $30\%$ earlier
-(21M against 31M steps). With 3 seeds CoG looked $12\%$ faster than warm SFOLS (HANDOFF E5); with 10 it is not.
-\item \textbf{Office.} The learned metapolicies are noisy: the exact gap $\le10^{-2}$ fails on 17.5 of 96.5 queries,
-which then pay the metapolicy and a full learn ($+9\%$ against SFOLS). The model-free certificate falls back less (5.9)
-and is $11\%$ cheaper, but 15.5 of its 94 certificates are false (true gap above the tolerance).
-\item \textbf{Why.} Under noise the cost is learning SFs accurately, not deciding the control: the metapolicy restricts
-the actions ($|B(s)|\approx2.9$ of 4 in Office) but its entries must still be learned to the noise floor.
+\item \textbf{Where E5 lost samples} (Figure~\ref{fig:breakdown}). OLS first queries the extremes, which CoG had
+already learned as its basis, and E5 learned each of them again as a metapolicy (Office 8.1M steps to converge, double
+slit 6.7M environment steps). A failed certificate paid a wasted metapolicy learn and a full learn from scratch (Office:
+17.5 per run, 21.4M + 32.0M). Together these cancelled the gain on the certified queries ($1.00$M per metapolicy
+against $1.33$M per warm full learn).
+\item \textbf{E5b.} Reusing the basis removes the first overhead ($147.4\to133.6$M). Warm-starting the fallback with
+GPI over all tables helps little ($128.3$M); continuing the metapolicy learn makes a fallback cost $0.88$M instead of
+$1.83$M and gives $113.8$M. The CCS quality is unchanged (worst $\varepsilon$-gap over 300 weights $0.0052$--$0.0063$,
+warm SFOLS $0.0052$--$0.0062$).
+\item \textbf{Double slit.} After the 2 extremes every metapolicy is certified and converges at once, so CoG's steps
+to converge are those of the extremes (3.9M); warm SFOLS spends another 0.3M. Restricted to $B(s)$ a learn stops after
+$1.2$M steps, while every learn over 4 actions runs to the 5M cap (near-tied actions keep flipping), hence 13M against
+31M environment steps.
+\item \textbf{Office.} Fallbacks remain (16.9 of 98 queries, 97\% in the first half of the queries) and the failed
+metapolicy learns are now the main overhead (21.6M). The restriction is mild: $|B(s)|\approx2.9$ of 4 actions with the
+extremes and $3.0$ with 26 basis policies, and under noise each entry must still be learned to the noise level.
 \end{itemize}
+
+\begin{figure}[h]\centering
+\includegraphics[width=0.9\textwidth]{ccs_cog_breakdown.pdf}
+\caption{Where the samples go: mean over 10 seeds of the steps to converge and environment steps by kind of learn,
+before (E5) and after (E5b) the two fixes; whisker: std of the total (\texttt{SFOLS/plot\_ccs\_breakdown.py}).}
+\label{fig:breakdown}
+\end{figure}
 
 % ------------------------------------------------------------------------------------------------------------------
 \section{Lazy SF-FSA-VI with the model}\label{sec:mb}
@@ -229,7 +252,8 @@ them in windy and Office (cheaper; in windy its plan degrades without them, belo
 \begin{table}[t]\centering\small
 \caption{Without a model: 10 seeds, the task sets of Table~\ref{tab:mb} (double slit: Kuric et al.'s ``blue or red'').
 Regrets are relative, at the start state, mean / max over tasks and seeds. ``Kept'': the added policies are carried
-over the task sequence. Steps per task exclude the extremes, which every SF method shares.}\label{tab:mf}
+over the task sequence. Steps per task exclude the extremes, which every SF method shares. Metapolicy rows: E10d (Algorithm
+4's ladder without a model: metapolicy, $\pi^{\mathrm{hyb}}$, all actions; decision after 10 checks).}\label{tab:mf}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccc}
 \toprule
@@ -238,13 +262,13 @@ over the task sequence. Steps per task exclude the extremes, which every SF meth
 6 (2) learned extremes: steps & 42.6M & 128M & 231M & 33.6M\\
 zero-shot over them: regret & $0.90$ / $2.1\%$ & $0.008$ / $0.15\%$ & $0.054$ / $0.33\%$ & $2.1$ / $2.3\%$\\
 \midrule
-Lazy, metapolicy: new policies, steps per task & 0.85, 1.07M & 0.68, 0.32M & 1.31, 1.03M & 1.00, 2.20M\\
-\phantom{Lazy,} regret & $0.17$ / $0.32\%$ & $0.008$ / $0.11\%$ & $0.014$ / $0.12\%$ & $0.024$ / $0.065\%$\\
+Lazy, metapolicy: new policies, steps per task & 0.85, 1.04M & 0.68, 0.23M & 1.47, 0.81M & 1.00, 2.18M\\
+\phantom{Lazy,} regret & $0.17$ / $0.30\%$ & $0.007$ / $0.11\%$ & $0.015$ / $0.15\%$ & $0.031$ / $0.055\%$\\
 Lazy, Q-learning: new policies, steps per task & 0.83, 1.04M & 0.68, 0.23M & 1.34, 0.82M & 1.00, 2.26M\\
 \phantom{Lazy,} regret & $0.17$ / $0.38\%$ & $0.009$ / $0.11\%$ & $0.011$ / $0.11\%$ & $0.027$ / $0.069\%$\\
 kept: tasks with no new policy (second half) & 97\% (100\%) & 91\% (95\%) & 87\% (91\%) & --\\
-kept: steps per task, metapolicy / Q-learning & 0.043 / 0.047M & 0.045 / 0.033M & 0.151 / 0.135M & --\\
-metapolicy certified alone: from extremes / kept & 19 / 41\% & 8 / 33\% & 11 / 58\% & 0\%\\
+kept: steps per task, metapolicy / Q-learning & 0.046 / 0.046M & 0.034 / 0.033M & 0.136 / 0.135M & --\\
+new policies certified as metapolicy / $\pi^{\mathrm{hyb}}$ & 18 / 14\% & 6 / 20\% & 21 / 28\% & 0 / 0\%\\
 \midrule
 SF-FSA-VI over SFOLS: steps after the extremes & 61.8M & 384M & 646M & 40.7M\\
 \phantom{SF-FSA-VI} regret (queries) & $0.21$ / $0.50\%$ (100) & $0.004$ / $0.11\%$ (100) & $0.021$ / $0.27\%$ (100) &
@@ -252,16 +276,17 @@ $0.012$ / $0.045\%$ (8)\\
 Q-learning on the product MDP: steps per task & 127M (96\% conv.) & 0.87M & 2.85M & 2.07M\\
 \midrule
 total steps, SFOLS / Lazy (metapolicy, kept) & $2.3\times$ & $4.0\times$ & $3.7\times$ & $2.1\times$\\
-tasks until the SFs beat Q-learning on the product & $<1$ & 155 & 85 & --\\
+tasks until the SFs beat Q-learning on the product & $<1$ & 153 & 85 & --\\
 \bottomrule
 \end{tabular}}
 \end{table}
 
 \begin{figure}[t]\centering
-\includegraphics[width=0.82\textwidth]{lazy_mf_all.pdf}
+\includegraphics[width=\textwidth]{lazy_mf_all.pdf}
 \caption{Without a model, all four domains (paper Figure 5 shows windy and Office $p=0.3$). Left: a new task, relative
-regret against the steps spent on it (Lazy from the extremes). Right: cumulative steps over the task sequence, extremes
-included, policies kept.}\label{fig:mf}
+regret against the steps spent on it (Lazy from the extremes). Middle: cumulative steps over the task sequence, extremes
+included, policies kept. Right: how the metapolicy growth obtained the new policies (share inside the bars) and their
+steps relative to Q-learning at the same weight (20 seeds, 95\% interval).}\label{fig:mf}
 \end{figure}
 
 \paragraph{Results (Table~\ref{tab:mf}, Figure~\ref{fig:mf}).}
@@ -272,12 +297,20 @@ policy costs 0.3--2.2M steps, median). With the policies kept: 0.03--0.15M steps
 in the second half of the sequence), as with exact SFs (Table~\ref{tab:mb}). In windy, 80\% of the new policies are the
 hedging one at $u_0$, which differs from the nearest stored policy at $\sim220$ of 611 states: it is new behaviour, not a
 composition (in Office, a median of 48 of 109 states).
-\item \textbf{Metapolicy against Q-learning over all actions.} About the same cost: $0.93$--$1.4\times$ the steps of
-Q-learning (both from the GPI table), more in Office, where the restricted phase is wasted when it is not certified.
-The metapolicy is certified alone for 8--19\% of the new policies from the extremes and 33--58\% with kept policies
-(a richer $B(s)$), but under noise restricting the actions does not make learning cheaper, as for the CCS (\S\ref{sec:ccs}).
+\item \textbf{Metapolicy against Q-learning over all actions} (Figure~\ref{fig:mf}, right). The metapolicy growth
+follows Algorithm~\ref{alg:lazy}'s ladder without a model (E10d): learn the metapolicy on $B(s)$ and decide after 10
+checks; if it is not certified, complete its table outside $B(s)$ (100 samples per pair, counted) and check
+$\pi^{\mathrm{hyb}}$; refine a certified $\pi^{\mathrm{hyb}}$ on $B(s)$ plus its actions (its completed entries count as their
+samples), otherwise continue over all actions from the same table. At the same weight, a certified metapolicy needs
+$21\%$ (windy) and $38\%$ (Office $p=0.3$) fewer steps than Q-learning and a certified $\pi^{\mathrm{hyb}}$ $2$--$20\%$
+fewer, confirmed on 10 held-out seeds; the other new policies pay the metapolicy learning ($+13\%$ in windy, $\pm5\%$
+in Office). Compositions are 32\% (windy), 26\% and 49\% (Office) of the new policies, so per task both growths cost
+the same ($0.97$--$1.03\times$; seed-to-seed spread $\pm10$--$30\%$). The earlier versions: E10 (decision after 100
+checks, $0.98$--$1.4\times$), E10b (10 checks, no $\pi^{\mathrm{hyb}}$, $0.8$--$1.06\times$); trusting the completed entries
+in every growth was cheaper on new tasks but made one windy seed's kept library cascade (36 new policies).
+Details: \texttt{SFOLS/analyze\_lazy\_growth.py}, \texttt{notes/cog\_stochastic\_observations.md}.
 \item \textbf{Against SF-FSA-VI over SFOLS.} SFOLS reaches a similar precision with 40--650M steps on top of the
-extremes ($20$--$260\times$ Lazy's) and stores 100 policies (8 in the double slit) instead of 1--7. Without inherited counts its plan
+extremes ($21$--$350\times$ Lazy's) and stores 100 policies (8 in the double slit) instead of 1--7. Without inherited counts its plan
 gets \emph{worse} as the set grows (windy: mean regret $\sim10^{-3}$ after 9--17 queries, then 1.3--9.2\% after
 62--100): the maximum over many noisy estimates overestimates the exit values. Lazy only adds tables where a task fails
 the certificate, so it does not accumulate this bias.

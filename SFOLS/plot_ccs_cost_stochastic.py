@@ -3,34 +3,33 @@ the eps-CCS with learned SFs in the slippery Office (slip 0.05, eps-CCS with eps
 +-1, gamma 0.99, eps = 1e-3, bottom). Each row: the map, the cumulative steps to converge and all environment steps per
 OLS query, mean +- std over the seeds. Certify-or-Grow's basis learns are counted at queries 1..d.
 
-Reads results/q_ccs_10seeds/{office_q_runs_slip0.05_bw,ds_q_runs_wind1_g0.99_eps0.001_cert0.01_stab0_bw}.pkl
-(q_ccs_stochastic.py with QBASISWARM=1: cluster/sweeps/office_ccs_mf.yaml, ds_ccs_mf.yaml, then sweep.py merge) and
-writes paper/figures/q_ccs_cost_stochastic.pdf and notes/figures/q_ccs_cost_stochastic.pdf.
-usage (from SFOLS/): python plot_ccs_cost_stochastic.py [office.pkl ds.pkl]
+The SFOLS arms come from E5 (results/q_ccs_10seeds/, sweeps office_ccs_mf.yaml and ds_ccs_mf.yaml); the CoG arms from
+E5b (results/q_ccs_cog2/, sweeps office_ccs_cog2.yaml and ds_ccs_cog2.yaml: the basis answers the re-queried extremes
+and the full learn after a failed certificate continues the metapolicy learn), or from the run set named by COG
+(analyze_ccs_speed.SOURCE: E5 | cold | gpi | continue). Writes paper/figures/q_ccs_cost_stochastic.pdf and
+notes/figures/q_ccs_cost_stochastic.pdf.
+usage (from SFOLS/): [COG=continue] python plot_ccs_cost_stochastic.py
 """
 import os
-import pickle
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
 
+from analyze_ccs_speed import runs_of
 from plot_ccs_cost_combined import ARM_LABEL, ARM_STYLE, PUB_RC, TEXTWIDTH, USE_TEX, label_ends, plot_office_map
 from plot_ds_q_cost import per_query, plot_map as plot_ds_map
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FILES = sys.argv[1:3] or [os.path.join(HERE, "results", "q_ccs_10seeds", "office_q_runs_slip0.05_bw.pkl"),
-                          os.path.join(HERE, "results", "q_ccs_10seeds", "ds_q_runs_wind1_g0.99_eps0.001_cert0.01_stab0_bw.pkl")]
+COG = os.environ.get("COG", "continue")
 OUTS = [os.path.join(HERE, "..", "paper", "figures", "q_ccs_cost_stochastic.pdf"),
         os.path.join(HERE, "..", "notes", "figures", "q_ccs_cost_stochastic.pdf")]
 ARMS = {"standard": "standard", "standard-warm": "standard-warm", "certify": "certify-pool", "certify-mf": "certify-mf"}
 YLABEL = {"log": "Steps to converge", "log_total": "Environment steps"}
 
 
-def load(f):
-    with open(f, "rb") as fh:
-        return [r for r in pickle.load(fh) if "error" not in r]
+def load(dom):
+    return [r for arm in ARMS for r in runs_of(dom, "E5" if arm.startswith("standard") else COG, arm)]
 
 
 def plot_row(axes, runs, tags):
@@ -63,7 +62,7 @@ def plot_row(axes, runs, tags):
 
 
 def main():
-    office, ds = (load(f) for f in FILES)
+    office, ds = load("office"), load("ds")
     rows = ((plot_office_map, r"Office, slip $0.05$ ($\varepsilon$-CCS)", office, "abc"),
             (plot_ds_map, r"Double slit, wind $\pm 1$", ds, "def"))
     with plt.rc_context(PUB_RC):

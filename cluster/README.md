@@ -106,6 +106,12 @@ refuses to overwrite without `--force` (those files are tracked in git, so an ov
 | `lazyfsa_model.yaml` | E8: Lazy SF-FSA-VI with a model (Figure 3 inputs) | 3 runs, ≤ 1 h |
 | `office_ccs_mf.yaml` | E5: model-free CCS on slippery Office, 4 arms × 10 seeds | 40 runs (2 jobs), ~1 h each |
 | `ds_ccs_mf.yaml` | E5: model-free CCS on the double slit (wind ±1), 4 arms × 10 seeds | 40 runs (2 jobs), 10 min each |
+| `office_ccs_cog2.yaml`, `ds_ccs_cog2.yaml` | E5b: CoG arms with the basis reused for the re-queried extremes (`QREUSE=1`) × 3 fallbacks (`QFALLBACK` cold, gpi, continue) × 10 seeds (Figure 2 uses continue) | 60 runs each (3 + 2 jobs) |
+| `lazy_cog_k.yaml` | E10b: Lazy's metapolicy growth decides after `QSTABLE1` ∈ {1, 10, 30} checks (Figure 5 uses 10), Lazy part only, 4 domains × 10 seeds | 120 runs (40 jobs), ~1 min each |
+| `lazy_cog_hybc.yaml` | E10d: Algorithm 4's ladder (metapolicy -> π_hyb -> all actions) for Figure 5, 4 domains × 20 seeds (10–19 held out) | 80 runs, ~1 min |
+| `lazy_cog_hyb{,n,local}.yaml` | E10c (exploratory): π_hyb from the completed table before learning on all actions; counted completions; local refinement | 40 runs each, ~1 min |
+| `lazy_cog_pilot*.yaml` | instrumented pilots for E10b (growth phases) | 4 + 2 runs |
+| `office_ccs_n0.yaml` | E5c (exploratory): warm starts count as 10 prior visits, SFOLS + warm start and E5b's CoG | 30 runs (2 jobs), ~1 h |
 | `lazy_mf.yaml` | model-free Lazy SF-FSA-VI vs SFOLS, Q-learning growth and flat Q-learning (`q_lazy_fsa.py`), windy and Office p ∈ {0.1, 0.3}, with and without inherited counts, 10 seeds | 60 runs (30 jobs), 10–30 min each |
 | `lazy_mf_ds.yaml` | the same on the double slit | 20 runs (4 jobs) |
 | `lazy_mf_pilot*.yaml` | the pilots that fixed the settings of `lazy_mf.yaml` (see HANDOFF) | small |

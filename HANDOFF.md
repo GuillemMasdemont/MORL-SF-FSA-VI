@@ -23,11 +23,14 @@ first, then the experiment you need. Paths are relative to the repository root `
   w(u), Lazy SF-FSA-VI brings every windy task within 0.4% (zero-shot over the learned extremes: up to 2.1%) with ~1
   new policy and ~1M steps per task; with the added policies kept, 87–97% of new tasks need no new policy. It needs
   2–4x fewer samples than SF-FSA-VI over SFOLS (20–260x after the shared extremes); SFOLS's plan even degrades as
-  noisy tables accumulate. Metapolicy growth costs as much as Q-learning over all actions. Flat Q-learning on the
+  noisy tables accumulate. Metapolicy growth costs the same per task as Q-learning over all actions, but 2–38% less for the new policies that are compositions (E10d, Figure 5c, f). Flat Q-learning on the
   product MDP is 120x more expensive per task in windy but cheaper than learning the extremes in Office.
   **Certification without a model is still the main open problem** (the experiments use an oracle).
-- **CCS under noise (E5, 10 seeds):** Certify-or-Grow's gain over SFOLS mostly vanishes (Office: +9% with the model
-  certificate, −11% model-free with 16% false certificates; double slit: as fast as warm SFOLS).
+- **CCS under noise (E5 -> E5b, 10 seeds):** the first version lost its gain to two overheads (re-learning OLS's
+  re-queried extremes, cold full learns after failed certificates). With the basis reused and the fallback continuing
+  the metapolicy learn (table + visit counts), CoG needs 15% fewer steps to converge than warm SFOLS in slippery Office
+  (23% model-free, 15% false certificates) and 8% fewer in the double slit, where it stops 2.4x earlier (13 vs 31M).
+  Paper Figure 2 shows E5b. Observations and next steps: `notes/cog_stochastic_observations.md`.
 - **Paper.** Section 4 (SF-FSA-VI) written in the laptop session; the cluster session added Figure 2 (stochastic CCS
   cost), Figure 5 (model-free Lazy SF-FSA-VI), their paragraphs, the zero-shot/planning sentences for Figure 4, and
   updated the abstract, contributions, outline and conclusion (§6). Analysis note: `notes/lazy_sf_fsa_vi.tex`.
@@ -238,6 +241,32 @@ diluted by the ~120k steps both pay to learn the two extremes.
   The 3-seed claim "CoG 12% faster than warm SFOLS in the double slit" does not hold with 10 seeds (4.49 vs 4.24M);
   CoG stops earlier (21 vs 31M all steps). Under noise the gain of CoG over SFOLS mostly vanishes.
 
+### E5b. CoG without its two overheads (cluster, 2026-10-26) — paper Figure 2 now
+- `SFOLS/analyze_ccs_speed.py` splits each arm's cost by kind of learn. In E5, OLS's first d queries are the extremes,
+  which CoG had already learned as its basis, and CoG learned each again as a metapolicy (Office 8.1M steps to converge;
+  double slit 6.7M all steps); a failed certificate paid a wasted metapolicy learn plus a full learn from scratch
+  (Office 17.5 per run: 21.4M + 32.0M). These cancelled the gain on certified queries (1.00M vs 1.33M per learn).
+- Fixes in `q_ccs_stochastic.py` (defaults reproduce E5 exactly, checked on double slit seed 0): `QREUSE=1` returns the
+  basis policy at an extreme; `QFALLBACK=gpi` warm-starts the fallback with GPI over all tables (failed metapolicy's
+  included), `QFALLBACK=continue` continues the metapolicy learn over all actions with its table and visit counts.
+  Sweeps `cluster/sweeps/{office,ds}_ccs_cog2.yaml`, data `SFOLS/results/q_ccs_cog2/` (SFOLS arms stay from E5).
+- Steps to converge (all steps), mean over 10 seeds:
+
+  | CoG, model certificate | Office slip 0.05 | double slit |
+  |---|---|---|
+  | E5 | 147.4M (206.5M) | 4.49M (21.3M) |
+  | + reuse | 133.6M (187.2M) | 3.91M (12.95M) |
+  | + reuse + gpi fallback | 128.3M (182.1M) | identical (no fallbacks) |
+  | **+ reuse + continue (Figure 2)** | **113.8 +- 4.7M (164.9M)** | **3.91 +- 0.69M (12.95M)** |
+  | model-free, E5 -> reuse + continue | 120.9 -> 102.5M (176.6 -> 150.4M) | 4.94 -> 4.15M (22.5 -> 13.8M) |
+  | SFOLS + warm start (reference) | 133.4M (193.1M) | 4.24M (30.6M) |
+
+  CCS quality unchanged (Office worst eps-gap 0.0052–0.0063 vs warm SFOLS 0.0052–0.0062).
+- Instrumented reruns (`office_ccs_cover.yaml`, `results/q_ccs_cover/`, seeds 0–2): |B(s)| is 2.9 of 4 with the
+  extremes and only 3.0 with 26 basis policies; 19–22% of metapolicies have true gap > 1e-2 and only 15–29% of those are
+  harmless at the start (median start loss 2.7e-3), so fallbacks are mostly real.
+- E5c (`office_ccs_n0.yaml`, exploratory): warm starts counted as 10 prior visits — see the observations file.
+
 ### E6. Model-free learning per automaton state — `q_fsa_stochastic.py`, `results/fsa_q_office_slip0.05.pkl`
 Office slip 0.05, 20 tasks = 24 distinct automaton-state problems, base = 6 extremes learned model-free (2.5M steps
 each), 2 seeds, scalar Q-learning at w(u), oracle metric: steps until within 1e-3 of optimal at the entry states
@@ -332,6 +361,44 @@ disjunction 1.40 vs 1.65, random 0.39 vs 0.38. A 20-policy base was no better. I
   no inherited counts for Lazy (5). Optimistic vs zero start: `SFOLS/checks/check_init.py` (zero is 20–60x faster on
   windy corridor extremes, slower on one Office extreme). `SFOLS/checks/check_mf.py` validates the numba learners
   against the Python loop (same Q error at fixed budgets) and the evaluators against exact solves.
+
+### E10b. Lazy's metapolicy growth decides after 10 checks (cluster, 2026-10-26) — paper Figure 5 now
+- `SFOLS/analyze_lazy_growth.py` (instrumented `q_lazy_fsa.grow`: per growth the two phases and the failed-check
+  reasons). The E10 CoG growth charged every new policy the 100-check confirmation of the metapolicy learn before the
+  decision (Q-learning's confirmation is never charged). `QSTABLE1=K` confirms the metapolicy learn for K checks before
+  CoG certifies it or continues over all actions (the continued learn keeps table and counts, so a wrong early decision
+  costs little); the final stop keeps QSTABLE = 100. Sweep `cluster/sweeps/lazy_cog_k.yaml` (Lazy part only, K in
+  {1, 10, 30}, 4 domains x 10 seeds, ~1 min per run); data `SFOLS/results/lazy_mf/k{1,10,30}/`. Q-learning growth
+  reproduces E10 exactly.
+- CoG / Q-learning environment steps on a new task (windy, Office 0.1, Office 0.3, double slit): E10 1.03, 1.40, 1.26,
+  0.98; K = 10 1.02, 1.06, 1.01, 0.81 (K = 1 and 30 similar). Paired by weight (first-round growths): a certified
+  metapolicy is 18–40% cheaper than Q-learning, a failed one costs about the same; certified 8–17% from the extremes,
+  28–50% kept. So the metapolicy growth matches Q-learning but cannot beat it by much: the needed policies are mostly
+  new behaviour. Regret unchanged except one windy task of 600 at the 5-round cap (0.74%).
+- Figure 5 and its paragraph use K = 10 (`plot_lazy_mf.py`, `COGSRC=inherit0` redraws E10); after the extremes Lazy
+  needs 19–330x fewer samples than SFOLS (was 20–260x), 2–4x in total (unchanged).
+
+### E10c. pi_hyb in the model-free Lazy growth (exploratory, 2026-10-26; not in the paper)
+- `q_lazy_fsa.py` `QHYB=1`: when the metapolicy is not certified, complete its table outside B(s) (`mf.complete`, 100
+  sampled backups per pair, counted), check pi_hyb (greedy of the completed table) with the oracle, continue over all
+  actions. `QHYBN=1`: completed entries count as their 100 samples. `QHYBLOCAL=1`: a certified pi_hyb is refined on
+  B(s) plus its actions. Sweeps `lazy_cog_hyb{,n,local}.yaml`, data `SFOLS/results/lazy_mf/hyb{,n,local}/`.
+- pi_hyb certifies 22–36% of the failed metapolicies, but those growths are not cheaper (the continued learn flips the
+  policy again): per new task 0.97–1.06x Q-learning. With counted completions: 0.89–0.96x in windy, Office p=0.3 and the
+  double slit, but windy seed 2's kept library degraded (36 growths, 121M steps): biased trusted entries. Not robust.
+- Why the CCS gain does not carry over: certified share (CCS ~80% vs Lazy 8–17% fresh) x saving per certified policy
+  (similar, 18–40%); the oracle stopping rule removes the CCS's stopping-rule gain; the extremes dominate Figure 5.
+  Details in `notes/cog_stochastic_observations.md` (section 5).
+
+### E10d. Algorithm 4's ladder in the model-free Lazy growth (2026-10-26) — paper Figure 5 now
+- `QSTABLE1=10 QHYB=1 QHYBN=2 QHYBLOCAL=1` (sweep `lazy_cog_hybc.yaml`, seeds 0–19, data `SFOLS/results/lazy_mf/hybc/`):
+  metapolicy (decide after 10 checks) -> pi_hyb from the completed table (100 samples per pair; if certified, refine on
+  B(s) + its actions with the completed entries counted) -> all actions from the completed table (not trusted).
+  Pre-registered before running; seeds 10–19 held out.
+- Per new task 0.97–1.03x Q-learning (held out 0.93–1.06x; seed spread +-10–30%). By kind, at the same weight:
+  metapolicy −21% (windy) / −38% (Office 0.3), pi_hyb −2% / −20%, all actions +13% / −2%; compositions are 32% / 49%
+  of the new policies. Figure 5 has a third column per domain with these bars (`plot_lazy_mf.kind_costs`); text and
+  caption updated (windy back to every task within 0.4%; after the extremes 21–350x fewer samples than SFOLS).
 
 ## 6. Paper edits made in this session (`paper/article.tex`)
 

@@ -1,0 +1,33 @@
+# E10c: Lazy SF-FSA-VI's CoG growth with Algorithm 4's middle rung. When the metapolicy is not certified, its table is
+# completed outside B(s) with QMC = 100 sampled one-step backups per pair (counted), pi_hyb (the greedy policy of the
+# completed table) is checked with the same oracle, and the learn continues over all actions from that table. Otherwise
+# as lazy_cog_k.yaml with QSTABLE1 = 10. QHYBN=1 and QHYBLOCAL=1: a certified pi_hyb is refined on B(s) plus its actions. ~1 min per run.
+#   python cluster/sweep.py submit cluster/sweeps/lazy_cog_hyb.yaml
+#   python cluster/sweep.py merge SFOLS/runs/lazy_cog_hyblocal-<ts> --into SFOLS/results/lazy_mf/hyblocal
+name: lazy_cog_hyblocal
+command: env {domain} python q_lazy_fsa.py {cpus}
+grid:
+  domain: ["QDOM=windy QNTASK=60", "QDOM=office QSLIP=0.1 QNTASK=33", "QDOM=office QSLIP=0.3 QNTASK=33", "QDOM=ds"]
+  QSTABLE1: [10]
+  QHYB: [1]
+  QHYBN: [1]
+  QHYBLOCAL: [1]
+  QSEED: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QINIT: zero
+  QESTIMATE: 1
+  QDELTA: 1e-3
+  QDELTAEST: 1e-2
+  QBASE: 5e7
+  QBUDGET: 5e7
+  QFLAT: 3e8
+  QOLSMAX: 100
+  QROUNDS: 5
+  QINHERIT: 0
+  QPARTS: lazy
+slurm:
+  partition: amd
+  cpus: 16
+  pack: 3
+  mem: 3G
+  time: "01:00:00"

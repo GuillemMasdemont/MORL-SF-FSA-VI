@@ -24,7 +24,9 @@ its last failed check.
 usage (from SFOLS/): python q_lazy_fsa.py [workers]
 env: QDOM office|windy|ds, QSLIP (office p), QSEED, QNTASK, QDELTA, QBASE, QBUDGET, QFLAT (budgets), QSTABLE, QCHECK,
      QROUNDS, QOLSEPS, QOLSMAX, QPARTS (subset of sfols,lazy,flat), QINIT (zero|opt), QESTIMATE (1|0), QDELTAEST,
-     QFLATQ0, QINHERIT (1|0)
+     QFLATQ0, QINHERIT (1|0), QSTABLE1 (checks confirming the metapolicy learn before the decision; default QSTABLE),
+     QHYB (1: try pi_hyb from the completed table before learning on all actions), QMC (completion samples per pair), QHYBN (1: they count as visits),
+     QHYBLOCAL (1: a certified pi_hyb is refined on B(s) plus its own actions); QHYBN 2: count them only if pi_hyb is certified
 """
 import multiprocessing as mp
 import os
@@ -53,6 +55,12 @@ BASE = int(float(os.environ.get("QBASE", 2e7)))
 BUDGET = int(float(os.environ.get("QBUDGET", 2e7)))
 FLAT = int(float(os.environ.get("QFLAT", 1e8)))
 STABLE = int(os.environ.get("QSTABLE", 100))
+STABLE1 = int(os.environ.get("QSTABLE1", STABLE))        # checks that confirm the metapolicy learn before CoG decides
+HYB = os.environ.get("QHYB", "0") == "1"                 # CoG tries pi_hyb (Alg. 4) before learning on all actions
+MC = int(os.environ.get("QMC", 100))                     # samples per pair outside B(s) to complete the table for pi_hyb
+HYB_N = int(os.environ.get("QHYBN", 0))     # completed entries count as their MC samples: 0 never, 1 always, 2 if pi_hyb
+#                                             is certified (then they belong to the policy being refined)
+HYB_LOCAL = os.environ.get("QHYBLOCAL", "0") == "1"      # a certified pi_hyb is refined on B(s) + its own actions
 CHECK = int(os.environ.get("QCHECK", 1000))
 ROUNDS = int(os.environ.get("QROUNDS", 5))
 OLS_EPS = float(os.environ.get("QOLSEPS", 1e-3))
@@ -124,7 +132,12 @@ def ok_fn(w, allowed=None, estimate=True):
     def ok(act, vest):
         if last["act"] is None or not np.array_equal(act, last["act"]):
             last["act"], last["val"] = act.copy(), oracle().value(act, w)[REL]
-        return (v - last["val"]).max() <= tol and (not (estimate and ESTIMATE) or np.abs(vest[REL] - v).max() <= tol_est)
+        pol = (v - last["val"]).max() <= tol
+        est = not (estimate and ESTIMATE) or np.abs(vest[REL] - v).max() <= tol_est
+        ok.fails["policy"] += not pol
+        ok.fails["estimate"] += pol and not est
+        return pol and est
+    ok.fails = {"policy": 0, "estimate": 0}                      # failed checks by reason (measurement only)
     return ok
 
 
@@ -157,8 +170,8 @@ def warm_start(L, counts, w):
     return Psi0, n0
 
 
-def learn(w, Psi0, n0, allowed, ok, seed):
-    return mf.sfql(SMP, w, Psi0, n0, allowed, ok, BUDGET, STABLE, CHECK, seed, G)
+def learn(w, Psi0, n0, allowed, ok, seed, stable=STABLE):
+    return mf.sfql(SMP, w, Psi0, n0, allowed, ok, BUDGET, stable, CHECK, seed, G)
 
 
 def grow(L, counts, w, how, seed):
@@ -170,14 +183,32 @@ def grow(L, counts, w, how, seed):
         allowed = np.zeros((S, A), bool)
         for a in L.acts:
             allowed[np.arange(S), a] = True
-        Psi, n, act, st, cv = learn(w, Psi0, n0, allowed, ok_fn(w, allowed, estimate=False), seed)
+        ok1 = ok_fn(w, allowed, estimate=False)
+        Psi, n, act, st, cv = learn(w, Psi0, n0, allowed, ok1, seed, STABLE1)    # short: a wrong decision costs little
         if ok_fn(w, estimate=False)(act, None):                                  # the metapolicy is optimal
-            Psi, n, act, st2, cv2 = learn(w, Psi, n, allowed, ok_fn(w, allowed), seed + 7919)
-            return Psi, n, act, st + st2, st + cv2, "metapolicy"
-        Psi, n, act, st2, cv2 = learn(w, Psi, n, FULL, ok_fn(w), seed + 7919)
-        return Psi, n, act, st + st2, st + cv2, "after metapolicy"
-    Psi, n, act, st, cv = learn(w, Psi0, n0, FULL, ok_fn(w), seed)
-    return Psi, n, act, st, cv, "q-learning"
+            ok2 = ok_fn(w, allowed)
+            Psi, n, act, st2, cv2 = learn(w, Psi, n, allowed, ok2, seed + 7919)
+            return Psi, n, act, st + st2, st + cv2, "metapolicy", dict(phases=(st, cv, st2, cv2), fails=ok2.fails)
+        kind, c = "after metapolicy", 0
+        if HYB:          # complete the metapolicy's table outside B(s) (samples counted): its greedy policy is pi_hyb
+            mf.seed(seed + 104729)
+            c = mf.complete(Psi, allowed, act, SMP.cum, SMP.nxt, SMP.obj, MC, G)
+            hyb = (Psi @ w).argmax(1)
+            if ok_fn(w, estimate=False)(hyb, None):
+                kind = "hybrid"
+            if HYB_N == 1 or (HYB_N == 2 and kind == "hybrid"):
+                n = np.where(allowed, n, float(MC))
+        cont = FULL
+        if kind == "hybrid" and HYB_LOCAL:     # keep the restriction: B(s) plus pi_hyb's action where it differs
+            cont = allowed.copy()
+            cont[np.arange(S), hyb] = True
+        ok2 = ok_fn(w)
+        Psi, n, act, st2, cv2 = learn(w, Psi, n, cont, ok2, seed + 7919)
+        return Psi, n, act, st + c + st2, st + c + cv2, kind, dict(phases=(st, cv, st2, cv2), fails=ok2.fails,
+                                                                    completion=c)
+    ok1 = ok_fn(w)
+    Psi, n, act, st, cv = learn(w, Psi0, n0, FULL, ok1, seed)
+    return Psi, n, act, st, cv, "q-learning", dict(phases=(st, cv), fails=ok1.fails)
 
 
 def copy_lib(L):
@@ -203,7 +234,7 @@ def lazy_task(ti, L, counts, how, seed):
             if certified(L, W[u]):
                 log["passed"] += 1
                 continue
-            Psi, n, act, st, cv, kind = grow(L, counts, W[u], how, seed)
+            Psi, n, act, st, cv, kind, info = grow(L, counts, W[u], how, seed)
             seed += 1
             near = min(int((act != a).sum()) for a in L.acts)
             L.add(act, Psi, kind, W[u])
@@ -211,7 +242,8 @@ def lazy_task(ti, L, counts, how, seed):
             cum_st, cum_cv = cum_st + st, cum_cv + cv
             Wn, _ = kuric_vi(MDP, T, L, W, tol=1e-12)                # replanned value after this policy (trace only)
             val, V = plan_value(ti, L, Wn, V)
-            log["grows"].append(dict(u=u, round=r, kind=kind, steps=st, conv=cv, diff=near, regret=rel_regret(ti, val)))
+            log["grows"].append(dict(u=u, round=r, kind=kind, steps=st, conv=cv, diff=near, regret=rel_regret(ti, val),
+                                     **info))
             log["trace"].append((cum_cv, cum_st, rel_regret(ti, val), len(L)))
             grew += 1
         if not grew:
@@ -395,7 +427,7 @@ def main(workers=8):
                            flat=FLAT, init=INIT, inherit=INHERIT,
                            estimate=ESTIMATE,
                            flat_q0=FLAT_Q0,
-                           stable=STABLE, check=CHECK, rounds=ROUNDS, ols_eps=OLS_EPS, ols_max=OLS_MAX),
+                           stable=STABLE, stable1=STABLE1, hyb=HYB, mc=MC, hyb_n=HYB_N, hyb_local=HYB_LOCAL, check=CHECK, rounds=ROUNDS, ols_eps=OLS_EPS, ols_max=OLS_MAX),
                tasks=TASK_DEFS, opt=OPT, base=base, zero_shot=zs, lazy={}, flat={}, sfols=None, errors=[])
     jobs = ([("sfols",)] if "sfols" in PARTS else []) + \
            ([("lazy", "stream", h) for h in ("cog", "ql")] + [("lazy", "fresh", h, i) for h in ("cog", "ql")

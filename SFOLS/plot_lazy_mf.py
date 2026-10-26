@@ -2,8 +2,11 @@
 (left) a new task: relative regret of the executed plan at the start state against the environment steps spent on that
 task, averaged over tasks and seeds, for flat Q-learning on the product MDP (from scratch) and Lazy SF-FSA-VI from the
 extremes, growing with Q-learning over all actions or with the metapolicy; SF-FSA-VI over SFOLS spends nothing per task
-(its final regret is the horizontal line, its cost is in the right panel); (right) cumulative environment steps over the
-sequence of tasks, the extremes included, keeping the policies added by Lazy SF-FSA-VI.
+(its final regret is the horizontal line, its cost is in the middle panel); (middle) cumulative environment steps over
+the sequence of tasks, the extremes included, keeping the policies added by Lazy SF-FSA-VI; (right) how the new policies
+of the metapolicy growth were obtained (certified metapolicy, certified pi_hyb, learned on all actions), the share of
+each, and their environment steps relative to Q-learning's at the same weight (first-round growths, which both Lazy
+variants make at the same w(u); ratio of means with a 95% bootstrap interval, all seeds of the CoG runs).
 
 Reads results/lazy_mf/inherit{0,1}/lazy_mf_<domain>_s<seed>.pkl (cluster/sweeps/lazy_mf.yaml, lazy_mf_ds.yaml, then
 sweep.py merge --only per QINHERIT value): warm starts without / with inherited visit counts. Every method is drawn with
@@ -25,7 +28,7 @@ from plot_ccs_cost_combined import PUB_RC, TEXTWIDTH, USE_TEX
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, "results", "lazy_mf")
-DOMS = (sys.argv[2].split(",") if len(sys.argv) > 2 else ["office0.3", "windy"])
+DOMS = (sys.argv[2].split(",") if len(sys.argv) > 2 else ["windy", "office0.3"])     # the paper: windy on top
 NAMES = {"office0.1": r"Office, $p=0.1$", "office0.3": r"Office, $p=0.3$", "windy": "Windy", "ds": "Double slit"}
 STEM = sys.argv[3] if len(sys.argv) > 3 else "lazy_mf"
 OUTS = ([os.path.join(HERE, "..", "paper", "figures", f"{STEM}.pdf")] if STEM == "lazy_mf" else []) + \
@@ -37,8 +40,13 @@ METHODS = [("flat", "Q-learning on the product MDP", dict(color="#7a7a7a", ls=":
 FLOOR = 1e-5
 X = np.logspace(4, 9, 400)
 # better setting per method: Lazy grows faster without inherited counts everywhere; SFOLS is cheaper with them in windy and
-# Office (its queries are close to stored policies) and without them in the double slit; flat Q-learning has no warm start
-SOURCE = {"flat": "inherit0", "sfols": "inherit1", "ql": "inherit0", "cog": "inherit0"}
+# Office (its queries are close to stored policies) and without them in the double slit; flat Q-learning has no warm start.
+# The metapolicy growth is from E10d (hybc, sweep lazy_cog_hybc.yaml: Algorithm 4's ladder, metapolicy -> pi_hyb -> all
+# actions, deciding after 10 checks; 20 seeds, the Q-learning growth of the same runs is identical to E10's); COGSRC=k10
+# gives E10b (no pi_hyb), COGSRC=inherit0 E10 (100 checks).
+SOURCE = {"flat": "inherit0", "sfols": "inherit1", "ql": "inherit0", "cog": os.environ.get("COGSRC", "hybc")}
+KINDS = [("metapolicy", "meta-\npolicy"), ("hybrid", r"$\pi^{\mathrm{hyb}}$"), ("after metapolicy", "all\nactions")]
+INK = "#333333"
 SOURCE_DOM = {"ds": {"sfols": "inherit0"}}
 
 
@@ -114,6 +122,49 @@ def stream(runs):
     return {k: np.array(v, float) for k, v in out.items()}
 
 
+def kind_costs(dom):
+    """Per way the metapolicy growth obtained a new policy: its share among all new policies from the extremes, and the
+    environment steps of the first-round growths relative to Q-learning's at the same weight (ratio of means, 95%
+    bootstrap interval over the pairs), from every seed of the CoG runs."""
+    pairs, count = defaultdict(list), defaultdict(int)
+    for r in load(dom, SOURCE["cog"]):
+        cog, ql = r["lazy"].get(("fresh", "cog"), {}), r["lazy"].get(("fresh", "ql"), {})
+        for t, lg in cog.items():
+            for g in lg["grows"]:
+                count[g["kind"]] += 1
+            c0 = {g["u"]: g for g in lg["grows"] if g["round"] == 0}
+            q0 = {g["u"]: g for g in ql[t]["grows"] if g["round"] == 0}
+            for u in set(c0) & set(q0):
+                pairs[c0[u]["kind"]].append((c0[u]["steps"], q0[u]["steps"]))
+    rng, total, out = np.random.default_rng(0), sum(count.values()), {}
+    for k, v in pairs.items():
+        v = np.array(v, float)
+        boot = [v[i, 0].mean() / v[i, 1].mean() for i in (rng.integers(0, len(v), len(v)) for _ in range(2000))]
+        out[k] = (v[:, 0].mean() / v[:, 1].mean(), np.percentile(boot, [2.5, 97.5]), count[k] / total, len(v))
+    return out
+
+
+def kinds_panel(ax, dom):
+    K = kind_costs(dom)
+    names = [(k, lab) for k, lab in KINDS if k in K]
+    x = np.arange(len(names))
+    val = np.array([K[k][0] for k, _ in names])
+    err = np.array([[K[k][0] - K[k][1][0], K[k][1][1] - K[k][0]] for k, _ in names]).T
+    ax.bar(x, val, width=0.62, color=METHODS[3][2]["color"], alpha=0.85, lw=0)
+    ax.errorbar(x, val, yerr=err, fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.5, capthick=0.6)
+    ax.axhline(1.0, color=METHODS[2][2]["color"], ls="--", lw=1.1)               # Q-learning at the same weight
+    for xi, (k, _) in zip(x, names):
+        pct = r"\%" if USE_TEX else "%"
+        ax.text(xi, 0.04, f"{100 * K[k][2]:.0f}{pct}", ha="center", va="bottom", fontsize=6.5, color="white")
+        ax.text(xi, K[k][1][1] + 0.03, f"{100 * (K[k][0] - 1):+.0f}{pct}", ha="center", va="bottom", fontsize=6.5,
+                color=INK)
+    ax.set_xticks(x, [lab for _, lab in names])
+    ax.set_xlim(-0.6, len(names) - 0.4)
+    ax.set_ylim(0, 1.45)
+    ax.set_ylabel("steps / Q-learning's")
+    ax.set_title("new policies", fontsize=8)
+
+
 def style(ax, tag):
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
@@ -126,11 +177,14 @@ def main():
     data = {dom: mixed(dom) for dom in DOMS}
     data = {d: v for d, v in data.items() if v}
     with plt.rc_context(PUB_RC):
-        fig, axes = plt.subplots(len(data), 2, figsize=(TEXTWIDTH, 1.75 * len(data) + 0.35), layout="constrained",
-                                 squeeze=False)
-        tags = iter("abcdefgh")
-        for row, (dom, runs) in zip(axes, data.items()):
-            ax_l, ax_s = row
+        fig = plt.figure(figsize=(TEXTWIDTH, 1.95 * len(data) + 0.35), layout="constrained")
+        subs = np.atleast_1d(fig.subfigures(len(data), 1, hspace=0.04))
+        tags = iter("abcdefghijkl")
+        axes = []
+        for sub, (dom, runs) in zip(subs, data.items()):
+            sub.suptitle(NAMES.get(dom, dom), fontsize=8.5)
+            ax_l, ax_s, ax_k = row = sub.subplots(1, 3, gridspec_kw={"width_ratios": [1, 1, 0.72]})
+            axes.append(row)
             C = curves(runs)
             for key, lab, st in METHODS:                                   # Lazy: from the extremes (fresh)
                 k = key if key in ("flat", "sfols") else f"{key}-fresh"
@@ -142,10 +196,12 @@ def main():
             ax_l.set_xlim(X[0], X[-1])
             ax_l.set_xlabel("environment steps on the task")
             ax_l.set_ylabel("relative regret")
-            ax_l.set_title(f"{NAMES.get(dom, dom)}: a new task", fontsize=8)
+            ax_l.set_title("a new task", fontsize=8)
             style(ax_l, next(tags))
             if len(runs[0]["opt"]) == 1:                                    # one task: no sequence to show
                 ax_s.axis("off")
+                kinds_panel(ax_k, dom)
+                style(ax_k, next(tags))
                 continue
             Sd = stream(runs)
             for key, lab, st in METHODS:
@@ -157,9 +213,11 @@ def main():
             ax_s.set_yscale("log")
             ax_s.set_xlabel("tasks solved")
             ax_s.set_ylabel(r"environment steps ($\times 10^6$)")
-            ax_s.set_title(f"{NAMES.get(dom, dom)}: sequence of tasks", fontsize=8)
+            ax_s.set_title("sequence of tasks", fontsize=8)
             style(ax_s, next(tags))
-        h, l = axes[0, 0].get_legend_handles_labels()
+            kinds_panel(ax_k, dom)
+            style(ax_k, next(tags))
+        h, l = axes[0][0].get_legend_handles_labels()
         fig.legend(h, l, loc="outside upper center", ncol=2, frameon=False, handlelength=2.4, columnspacing=1.2)
         for out in OUTS:
             fig.savefig(out)

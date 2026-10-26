@@ -1,0 +1,35 @@
+# E10d: Lazy SF-FSA-VI's metapolicy growth as Algorithm 4's ladder, decided before seeing results (2026-10-26):
+#   1. learn the metapolicy on B(s), decide after QSTABLE1 = 10 checks; if certified, refine it on B(s);
+#   2. otherwise complete its table outside B(s) (QMC = 100 sampled backups per pair, counted) and check pi_hyb; if
+#      certified, keep the completed entries as their 100 samples (QHYBN=2) and refine on B(s) + pi_hyb's actions;
+#   3. otherwise learn over all actions from the completed table (completed entries not trusted).
+# Seeds 0-19: 10-19 were never used to choose a variant (held out). Lazy part only (Q-learning growth included).
+#   python cluster/sweep.py submit cluster/sweeps/lazy_cog_hybc.yaml
+#   python cluster/sweep.py merge SFOLS/runs/lazy_cog_hybc-<ts> --into SFOLS/results/lazy_mf/hybc
+name: lazy_cog_hybc
+command: env {domain} python q_lazy_fsa.py {cpus}
+grid:
+  domain: ["QDOM=windy QNTASK=60", "QDOM=office QSLIP=0.1 QNTASK=33", "QDOM=office QSLIP=0.3 QNTASK=33", "QDOM=ds"]
+  QSEED: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+env:
+  QINIT: zero
+  QESTIMATE: 1
+  QDELTA: 1e-3
+  QDELTAEST: 1e-2
+  QBASE: 5e7
+  QBUDGET: 5e7
+  QFLAT: 3e8
+  QOLSMAX: 100
+  QROUNDS: 5
+  QINHERIT: 0
+  QPARTS: lazy
+  QSTABLE1: 10
+  QHYB: 1
+  QHYBN: 2
+  QHYBLOCAL: 1
+slurm:
+  partition: amd
+  cpus: 16
+  pack: 3
+  mem: 3G
+  time: "01:00:00"

@@ -1,0 +1,21 @@
+# E5c (exploratory, not in the paper): warm starts count as N0 = 10 prior visits (first step size 1/12^0.7 = 0.18
+# instead of 0.62), for SFOLS + warm start and for E5b's CoG (reuse + continued fallback). Answers whether the
+# warm start survives the first noisy updates; see notes/cog_stochastic_observations.md. ~50 min per job.
+#   python cluster/sweep.py submit cluster/sweeps/office_ccs_n0.yaml
+#   python cluster/sweep.py merge SFOLS/runs/office_ccs_n0-<ts> --into SFOLS/results/q_ccs_cog2
+name: office_ccs_n0
+command: python q_ccs_stochastic.py run 0.05 1 10 1      # one seed, one arm, n0 = 10, one worker
+grid:
+  ARMS: [standard-warm, certify, certify-mf]
+  QSEED0: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QBASISWARM: 1
+  QREUSE: 1
+  QFALLBACK: continue
+  QEPS: 0.05
+slurm:
+  partition: amd
+  cpus: 1
+  pack: 15               # 30 runs -> 2 jobs of 15 cores
+  mem: 1G
+  time: "06:00:00"

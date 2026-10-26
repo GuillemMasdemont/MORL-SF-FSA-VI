@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.18)  25 OCT 2026 18:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.18)  26 OCT 2026 19:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -442,36 +442,55 @@ Package hyperref Info: Link coloring OFF on input line 19.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 33.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 34.
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 33.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 34.
 
 
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 3601) in paragraph at lines 60--60
+Underfull \hbox (badness 3601) in paragraph at lines 66--66
 []\OT1/cmr/m/n/10.95 Table 1: []Model-free CCS con-struc-tion un-der noise: mea
 n $\OMS/cmsy/m/n/10.95 ^^F$ \OT1/cmr/m/n/10.95 std over 10 seeds (Fig-ure
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [1
 
 {/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 107.
+<figures/ccs_cog_breakdown.pdf, id=41, 357.56915pt x 285.69713pt>
+File: figures/ccs_cog_breakdown.pdf Graphic file (type pdf)
+<use figures/ccs_cog_breakdown.pdf>
+Package pdftex.def Info: figures/ccs_cog_breakdown.pdf  used on input line 102.
 
-[2] [3]
-<figures/lazy_mf_all.pdf, id=80, 356.77242pt x 527.55069pt>
+(pdftex.def)             Requested size: 450.43253pt x 359.89745pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 130.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[2] [3 <./figures/ccs_cog_breakdown.pdf>] [4]
+<figures/lazy_mf_all.pdf, id=113, 356.77242pt x 585.36667pt>
 File: figures/lazy_mf_all.pdf Graphic file (type pdf)
 <use figures/lazy_mf_all.pdf>
-Package pdftex.def Info: figures/lazy_mf_all.pdf  used on input line 261.
-(pdftex.def)             Requested size: 410.40053pt x 606.87984pt.
- [4] [5] [6 <./figures/lazy_mf_all.pdf>] (./lazy_sf_fsa_vi.aux)
+Package pdftex.def Info: figures/lazy_mf_all.pdf  used on input line 285.
+(pdftex.def)             Requested size: 500.484pt x 821.20482pt.
+
+
+LaTeX Warning: Float too large for page by 209.40244pt on input line 290.
+
+[5] [6] [7] [8 <./figures/lazy_mf_all.pdf>] (./lazy_sf_fsa_vi.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-09-09>
@@ -480,13 +499,13 @@ Package rerunfilecheck Info: File `lazy_sf_fsa_vi.out' has not changed.
 (rerunfilecheck)             Checksum: 20451167CB786304A62401D7B023B31D;721.
  ) 
 Here is how much of TeX's memory you used:
- 11205 strings out of 467050
- 170940 string characters out of 5406312
- 609422 words of memory out of 5000000
- 40407 multiletter control sequences out of 15000+600000
+ 11218 strings out of 467050
+ 171304 string characters out of 5406312
+ 616946 words of memory out of 5000000
+ 40417 multiletter control sequences out of 15000+600000
  642591 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,11n,79p,948b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,11n,79p,948b,600s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -494,26 +513,27 @@ usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></
 usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
 sr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/
-local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/lo
-cal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/lo
-cal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
-l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
-texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/tex
-live/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texliv
-e/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
-026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/
-fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on lazy_sf_fsa_vi.pdf (6 pages, 458362 bytes).
+local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/lo
+cal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loca
+l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/loca
+l/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/
+texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/te
+xlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texli
+ve/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/
+2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/202
+6/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2026/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/fo
+nts/type1/public/cm-super/sfrm1095.pfb>
+Output written on lazy_sf_fsa_vi.pdf (8 pages, 506709 bytes).
 PDF statistics:
- 231 PDF objects out of 1000 (max. 8388607)
- 174 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 269 PDF objects out of 1000 (max. 8388607)
+ 207 compressed objects within 3 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 35 words of extra memory for PDF output out of 10000 (max. 10000000)
 

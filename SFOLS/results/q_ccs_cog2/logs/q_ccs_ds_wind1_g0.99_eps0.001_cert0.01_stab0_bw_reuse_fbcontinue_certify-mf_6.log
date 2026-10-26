@@ -1,0 +1,5 @@
+query 1 |CCS| 0 steps 10,000,000 to-converge 4,133,000 {'learns that hit the step cap': 2, 'full learns': 2, 'reused': 1}
+query 2 |CCS| 1 steps 10,000,000 to-converge 4,133,000 {'learns that hit the step cap': 2, 'full learns': 2, 'reused': 2}
+query 3 |CCS| 2 steps 10,824,200 to-converge 4,194,200 {'learns that hit the step cap': 2, 'full learns': 2, 'reused': 2, 'true gap <= cert tol': 1, 'certified': 1, 'false certificates': 0}
+query 4 |CCS| 3 steps 11,469,400 to-converge 4,252,400 {'learns that hit the step cap': 2, 'full learns': 2, 'reused': 2, 'true gap <= cert tol': 2, 'certified': 2, 'false certificates': 0}
+query 5 |CCS| 4 steps 12,184,600 to-converge 4,310,600 {'learns that hit the step cap': 2, 'full learns': 2, 'reused': 2, 'true gap <= cert tol': 3, 'certified': 3, 'false certificates': 0}

@@ -1,0 +1,31 @@
+# E10b: Lazy SF-FSA-VI's CoG growth with a short confirmation of the metapolicy learn before deciding to certify it or
+# to continue over all actions (QSTABLE1 checks of 1000 steps instead of the final QSTABLE = 100). With the continued
+# learn a wrong decision costs little: an early certificate is still an oracle certificate of optimality, an early
+# fallback keeps the same table and counts. Lazy part only (the Q-learning growth is unchanged and must reproduce
+# lazy_mf.yaml exactly); settings of Figure 5 (QINHERIT=0). ~1 min per run.
+#   python cluster/sweep.py submit cluster/sweeps/lazy_cog_k.yaml
+#   python cluster/sweep.py merge SFOLS/runs/lazy_cog_k-<ts> --into SFOLS/results/lazy_mf/k<QSTABLE1> --only <runs>
+name: lazy_cog_k
+command: env {domain} python q_lazy_fsa.py {cpus}
+grid:
+  domain: ["QDOM=windy QNTASK=60", "QDOM=office QSLIP=0.1 QNTASK=33", "QDOM=office QSLIP=0.3 QNTASK=33", "QDOM=ds"]
+  QSTABLE1: [1, 10, 30]
+  QSEED: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+env:
+  QINIT: zero
+  QESTIMATE: 1
+  QDELTA: 1e-3
+  QDELTAEST: 1e-2
+  QBASE: 5e7
+  QBUDGET: 5e7
+  QFLAT: 3e8
+  QOLSMAX: 100
+  QROUNDS: 5
+  QINHERIT: 0
+  QPARTS: lazy
+slurm:
+  partition: amd
+  cpus: 16
+  pack: 3
+  mem: 3G
+  time: "01:00:00"

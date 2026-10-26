@@ -138,6 +138,8 @@ class Profile:
         self.n = defaultdict(int)
         self.log, self.log_total, self.learns = [], [], []
         self.flips = []                          # per learn: greedy-action changes at every check
+        self.cover = []                          # per metapolicy learn: (query, basis size, mean |B(s)|)
+        self.cert = []                           # per metapolicy learn (oracle): (query, true gap, loss at the start)
         self.query = 0
         self.logfile = None
 
@@ -378,6 +380,7 @@ class CertifyOrGrowQModelFree(Learner):
         own = np.stack([p.actions for p in self.basis])
         allowed = np.zeros((S, A_N), dtype=bool)
         allowed[ROWS[None, :].repeat(len(own), 0), own] = True
+        PROF.cover.append((PROF.query, len(self.basis), float(allowed[NONTERM].sum(1).mean())))
         return allowed
 
     def _reuse(self, w):
@@ -427,6 +430,7 @@ class CertifyOrGrowQModelFree(Learner):
         # oracle: is the learned metapolicy really optimal for w? (measurement only)
         V = sf_state(policy.actions, self.M) @ w
         true_gap = (q_backup(V, w, self.M).max(1) - V).max()
+        PROF.cert.append((PROF.query, float(true_gap), float(policy_iteration(w, self.M)[1][INIT].mean() - V[INIT].mean())))
         PROF.n["true gap <= cert tol"] += true_gap <= CERT_TOL
         if gap > CERT_TOL:
             PROF.n["false fallbacks"] += true_gap <= CERT_TOL
@@ -468,6 +472,7 @@ class CertifyOrGrowQ(CertifyOrGrowQModelFree):
         policy = learned_policy(w, Psi, allowed, "q-meta")
         V = sf_state(policy.actions, self.M) @ w
         gap = (q_backup(V, w, self.M).max(1) - V)[NONTERM].max()
+        PROF.cert.append((PROF.query, float(gap), float(policy_iteration(w, self.M)[1][INIT].mean() - V[INIT].mean())))
         if gap > CERT_TOL:
             return self._grow(w, Psi, visits, allowed, allowed)
         PROF.n["certified"] += 1
@@ -504,7 +509,8 @@ def run_q(arm, seed, slip, n0=0):
     return dict(arm=arm, seed=seed, slip=slip, n_queries=n_queries, total=time.perf_counter() - t0,
                 n=dict(PROF.n), log=PROF.log, log_total=PROF.log_total, learns=PROF.learns,
                 ccs_actions=[p.actions for p in ccs], ccs_psi0=[p.psi0 for p in ccs], true_psi0=true_psi0,
-                n_basis=len(getattr(query, "basis", [])), reuse=REUSE, fallback=FALLBACK)
+                n_basis=len(getattr(query, "basis", [])), reuse=REUSE, fallback=FALLBACK, basis_cover=PROF.cover,
+                cert=PROF.cert)
 
 
 def _job(args):

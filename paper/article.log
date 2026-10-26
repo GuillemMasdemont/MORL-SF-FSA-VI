@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.18)  25 OCT 2026 18:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.10.18)  26 OCT 2026 19:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -987,23 +987,23 @@ Package pdftex.def Info: figures/q_ccs_cost_stochastic.pdf  used on input line
 (pdftex.def)             Requested size: 360.0pt x 324.39206pt.
  [15] [16 <./figures/q_ccs_cost.pdf>] [17 <./figures/q_ccs_cost_stochastic.pdf>
 ]
-<figures/double_slit.pdf, id=407, 344.81924pt x 140.38776pt>
+<figures/double_slit.pdf, id=408, 344.81924pt x 140.38776pt>
 File: figures/double_slit.pdf Graphic file (type pdf)
 <use figures/double_slit.pdf>
 Package pdftex.def Info: figures/double_slit.pdf  used on input line 352.
 (pdftex.def)             Requested size: 360.0pt x 146.56961pt.
- [18 <./figures/double_slit.pdf>]
-<figures/lazy_fsa.pdf, id=457, 356.7798pt x 253.43707pt>
+ [18] [19 <./figures/double_slit.pdf>]
+<figures/lazy_fsa.pdf, id=464, 356.7798pt x 253.43707pt>
 File: figures/lazy_fsa.pdf Graphic file (type pdf)
 <use figures/lazy_fsa.pdf>
 Package pdftex.def Info: figures/lazy_fsa.pdf  used on input line 365.
 (pdftex.def)             Requested size: 360.0pt x 255.7451pt.
- [19] [20 <./figures/lazy_fsa.pdf>]
-<figures/lazy_mf.pdf, id=511, 356.77242pt x 274.6057pt>
+ [20 <./figures/lazy_fsa.pdf>]
+<figures/lazy_mf.pdf, id=512, 356.77242pt x 303.51369pt>
 File: figures/lazy_mf.pdf Graphic file (type pdf)
 <use figures/lazy_mf.pdf>
 Package pdftex.def Info: figures/lazy_mf.pdf  used on input line 374.
-(pdftex.def)             Requested size: 360.0pt x 277.10652pt.
+(pdftex.def)             Requested size: 360.0pt x 306.27779pt.
  [21] [22 <./figures/lazy_mf.pdf>] [23] [24]
 Underfull \hbox (badness 1082) in paragraph at lines 422--422
 []\OT1/cmr/m/n/10.95 D. M. Roi-jers. ``Multi-objective decision-theoretic plan-
@@ -1026,13 +1026,13 @@ Package logreq Info: Writing requests to 'article.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 29214 strings out of 467050
- 559277 string characters out of 5406312
- 1380152 words of memory out of 5000000
- 58084 multiletter control sequences out of 15000+600000
+ 29215 strings out of 467050
+ 559286 string characters out of 5406312
+ 1380529 words of memory out of 5000000
+ 58085 multiletter control sequences out of 15000+600000
  644230 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,10n,107p,2598b,1513s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,10n,107p,3596b,1504s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></
@@ -1061,10 +1061,10 @@ type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/fonts/ty
 pe1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/font
 s/type1/public/cm-super/sfrm1095.pfb>
-Output written on article.pdf (27 pages, 715431 bytes).
+Output written on article.pdf (27 pages, 717005 bytes).
 PDF statistics:
- 710 PDF objects out of 1000 (max. 8388607)
- 571 compressed objects within 6 object streams
+ 717 PDF objects out of 1000 (max. 8388607)
+ 578 compressed objects within 6 object streams
  99 named destinations out of 1000 (max. 500000)
  150 words of extra memory for PDF output out of 10000 (max. 10000000)
 

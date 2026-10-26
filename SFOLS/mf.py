@@ -110,6 +110,31 @@ def sfql_chunk(Psi, n, Qw, w, al, ac, starts, cum, nxt, obj, state, nsteps, eps,
 
 
 @njit(cache=True)
+def complete(Psi, allowed, act, cum, nxt, obj, m, gamma):
+    """SFs of the metapolicy `act` outside B(s): every pair (s, a) not allowed gets the mean of m sampled one-step
+    backups, e_o on entering exit o, else gamma * Psi[s', act[s']] (only entries on B(s') are read). The greedy policy
+    of the completed table over all actions is pi_hyb. Returns the samples used."""
+    S, A, D = Psi.shape
+    used = 0
+    for s in range(S):
+        for a in range(A):
+            if allowed[s, a]:
+                continue
+            acc = np.zeros(D)
+            for _ in range(m):
+                ns, o = _sample(cum, nxt, obj, s, a)
+                if o >= 0:
+                    acc[o] += 1.0
+                else:
+                    for d in range(D):
+                        acc[d] += gamma * Psi[ns, act[ns], d]
+            for d in range(D):
+                Psi[s, a, d] = acc[d] / m
+            used += m
+    return used
+
+
+@njit(cache=True)
 def flatq_chunk(Q, n, tau, exits, nU, S, starts, cum, nxt, obj, state, nsteps, eps, kappa, gamma, horizon):
     """nsteps of Q-learning on the product MDP. Q, n: (nU * S, A); tau[u, o] = next automaton state on entering exit o
     in u (-1: accepting, reward 1); exits[o] = low-level state where the next stage starts (the jump is discounted by
@@ -260,6 +285,7 @@ def warmup(smp, gamma):
     al, ac = action_lists(np.ones((S, A), bool))
     sfql_chunk(np.zeros((S, A, D)), n.copy(), Q.copy(), np.ones(D), al, ac, smp.starts, smp.cum, smp.nxt, smp.obj,
                np.array([-1, 0], np.int64), 10, EPS, KAPPA, gamma, HORIZON)
+    complete(np.zeros((S, A, D)), np.ones((S, A), np.bool_), np.zeros(S, np.int64), smp.cum, smp.nxt, smp.obj, 1, gamma)
     flatq_chunk(Q.copy(), n.copy(), np.full((1, D), -1, np.int64), np.zeros(D, np.int64), 1, S, smp.starts, smp.cum,
                 smp.nxt, smp.obj, np.array([0, -1, 0], np.int64), 10, EPS, KAPPA, gamma, HORIZON)
     eval_policy(np.zeros(S, np.int64), np.ones(D), smp.prob, smp.nxt, smp.obj, gamma, np.zeros(S), 1e-3)
